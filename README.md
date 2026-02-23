@@ -1,7 +1,9 @@
 # about
 
 Proof-of-concept for a restaurant's order management application.
-
+Yeodeun logo            |  storefront image
+:-------------------------:|:-------------------------:
+<img src="https://github.com/apacific/yeodeun/blob/main/yeodeun-logo.png?raw=true" width="333" height="333">  |  <img src="https://github.com/apacific/yeodeun/blob/main/store-front.png?raw=true" width="333" height="333">
 # features
 
 - Restaurant Menu
