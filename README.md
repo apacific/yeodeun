@@ -1,4 +1,5 @@
-# about
+# Yeodeun (여든)
+## about
 
 Proof-of-concept for a restaurant's order management application.
 Yeodeun logo            |  storefront image
@@ -20,16 +21,16 @@ Yeodeun logo            |  storefront image
 
 - Responsive design
 
-# setup and run
+## setup and run
 
-### system requirements
+#### system requirements
 
-# testing
+## testing
 
-### frontend
+#### frontend
 
-### backend
+#### backend
 
-### end-to-end
+#### end-to-end
 
-## run all tests
+#### run all tests
