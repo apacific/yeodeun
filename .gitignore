@@ -1,0 +1,97 @@
+# ------------------------------
+# OS / Editor
+# ------------------------------
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+*~
+.vscode/*
+!.vscode/settings.json
+.idea/
+
+# ------------------------------
+# Logs
+# ------------------------------
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ------------------------------
+# Environment / secrets
+# ------------------------------
+.env
+.env.*
+!.env.example
+
+# ------------------------------
+# Node / Expo / React Native
+# ------------------------------
+node_modules/
+.expo/
+.expo-shared/
+
+# Metro / bundler caches
+*.tsbuildinfo
+.cache/
+
+# React Native generated folders (if present)
+services/mobile/android/
+services/mobile/ios/
+
+# Build outputs
+dist/
+build/
+coverage/
+
+# ------------------------------
+# .NET / C#
+# ------------------------------
+**/bin/
+**/obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.rsuser
+
+# Rider / ReSharper
+*.DotSettings.user
+_ReSharper*/
+
+# ------------------------------
+# Test / tooling artifacts
+# ------------------------------
+TestResults/
+*.trx
+
+# ------------------------------
+# Docker / local runtime artifacts
+# ------------------------------
+*.pid
+*.seed
+*.db
+
+# ------------------------------
+# Project-local temp files
+# ------------------------------
+adb
+prompt.txt
+
+# Mobile app (Expo) extra ignores
+services/mobile/web-build/
+services/mobile/expo-env.d.ts
+services/mobile/.kotlin/
+services/mobile/.metro-health-check*
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.pem
+.env*.local
+git-backups/

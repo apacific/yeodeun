@@ -1,0 +1,85 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\projects\\software\\fullstack\\ocellos\\services\\api\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8EFCEBD3-BD74-84BB-476C-D9FB39EC22F3}|src\\Ocellos.Api\\Ocellos.Api.csproj|c:\\projects\\software\\fullstack\\ocellos\\services\\api\\src\\ocellos.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8EFCEBD3-BD74-84BB-476C-D9FB39EC22F3}|src\\Ocellos.Api\\Ocellos.Api.csproj|solutionrelative:src\\ocellos.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8EFCEBD3-BD74-84BB-476C-D9FB39EC22F3}|src\\Ocellos.Api\\Ocellos.Api.csproj|c:\\projects\\software\\fullstack\\ocellos\\services\\api\\src\\ocellos.api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{8EFCEBD3-BD74-84BB-476C-D9FB39EC22F3}|src\\Ocellos.Api\\Ocellos.Api.csproj|solutionrelative:src\\ocellos.api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8EFCEBD3-BD74-84BB-476C-D9FB39EC22F3}|src\\Ocellos.Api\\Ocellos.Api.csproj|c:\\projects\\software\\fullstack\\ocellos\\services\\api\\src\\ocellos.api\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{8EFCEBD3-BD74-84BB-476C-D9FB39EC22F3}|src\\Ocellos.Api\\Ocellos.Api.csproj|solutionrelative:src\\ocellos.api\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8EFCEBD3-BD74-84BB-476C-D9FB39EC22F3}|src\\Ocellos.Api\\Ocellos.Api.csproj|c:\\projects\\software\\fullstack\\ocellos\\services\\api\\src\\ocellos.api\\ocellos.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{8EFCEBD3-BD74-84BB-476C-D9FB39EC22F3}|src\\Ocellos.Api\\Ocellos.Api.csproj|solutionrelative:src\\ocellos.api\\ocellos.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\projects\\software\\fullstack\\ocellos\\services\\api\\src\\Ocellos.Api\\Program.cs",
+              "RelativeDocumentMoniker": "src\\Ocellos.Api\\Program.cs",
+              "ToolTip": "C:\\projects\\software\\fullstack\\ocellos\\services\\api\\src\\Ocellos.Api\\Program.cs",
+              "RelativeToolTip": "src\\Ocellos.Api\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-15T02:54:51.117Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\projects\\software\\fullstack\\ocellos\\services\\api\\src\\Ocellos.Api\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "src\\Ocellos.Api\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\projects\\software\\fullstack\\ocellos\\services\\api\\src\\Ocellos.Api\\Properties\\launchSettings.json",
+              "RelativeToolTip": "src\\Ocellos.Api\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABYAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-01-10T06:53:42.584Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Ocellos.Api.csproj",
+              "DocumentMoniker": "C:\\projects\\software\\fullstack\\ocellos\\services\\api\\src\\Ocellos.Api\\Ocellos.Api.csproj",
+              "RelativeDocumentMoniker": "src\\Ocellos.Api\\Ocellos.Api.csproj",
+              "ToolTip": "C:\\projects\\software\\fullstack\\ocellos\\services\\api\\src\\Ocellos.Api\\Ocellos.Api.csproj",
+              "RelativeToolTip": "src\\Ocellos.Api\\Ocellos.Api.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-01-10T06:53:36.745Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Dockerfile",
+              "DocumentMoniker": "C:\\projects\\software\\fullstack\\ocellos\\services\\api\\src\\Ocellos.Api\\Dockerfile",
+              "RelativeDocumentMoniker": "src\\Ocellos.Api\\Dockerfile",
+              "ToolTip": "C:\\projects\\software\\fullstack\\ocellos\\services\\api\\src\\Ocellos.Api\\Dockerfile",
+              "RelativeToolTip": "src\\Ocellos.Api\\Dockerfile",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-01-10T06:40:37.144Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

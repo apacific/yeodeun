@@ -1,0 +1,42 @@
+{
+  "expo": {
+    "name": "Yeodeun",
+    "slug": "yeodeun-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#1A1A1A"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.yeodeun.mobile"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#1A1A1A"
+      },
+      "package": "com.yeodeun.mobile",
+      "versionCode": 1
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "scheme": "yeodeun",
+    "plugins": [
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "targetSdkVersion": 35
+          }
+        }
+      ],
+      "expo-font"
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: yeodeun_db
+      POSTGRES_USER: yeodeun
+      POSTGRES_PASSWORD: yeodeun_dev_pw
+    ports:
+      - "5433:5432"
+    volumes:
+      - yeodeun_pgdata:/var/lib/postgresql/data
+
+  api:
+    build:
+      context: ./services/api
+      dockerfile: src/Yeodeun.Api/Dockerfile
+    environment:
+      ASPNETCORE_URLS: http://+:8080
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__Default: Host=db;Port=5432;Database=yeodeun_db;Username=yeodeun;Password=yeodeun_dev_pw;GSS Encryption Mode=Disable
+    depends_on:
+      - db
+    ports:
+      - "5010:8080"
+
+volumes:
+  yeodeun_pgdata:
+
+

@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="src/Yeodeun.Api/Yeodeun.Api.csproj" />
+  <Project Path="src/Yeodeun.Application/Yeodeun.Application.csproj" />
+  <Project Path="src/Yeodeun.Domain/Yeodeun.Domain.csproj" />
+  <Project Path="src/Yeodeun.Infrastructure/Yeodeun.Infrastructure.csproj" />
+</Solution>
+

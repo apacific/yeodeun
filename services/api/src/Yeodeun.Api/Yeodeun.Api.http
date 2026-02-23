@@ -1,0 +1,7 @@
+@Yeodeun.Api_HostAddress = http://localhost:5010
+
+GET {{Yeodeun.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
