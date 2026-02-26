@@ -25,7 +25,6 @@ import {
   ContactScreen,
   GalleryScreen,
   HomeScreen,
-  LanguageScreen,
   OrderMenuScreen,
 } from './src/screens';
 import { RootStackParamList } from './src/navigation/types';
@@ -74,11 +73,12 @@ const centeredTextStyle = { textAlign: 'center' } as const;
 export default function App() {
   const [i18nReady, setI18nReady] = useState(false);
   const { height } = useWindowDimensions();
-  const viewportMargin = Math.round(height * 0.1);
+  const topViewportMargin = Math.round(height * 0.12);
+  const bottomViewportMargin = Math.round(height * 0.07);
   const contentStyle = {
     backgroundColor: appTheme.layout.screenBackground,
-    paddingTop: viewportMargin,
-    paddingBottom: viewportMargin,
+    paddingTop: topViewportMargin,
+    paddingBottom: bottomViewportMargin,
   } as const;
   const [fontsLoaded] = useFonts({
     'Paperlogy-1Thin': require('./assets/fonts/Paperlogy-1Thin.ttf'),
@@ -129,7 +129,6 @@ export default function App() {
                   <Stack.Screen name="AllMenuItems" component={AllMenuItemsScreen} />
                   <Stack.Screen name="Gallery" component={GalleryScreen} />
                   <Stack.Screen name="Contact" component={ContactScreen} />
-                  <Stack.Screen name="Language" component={LanguageScreen} />
                 </Stack.Navigator>
               </NavigationContainer>
               <View style={styles.languageDock}>
@@ -149,10 +148,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   languageDock: {
-    alignItems: 'center',
-    bottom: 60,
-    left: 0,
+    alignItems: 'flex-start',
+    left: 16,
     position: 'absolute',
-    right: 0,
+    top: 48,
   },
 });

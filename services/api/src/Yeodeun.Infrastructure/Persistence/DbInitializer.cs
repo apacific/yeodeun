@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Yeodeun.Domain.Menu;
 
 namespace Yeodeun.Infrastructure.Persistence;
@@ -17,12 +19,36 @@ public static class DbInitializer
     /// <param name="db">The application database context.</param>
     /// <param name="ct">The cancellation token.</param>
     /// <returns>A task that completes when migration and seeding finish.</returns>
-    public static async Task MigrateAndSeedAsync(YeodeunDbContext db, CancellationToken ct = default)
+    public static async Task MigrateAndSeedAsync(
+        YeodeunDbContext db,
+        IConfiguration? configuration = null,
+        ILogger? logger = null,
+        CancellationToken ct = default)
     {
         await db.Database.MigrateAsync(ct);
 
         await SeedMenuItemsAsync(db, ct);
         await SeedNutritionProfilesAsync(db, ct);
+        await SeedUsdaNutritionProfilesAsync(db, configuration, logger, null, ct);
+    }
+
+    /// <summary>
+    /// Refreshes USDA FoodData Central nutrition profiles on demand.
+    /// </summary>
+    /// <param name="db">The application database context.</param>
+    /// <param name="configuration">Application configuration.</param>
+    /// <param name="logger">Logger used for seeding diagnostics.</param>
+    /// <param name="forceRefreshOverride">Optional force-refresh override for USDA-seeded rows.</param>
+    /// <param name="ct">The cancellation token.</param>
+    /// <returns>The number of nutrition profiles updated from USDA.</returns>
+    public static async Task<int> RefreshUsdaNutritionAsync(
+        YeodeunDbContext db,
+        IConfiguration? configuration,
+        ILogger? logger,
+        bool? forceRefreshOverride = null,
+        CancellationToken ct = default)
+    {
+        return await SeedUsdaNutritionProfilesAsync(db, configuration, logger, forceRefreshOverride, ct);
     }
 
     // -----------------------
@@ -230,6 +256,49 @@ public static class DbInitializer
             SourceName: "TBD"
         ),
     };
+
+
+    /// <summary>
+    /// Enriches seeded nutrition profiles from USDA FoodData Central when configured.
+    /// </summary>
+    /// <param name="db">The application database context.</param>
+    /// <param name="configuration">Application configuration.</param>
+    /// <param name="logger">Logger used for seeding diagnostics.</param>
+    /// <param name="ct">The cancellation token.</param>
+    /// <returns>A task that completes when USDA enrichment is attempted.</returns>
+    private static async Task<int> SeedUsdaNutritionProfilesAsync(
+        YeodeunDbContext db,
+        IConfiguration? configuration,
+        ILogger? logger,
+        bool? forceRefreshOverride,
+        CancellationToken ct)
+    {
+        if (configuration is null)
+        {
+            logger?.LogInformation("USDA FDC nutrition seeding skipped: configuration was not provided.");
+            return 0;
+        }
+
+        var section = configuration.GetSection("NutritionSeeding:UsdaFdc");
+        var enabled = section.GetValue<bool>("Enabled");
+        if (!enabled)
+        {
+            logger?.LogInformation("USDA FDC nutrition seeding skipped: NutritionSeeding:UsdaFdc:Enabled is false.");
+            return 0;
+        }
+
+        var apiKey = section["ApiKey"];
+        if (string.IsNullOrWhiteSpace(apiKey))
+        {
+            apiKey = configuration["USDA_FDC_API_KEY"];
+        }
+
+        var forceRefresh = forceRefreshOverride ?? section.GetValue<bool>("ForceRefresh");
+        var updated = await UsdaFdcNutritionSeeder.TrySeedAsync(db, apiKey, forceRefresh, logger, ct);
+
+        logger?.LogInformation("USDA FDC nutrition seeding completed. Profiles updated: {Count}.", updated);
+        return updated;
+    }
 
     private static List<MenuItem> BuildSeedItems() => new()
     {

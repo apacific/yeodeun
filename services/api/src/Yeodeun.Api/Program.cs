@@ -35,13 +35,16 @@ if (app.Environment.IsDevelopment())
 {
     using var scope = app.Services.CreateScope();
     var db = scope.ServiceProvider.GetRequiredService<YeodeunDbContext>();
+    var seedLogger = scope.ServiceProvider
+        .GetRequiredService<ILoggerFactory>()
+        .CreateLogger("DbInitializer");
 
     const int maxAttempts = 10;
     for (var attempt = 1; attempt <= maxAttempts; attempt++)
     {
         try
         {
-            await DbInitializer.MigrateAndSeedAsync(db);
+            await DbInitializer.MigrateAndSeedAsync(db, builder.Configuration, seedLogger);
             break;
         }
         catch (PostgresException) when (attempt < maxAttempts)

@@ -8,4 +8,3 @@ export { AboutScreen } from './AboutScreen';
 export { AllMenuItemsScreen } from './AllMenuItemsScreen';
 export { GalleryScreen } from './GalleryScreen';
 export { ContactScreen } from './ContactScreen';
-export { LanguageScreen } from './LanguageScreen';

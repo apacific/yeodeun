@@ -46,7 +46,10 @@ export const NutritionModal = React.memo(
     totals,
     title,
   }: NutritionModalProps) => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
+    const isEnglish = (i18n.resolvedLanguage || i18n.language || 'en')
+      .toLowerCase()
+      .startsWith('en');
     const nutritionData = useMemo(() => {
       if (!totals && !menuItem?.nutrition) return [];
 
@@ -56,7 +59,9 @@ export const NutritionModal = React.memo(
       const rows: NutritionRow[] = [
         {
           label: t('nutrition.calories'),
-          value: formatNutritionValue(data.calories || 0, 'kcal'),
+          value: isEnglish
+            ? `${Math.round(data.calories || 0)}`
+            : formatNutritionValue(data.calories || 0, 'kcal'),
           isBold: true,
         },
         {
@@ -103,12 +108,12 @@ export const NutritionModal = React.memo(
       ];
 
       return rows;
-    }, [totals, menuItem, t]);
+    }, [isEnglish, totals, menuItem, t]);
 
-    const displayTitle =
-      title ||
+    const headerTitle = t('nutrition.titleDefault');
+    const headerSubtitle =
       (menuItem ? getMenuItemLabel(menuItem.name, t) : undefined) ||
-      t('nutrition.titleDefault');
+      title;
 
     return (
       <Modal
@@ -119,12 +124,23 @@ export const NutritionModal = React.memo(
       >
         <View style={styles.container}>
           <View style={styles.header}>
-            <Text
-              variant="headlineMedium"
-              style={styles.headerTitle}
-            >
-              {displayTitle}
-            </Text>
+            <View style={styles.headerTextGroup}>
+              <Text
+                variant="headlineMedium"
+                style={styles.headerTitle}
+              >
+                {headerTitle}
+              </Text>
+              {headerSubtitle ? (
+                <Text
+                  variant="titleSmall"
+                  style={styles.headerSubtitle}
+                  numberOfLines={2}
+                >
+                  {headerSubtitle}
+                </Text>
+              ) : null}
+            </View>
             <TouchableOpacity
               onPress={onClose}
               style={styles.closeButton}
@@ -249,7 +265,18 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.lg,},
   headerTitle: {
     color: appTheme.colors.onSurface,
-    flex: 1,},
+  },
+  headerSubtitle: {
+    color: appTheme.colors.onSurface,
+    fontSize: 17,
+    fontWeight: '700',
+    marginTop: spacing.xs,
+    opacity: 0.9,
+  },
+  headerTextGroup: {
+    flex: 1,
+    paddingRight: spacing.md,
+  },
   closeButton: {
     alignItems: 'center',
     height: 40,

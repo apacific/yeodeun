@@ -53,14 +53,6 @@ export const HomeScreen = ({ navigation }: RootStackScreenProps<'Home'>) => {
         >
           {t('home.contact')}
         </Button>
-        <Button
-          mode="outlined"
-          onPress={() => navigation.navigate('Language')}
-          style={styles.secondaryButton}
-          contentStyle={styles.buttonContent}
-        >
-          {t('home.language')}
-        </Button>
       </View>
     </View>
   );
@@ -70,14 +62,15 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: appTheme.colors.background,
     flex: 1,
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     paddingBottom: spacing.xl,
     paddingHorizontal: spacing.lg,
     paddingTop: spacing.xl,},
   logoSection: {
     alignItems: 'center',
     gap: spacing.lg,
-    marginTop: spacing.xl,},
+    marginTop: spacing.xxl,
+  },
   title: {
     color: appTheme.colors.onBackground,
     fontSize: 30,
@@ -85,7 +78,9 @@ const styles = StyleSheet.create({
     letterSpacing: 3.2,
     lineHeight: 36,},
   menu: {
-    gap: spacing.md,},
+    gap: spacing.md,
+    marginTop: spacing.xl,
+  },
   primaryButton: {
   },
   secondaryButton: {

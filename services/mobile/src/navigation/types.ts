@@ -18,7 +18,6 @@ export type RootStackParamList = {
   About: undefined;
   AllMenuItems: undefined;
   Gallery: { focusIndex?: number } | undefined;
-  Language: undefined;
   Contact:
     | {
         prefill?: {

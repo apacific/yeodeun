@@ -17,11 +17,15 @@ services:
     environment:
       ASPNETCORE_URLS: http://+:8080
       ASPNETCORE_ENVIRONMENT: Development
+      USDA_FDC_API_KEY: ${USDA_FDC_API_KEY:?USDA_FDC_API_KEY is required}
+      NUTRITION_ADMIN_API_KEY: ${NUTRITION_ADMIN_API_KEY:?NUTRITION_ADMIN_API_KEY is required}
+      NutritionSeeding__UsdaFdc__Enabled: "true"
       ConnectionStrings__Default: Host=db;Port=5432;Database=yeodeun_db;Username=yeodeun;Password=yeodeun_dev_pw;GSS Encryption Mode=Disable
     depends_on:
       - db
     ports:
       - "5010:8080"
+      
 
 volumes:
   yeodeun_pgdata:

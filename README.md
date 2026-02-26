@@ -9,6 +9,10 @@ Yeodeun logo            |  storefront image
 
 - Restaurant Menu
 
+    - Nutrition Facts available for all items via USDA FoodData Central
+    - Updated whenever API is started, as well as via admin-only endpoint
+
+
 - Create and edit order
 
 - Checkout and payment processing

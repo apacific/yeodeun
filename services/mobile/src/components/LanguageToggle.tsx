@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { AppLanguage, setLanguage, supportedLanguages } from '../i18n';
 import { appTheme, spacing } from '../theme/theme';
@@ -8,6 +8,12 @@ const languageFlagLabel: Record<AppLanguage, string> = {
   en: '🇺🇸',
   ko: '🇰🇷',
   ja: '🇯🇵',
+};
+
+const languageTextLabel: Record<AppLanguage, string> = {
+  en: 'EN',
+  ko: '한국어',
+  ja: '日本語',
 };
 
 /**
@@ -32,9 +38,8 @@ export const LanguageToggle = () => {
 
   return (
     <Pressable onPress={handlePress} style={styles.button}>
-      <View>
-        <Text style={styles.label}>{languageFlagLabel[activeLanguage]}</Text>
-      </View>
+      <Text style={styles.flag}>{languageFlagLabel[activeLanguage]}</Text>
+      <Text style={styles.label}>{languageTextLabel[activeLanguage]}</Text>
     </Pressable>
   );
 };
@@ -42,12 +47,19 @@ export const LanguageToggle = () => {
 const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
+    flexDirection: 'row',
     justifyContent: 'center',
-    minWidth: 56,
+    minWidth: 72,
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.sm,
   },
-  label: {
+  flag: {
     fontSize: 18,
+    marginRight: spacing.xs,
+  },
+  label: {
+    color: appTheme.colors.onBackground,
+    fontSize: 16,
+    fontWeight: '700',
   },
 });

@@ -185,11 +185,18 @@ const styles = StyleSheet.create({
     paddingBottom: spacing.xl,
     paddingHorizontal: spacing.lg,},
   sectionHeader: {
+    alignItems: 'center',
     paddingBottom: spacing.sm,
-    paddingTop: spacing.lg,},
+    paddingTop: spacing.lg,
+  },
   sectionTitle: {
     color: appTheme.colors.onBackground,
-    letterSpacing: 0.4,},
+    fontSize: 17,
+    fontWeight: '700',
+    letterSpacing: 0.4,
+    opacity: 0.9,
+    textAlign: 'center',
+  },
   row: {
     justifyContent: 'center',
     minHeight: 140,},
