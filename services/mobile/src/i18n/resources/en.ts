@@ -3,14 +3,14 @@ export const en = {
     name: 'Yeodeun',
   },
   home: {
-    createEditOrder: 'Create Order',
+    createEditOrder: 'Order Here',
     about: 'About Yeodeun',
     gallery: 'Gallery',
     contact: 'Contact',
     language: 'Language',
   },
   orderMenu: {
-    title: 'Create Order',
+    title: 'Order Here',
     subtitle: 'Choose an option.',
     actions: {
       aLaCarte: 'A-la-carte',
@@ -148,6 +148,7 @@ export const en = {
     totalTitle: 'Total',
     orderTotalLabel: 'Order Total',
     startCheckout: 'Start Checkout',
+    addToOrder: 'Add to Order',
     remove: 'Remove',
     comboMeal: 'Combo meal',
   },
@@ -180,7 +181,7 @@ export const en = {
       cart: 'Cart',
       orderMenu: 'Order Menu',
     },
-    submit: 'Submit Payment',
+    submit: 'Submit Order',
   },
   about: {
     title: 'About Yeodeun',

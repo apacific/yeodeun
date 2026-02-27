@@ -8,7 +8,7 @@ export const ja = {
   },
   home: {
     ...en.home,
-    createEditOrder: '注文を作成する',
+    createEditOrder: 'ここで注文',
     about: '店舗情報',
     gallery: 'フォトギャラリー',
     contact: 'お問い合わせ',
@@ -16,7 +16,7 @@ export const ja = {
   },
   orderMenu: {
     ...en.orderMenu,
-    title: '注文を作成する',
+    title: 'ここで注文',
     subtitle: 'オプションを選択してください。',
     actions: {
       ...en.orderMenu.actions,
@@ -165,6 +165,7 @@ export const ja = {
     totalTitle: '合計金額',
     orderTotalLabel: '注文合計',
     startCheckout: 'チェックアウトを開始',
+    addToOrder: '注文に追加',
     remove: '削除',
     comboMeal: 'コンボセット',
   },
@@ -200,7 +201,7 @@ export const ja = {
       cart: 'カート',
       orderMenu: '注文メニュー',
     },
-    submit: '支払いを送信する',
+    submit: '注文を送信する',
   },
   about: {
     ...en.about,

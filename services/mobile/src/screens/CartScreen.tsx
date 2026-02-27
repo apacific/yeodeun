@@ -131,7 +131,19 @@ export const CartScreen = ({ navigation }: RootStackScreenProps<'Cart'>) => {
         </View>
 
         <Button
+          mode="outlined"
+          contentStyle={styles.actionButtonContent}
+          labelStyle={styles.actionButtonLabel}
+          style={[styles.checkoutButton, styles.addToOrderButton]}
+          onPress={() => navigation.navigate('OrderMenu')}
+        >
+          {t('cart.addToOrder')}
+        </Button>
+
+        <Button
           mode="contained"
+          contentStyle={styles.actionButtonContent}
+          labelStyle={styles.actionButtonLabel}
           style={styles.checkoutButton}
           onPress={() => navigation.navigate('Checkout', { from: 'cart' })}
         >
@@ -215,5 +227,17 @@ const styles = StyleSheet.create({
   },
   checkoutButton: {
     marginTop: spacing.sm,
+  },
+  addToOrderButton: {
+    backgroundColor: appTheme.colors.background,
+    borderColor: appTheme.colors.onSurface,
+    borderWidth: 1,
+  },
+  actionButtonContent: {
+    minHeight: 48,
+  },
+  actionButtonLabel: {
+    fontSize: 16,
+    fontWeight: '700',
   },
 });

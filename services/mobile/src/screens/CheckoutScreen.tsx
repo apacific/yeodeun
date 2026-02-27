@@ -273,14 +273,13 @@ export const CheckoutScreen = ({
           />
 
           {error && <Text style={styles.error}>{error}</Text>}
-          {route.params?.from && (
-            <Text style={styles.helperText}>
-              {t('checkout.helperStartedFrom', {
-                source: t(`checkout.sources.${route.params.from}`),
-              })}
-            </Text>
-          )}
-          <Button mode="contained" onPress={handleSubmit} disabled={checkoutMutation.isPending}>
+          <Button
+            mode="contained"
+            contentStyle={styles.submitButtonContent}
+            style={styles.submitButton}
+            onPress={handleSubmit}
+            disabled={checkoutMutation.isPending}
+          >
             {t('checkout.submit')}
           </Button>
         </View>
@@ -340,9 +339,6 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: '700',
   },
-  helperText: {
-    color: appTheme.colors.onSurfaceDisabled,
-  },
   radioRow: {
     alignItems: 'center',
     flexDirection: 'row',
@@ -363,6 +359,13 @@ const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: appTheme.colors.surface,
+  },
+  submitButton: {
+    marginTop: spacing.sm,
+    width: '100%',
+  },
+  submitButtonContent: {
+    minHeight: 56,
   },
   error: {
     color: appTheme.colors.error,
