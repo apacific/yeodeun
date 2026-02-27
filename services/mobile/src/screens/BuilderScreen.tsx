@@ -20,17 +20,14 @@ import { Card, Section, EmptyState, LoadingOverlay } from '../components/Common'
 import { formatPrice } from '../utils/formatting';
 import { getMenuItemLabel } from '../i18n/menu';
 import { appTheme, spacing } from '../theme/theme';
+import { RootStackScreenProps } from '../navigation/types';
 
 type BuilderStep = 'entree' | 'vegetable' | 'fruit' | 'side' | 'sauce' | 'topping' | 'beverage' | 'review';
-
-interface BuilderScreenProps {
-  onCheckout?: (orderSummary: any) => void;
-}
 
 /**
  * Builder screen.
  */
-export const BuilderScreen = React.memo(({ onCheckout }: BuilderScreenProps) => {
+export const BuilderScreen = React.memo(({ navigation }: RootStackScreenProps<'Builder'>) => {
   const { t } = useTranslation();
   const [currentStep, setCurrentStep] = useState<BuilderStep>('entree');
   const [nutritionItem, setNutritionItem] = useState<MenuItemDto | undefined>();
@@ -47,6 +44,7 @@ export const BuilderScreen = React.memo(({ onCheckout }: BuilderScreenProps) => 
     addTopping,
     removeTopping,
     setBeverage,
+    addCurrentComboMeal,
     reset,
     isComboComplete,
     getSauceIds,
@@ -114,7 +112,23 @@ export const BuilderScreen = React.memo(({ onCheckout }: BuilderScreenProps) => 
     [currentStep, currentSelection, setEntree, setVegetable, setFruit, setSide, addSauce, removeSauce, addTopping, removeTopping, setBeverage, getSauceIds, getToppingIds]
   );
 
-  const handleNextStep = useCallback(() => {
+  const handleNextStep = useCallback(async () => {
+    if (currentStep === 'beverage') {
+      if (!isComboComplete()) {
+        return;
+      }
+
+      try {
+        const quote = await pricingMutation.mutateAsync({ selection: currentSelection });
+        addCurrentComboMeal(quote.totalCents);
+        setCurrentStep('entree');
+        navigation.navigate('Cart');
+      } catch {
+        // Pricing errors are surfaced by existing mutation UI state.
+      }
+      return;
+    }
+
     const steps: BuilderStep[] = [
       'entree',
       'vegetable',
@@ -123,13 +137,19 @@ export const BuilderScreen = React.memo(({ onCheckout }: BuilderScreenProps) => 
       'sauce',
       'topping',
       'beverage',
-      'review',
     ];
     const currentIndex = steps.indexOf(currentStep);
     if (currentIndex < steps.length - 1) {
       setCurrentStep(steps[currentIndex + 1]);
     }
-  }, [currentStep]);
+  }, [
+    addCurrentComboMeal,
+    currentSelection,
+    currentStep,
+    isComboComplete,
+    navigation,
+    pricingMutation,
+  ]);
 
   const handlePreviousStep = useCallback(() => {
     const steps: BuilderStep[] = [
@@ -140,7 +160,6 @@ export const BuilderScreen = React.memo(({ onCheckout }: BuilderScreenProps) => 
       'sauce',
       'topping',
       'beverage',
-      'review',
     ];
     const currentIndex = steps.indexOf(currentStep);
     if (currentIndex > 0) {
@@ -288,8 +307,14 @@ export const BuilderScreen = React.memo(({ onCheckout }: BuilderScreenProps) => 
         <Button
           mode="contained"
           onPress={() => {
-            pricingMutation.mutate({ selection: currentSelection });
-            onCheckout?.(pricingMutation.data);
+            if (!pricingMutation.data) {
+              pricingMutation.mutate({ selection: currentSelection });
+              return;
+            }
+
+            addCurrentComboMeal(pricingMutation.data.totalCents);
+            setCurrentStep('entree');
+            navigation.navigate('Cart');
           }}
           style={styles.checkoutButton}
           contentStyle={styles.checkoutButtonContent}
@@ -402,7 +427,7 @@ export const BuilderScreen = React.memo(({ onCheckout }: BuilderScreenProps) => 
               disabled={!canProceed()}
               style={styles.navButton}
             >
-              {currentStep === 'beverage' ? t('builder.nav.review') : t('builder.nav.next')}
+              {currentStep === 'beverage' ? t('orderMenu.actions.viewOrder') : t('builder.nav.next')}
             </Button>
           </View>
         </>

@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     color: appTheme.colors.onSurface,
     flex: 1,
     fontWeight: '900',
-    letterSpacing: 2.6,
+    letterSpacing: 2,
     textAlign: 'center',
   },
   side: {

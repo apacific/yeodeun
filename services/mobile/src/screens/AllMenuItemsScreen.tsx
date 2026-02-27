@@ -84,7 +84,7 @@ export const AllMenuItemsScreen = ({
       >
         <View style={styles.overlay}>
           <View style={styles.rowInfo}>
-            <Text variant="titleSmall" style={styles.rowName}>
+            <Text variant="titleMedium" style={styles.rowName}>
               {getMenuItemLabel(item.name, t)}
             </Text>
             <Text variant="bodySmall" style={styles.rowMeta}>
@@ -202,13 +202,13 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.45)',
     padding: spacing.md,},
   rowInfo: {
-    gap: spacing.xs,},
+    gap: spacing.md,},
   rowName: {
     color: appTheme.colors.onBackground,},
   rowMeta: {
+    alignSelf: 'flex-end',
     color: appTheme.colors.onBackground,
-    fontSize: 18,
-    fontWeight: '700',
+    fontSize: 22,
     lineHeight: 22,},
   rowLinks: {
     flexDirection: 'row',

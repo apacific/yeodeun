@@ -44,9 +44,18 @@ public sealed class CheckoutController : ControllerBase
             || request.Selection.ToppingIds.Count > 0
             || request.Selection.BeverageId != null;
 
+        var hasSelections = request.Selections?.Any(selection =>
+            selection.EntreeId != null
+            || selection.VegetableId != null
+            || selection.FruitId != null
+            || selection.SideId != null
+            || selection.SauceIds.Count > 0
+            || selection.ToppingIds.Count > 0
+            || selection.BeverageId != null) == true;
+
         var hasALaCarte = request.ALaCarteItems.Any(x => x.Quantity > 0);
 
-        if (!hasSelectionItems && !hasALaCarte)
+        if (!hasSelectionItems && !hasSelections && !hasALaCarte)
             return BadRequest("Order is empty.");
 
         if (request.PaymentMethod == "card")

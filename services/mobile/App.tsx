@@ -8,13 +8,14 @@ import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, StyleSheet, Text as RNText, TextInput as RNTextInput, View, useWindowDimensions } from 'react-native';
 import { useFonts } from 'expo-font';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { PaperProvider, Text as PaperText, TextInput as PaperTextInput } from 'react-native-paper';
+import { IconButton, PaperProvider, Text as PaperText, TextInput as PaperTextInput } from 'react-native-paper';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, createNavigationContainerRef } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { appTheme } from './src/theme/theme';
 import { initI18n } from './src/i18n';
+import { useTranslation } from 'react-i18next';
 import {
   ALaCarteScreen,
   AboutScreen,
@@ -29,8 +30,11 @@ import {
 } from './src/screens';
 import { RootStackParamList } from './src/navigation/types';
 import { LanguageToggle } from './src/components';
+import { useOrderStore } from './src/store/orderStore';
 
 const Stack = createStackNavigator<RootStackParamList>();
+const navigationRef = createNavigationContainerRef<RootStackParamList>();
+
 const createQueryClient = () =>
   new QueryClient({
     defaultOptions: {
@@ -72,6 +76,7 @@ const centeredTextStyle = { textAlign: 'center' } as const;
 
 export default function App() {
   const [i18nReady, setI18nReady] = useState(false);
+  const [currentRouteName, setCurrentRouteName] = useState<keyof RootStackParamList | undefined>();
   const { height } = useWindowDimensions();
   const topViewportMargin = Math.round(height * 0.12);
   const bottomViewportMargin = Math.round(height * 0.07);
@@ -97,6 +102,7 @@ export default function App() {
       .finally(() => setI18nReady(true));
   }, []);
 
+
   if (!fontsLoaded || !i18nReady) {
     return (
       <View style={{ flex: 1, backgroundColor: appTheme.colors.background, justifyContent: 'center', alignItems: 'center' }}>
@@ -111,7 +117,11 @@ export default function App() {
         <QueryClientProvider client={queryClient}>
           <PaperProvider theme={appTheme}>
             <View style={styles.appRoot}>
-              <NavigationContainer>
+              <NavigationContainer
+                ref={navigationRef}
+                onReady={() => setCurrentRouteName(navigationRef.getCurrentRoute()?.name as keyof RootStackParamList | undefined)}
+                onStateChange={() => setCurrentRouteName(navigationRef.getCurrentRoute()?.name as keyof RootStackParamList | undefined)}
+              >
                 <Stack.Navigator
                   initialRouteName="Home"
                   screenOptions={{
@@ -131,9 +141,7 @@ export default function App() {
                   <Stack.Screen name="Contact" component={ContactScreen} />
                 </Stack.Navigator>
               </NavigationContainer>
-              <View style={styles.languageDock}>
-                <LanguageToggle />
-              </View>
+              <TopOverlayControls currentRouteName={currentRouteName} />
             </View>
           </PaperProvider>
         </QueryClientProvider>
@@ -142,15 +150,78 @@ export default function App() {
   );
 }
 
+/**
+ * Global top overlay controls.
+ */
+const TopOverlayControls = ({
+  currentRouteName,
+}: {
+  currentRouteName?: keyof RootStackParamList;
+}) => {
+  const { t } = useTranslation();
+  const hasOrder = useOrderStore((state) => {
+    const sel = state.currentSelection ?? {};
+    const aLaCarteItems = state.aLaCarteItems ?? [];
+    const comboMeals = state.comboMeals ?? [];
+    const sauceIds = Array.isArray((sel as any).sauceIds) ? (sel as any).sauceIds : [];
+    const toppingIds = Array.isArray((sel as any).toppingIds) ? (sel as any).toppingIds : [];
+
+    return Boolean(
+      comboMeals.length > 0 ||
+      aLaCarteItems.length > 0 ||
+      (sel as any).entreeId ||
+      (sel as any).vegetableId ||
+      (sel as any).fruitId ||
+      (sel as any).sideId ||
+      (sel as any).beverageId ||
+      sauceIds.length > 0 ||
+      toppingIds.length > 0
+    );
+  });
+
+  const showPersistentOrderButton =
+    hasOrder && currentRouteName !== 'OrderMenu' && currentRouteName !== 'Cart';
+
+  return (
+    <View style={styles.topOverlayRow}>
+      <LanguageToggle />
+      {showPersistentOrderButton ? (
+        <IconButton
+          icon="shopping-outline"
+          size={20}
+          onPress={() => {
+            if (navigationRef.isReady()) {
+              navigationRef.navigate('Cart');
+            }
+          }}
+          style={styles.orderDockButton}
+          iconColor={appTheme.colors.onBackground}
+        />
+      ) : (
+        <View />
+      )}
+    </View>
+  );
+};
+
 
 const styles = StyleSheet.create({
   appRoot: {
     flex: 1,
   },
-  languageDock: {
-    alignItems: 'flex-start',
+  orderDockButton: {
+    backgroundColor: appTheme.colors.background,
+    borderColor: appTheme.colors.onBackground,
+    borderWidth: 1,
+    margin: 0,
+  },
+  topOverlayRow: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     left: 16,
     position: 'absolute',
+    right: 16,
     top: 48,
   },
 });

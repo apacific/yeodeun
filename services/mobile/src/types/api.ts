@@ -106,6 +106,7 @@ export interface DishSelectionDto {
 
 export interface SelectionRequestDto {
   selection: DishSelectionDto;
+  selections?: DishSelectionDto[];
 }
 
 export interface NutritionQuoteRequestDto {
@@ -144,6 +145,7 @@ export interface CheckoutRequestDto {
   paymentMethod: 'card' | 'cash' | 'delivery';
   notes?: string;
   selection: DishSelectionDto;
+  selections?: DishSelectionDto[];
   aLaCarteItems: CheckoutALaCarteItemDto[];
   totals: CheckoutTotalsDto;
   card?: CheckoutCardDto;

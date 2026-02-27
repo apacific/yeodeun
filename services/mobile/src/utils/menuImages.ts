@@ -54,6 +54,11 @@ const menuImageOverrides: Record<string, ImageSourcePropType> = {
   'vegan sausage': require('../../assets/img/menu/vegan-sausage.jpg'),
 };
 
+
+const galleryExtras: ImageSourcePropType[] = [
+  require('../../assets/img/menu/itaewon_night.jpg'),
+];
+
 /**
  * Get menu item image.
  */
@@ -64,6 +69,7 @@ export const getMenuItemImage = (name: string): ImageSourcePropType =>
 /**
  * Menu gallery images.
  */
-export const menuGalleryImages: ImageSourcePropType[] = Object.values(
-  menuImageOverrides
-);
+export const menuGalleryImages: ImageSourcePropType[] = [
+  ...Object.values(menuImageOverrides),
+  ...galleryExtras,
+];

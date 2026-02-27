@@ -16,7 +16,7 @@ export const HomeScreen = ({ navigation }: RootStackScreenProps<'Home'>) => {
       <View style={styles.logoSection}>
         <LogoMark size={165} />
         <Text variant="titleLarge" style={styles.title}>
-          {t('brand.name').toUpperCase()}
+          {t('brand.name').toLowerCase()}
         </Text>
       </View>
 
@@ -69,17 +69,17 @@ const styles = StyleSheet.create({
   logoSection: {
     alignItems: 'center',
     gap: spacing.lg,
-    marginTop: spacing.xxl,
+    marginVertical: spacing.xxl,
   },
   title: {
     color: appTheme.colors.onBackground,
-    fontSize: 30,
+    fontSize: 36,
     fontWeight: '700',
-    letterSpacing: 3.2,
+    letterSpacing: 2.5,
     lineHeight: 36,},
   menu: {
     gap: spacing.md,
-    marginTop: spacing.xl,
+    marginTop: spacing.xxl,
   },
   primaryButton: {
   },

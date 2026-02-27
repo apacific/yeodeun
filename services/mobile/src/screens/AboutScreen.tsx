@@ -39,7 +39,7 @@ export const AboutScreen = ({ navigation }: RootStackScreenProps<'About'>) => {
           <Text variant="titleSmall" style={styles.sectionTitle}>
             {t('about.addressTitle')}
           </Text>
-          <Text style={[styles.sectionText, styles.leftText]}>
+          <Text style={[styles.sectionText]}>
             {t('about.address')}
           </Text>
         </View>
@@ -48,7 +48,7 @@ export const AboutScreen = ({ navigation }: RootStackScreenProps<'About'>) => {
           <Text variant="titleSmall" style={styles.sectionTitle}>
             {t('about.hoursTitle')}
           </Text>
-          <Text style={[styles.sectionText, styles.leftText]}>
+          <Text style={[styles.sectionText]}>
             {t('about.hours')}
           </Text>
         </View>
@@ -103,15 +103,14 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: '900',
     letterSpacing: 2.6,
-    marginBottom: spacing.sm,
-    marginTop: spacing.sm,
+    marginVertical: spacing.xxl,
     paddingBottom: spacing.md,
     paddingHorizontal: spacing.md,
     paddingTop: spacing.md,
     textAlign: 'center',},
   section: {
     alignSelf: 'center',
-    gap: spacing.sm,
+    gap: spacing.md,
     maxWidth: 560,
     width: '100%',},
   sectionTitle: {
@@ -120,7 +119,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',},
   sectionText: {
     color: appTheme.colors.onSurfaceDisabled,
-    textAlign: 'left',},
+    textAlign: 'center',},
   leftText: {
     textAlign: 'left',
     width: '100%',},

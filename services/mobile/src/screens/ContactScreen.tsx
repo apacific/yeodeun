@@ -282,13 +282,17 @@ const styles = StyleSheet.create({
     paddingBottom: spacing.xl,
     paddingHorizontal: spacing.lg,},
   infoText: {
+    alignSelf: 'center',
     color: appTheme.colors.onSurfaceDisabled,
-    marginTop: spacing.md,},
+    marginTop: spacing.xl,
+    textAlign: 'center',},
   infoValue: {
-    color: appTheme.colors.onSurface,},
+    alignSelf: 'center',
+    color: appTheme.colors.onSurface,
+    textAlign: 'center',},
   form: {
-    gap: spacing.md,
-    marginTop: spacing.lg,},
+    gap: spacing.sm,
+    marginTop: spacing.xxl,},
   phoneRow: {
     alignItems: 'center',
     flexDirection: 'row',
@@ -297,7 +301,7 @@ const styles = StyleSheet.create({
     backgroundColor: appTheme.colors.surface,
     borderColor: appTheme.colors.outlineVariant,
     borderWidth: 1,
-    paddingHorizontal: spacing.sm,
+    paddingHorizontal: spacing.md,
     paddingVertical: spacing.sm,},
   countryCodeText: {
     color: appTheme.colors.onSurface,},

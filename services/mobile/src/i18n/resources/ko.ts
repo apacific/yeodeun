@@ -8,7 +8,7 @@ export const ko = {
   },
   home: {
     ...en.home,
-    createEditOrder: '주문 생성/수정',
+    createEditOrder: '주문 생성',
     about: '점포 정보',
     gallery: '사진 갤러리',
     contact: '문의',
@@ -16,7 +16,7 @@ export const ko = {
   },
   orderMenu: {
     ...en.orderMenu,
-    title: '주문 생성/수정',
+    title: '주문 생성',
     subtitle: '옵션을 선택하세요.',
     actions: {
       ...en.orderMenu.actions,
@@ -165,6 +165,8 @@ export const ko = {
     totalTitle: '총 가격',
     orderTotalLabel: '주문 총합',
     startCheckout: '체크아웃 시작',
+    remove: '삭제',
+    comboMeal: '콤보 세트',
   },
   checkout: {
     ...en.checkout,

@@ -62,10 +62,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.lg,},
   logoSection: {
     alignItems: 'center',
-    gap: spacing.sm,
-    paddingVertical: spacing.lg,},
+    gap: spacing.xxl,
+    paddingVertical: spacing.xxl,},
   subtitle: {
-    color: appTheme.colors.onBackground,},
+    color: appTheme.colors.onBackground,
+    fontSize: 20,},
   menu: {
     gap: spacing.md,},
   primaryButton: {

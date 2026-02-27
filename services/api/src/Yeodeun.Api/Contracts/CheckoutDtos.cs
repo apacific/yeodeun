@@ -36,7 +36,8 @@ public sealed record CheckoutRequestDto(
     DishSelectionDto Selection,
     IReadOnlyList<CheckoutALaCarteItemDto> ALaCarteItems,
     CheckoutTotalsDto Totals,
-    CheckoutCardDto? Card
+    CheckoutCardDto? Card,
+    IReadOnlyList<DishSelectionDto>? Selections = null
 );
 
 /// <summary>
