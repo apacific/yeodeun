@@ -5,8 +5,6 @@ services:
       POSTGRES_DB: yeodeun_db
       POSTGRES_USER: yeodeun
       POSTGRES_PASSWORD: yeodeun_dev_pw
-    ports:
-      - "5433:5432"
     volumes:
       - yeodeun_pgdata:/var/lib/postgresql/data
 
@@ -16,20 +14,17 @@ services:
       dockerfile: src/Yeodeun.Api/Dockerfile
     environment:
       ASPNETCORE_URLS: http://+:8080
-      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT:-Production}
       USDA_FDC_API_KEY: ${USDA_FDC_API_KEY:?USDA_FDC_API_KEY is required}
       Auth__Jwt__Issuer: yeodeun-api
       Auth__Jwt__Audience: yeodeun-admin
       Auth__Jwt__Key: ${ADMIN_JWT_KEY:?ADMIN_JWT_KEY is required}
-      NutritionSeeding__UsdaFdc__Enabled: "true"
+      NutritionSeeding__UsdaFdc__Enabled: ${NUTRITION_SEEDING_USDA_ENABLED:-false}
       ConnectionStrings__Default: Host=db;Port=5432;Database=yeodeun_db;Username=yeodeun;Password=yeodeun_dev_pw;GSS Encryption Mode=Disable
     depends_on:
       - db
     ports:
       - "5010:8080"
-      
 
 volumes:
   yeodeun_pgdata:
-
-
