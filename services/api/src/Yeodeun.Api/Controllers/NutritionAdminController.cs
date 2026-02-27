@@ -1,4 +1,7 @@
+using System.Net;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
 using Yeodeun.Domain.Menu;
 using Yeodeun.Infrastructure.Persistence;
@@ -6,6 +9,8 @@ using Yeodeun.Infrastructure.Persistence;
 namespace Yeodeun.Api.Controllers;
 
 [ApiController]
+[EnableRateLimiting("admin-strict")]
+[Authorize(Policy = "AdminOnly")]
 [Route("api/admin/nutrition")]
 /// <summary>
 /// Provides development/admin operations for nutrition data maintenance.
@@ -15,6 +20,7 @@ public sealed class NutritionAdminController : ControllerBase
     private readonly IConfiguration _configuration;
     private readonly YeodeunDbContext _db;
     private readonly ILogger<NutritionAdminController> _logger;
+    private readonly IWebHostEnvironment _environment;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="NutritionAdminController"/> class.
@@ -25,39 +31,38 @@ public sealed class NutritionAdminController : ControllerBase
     public NutritionAdminController(
         YeodeunDbContext db,
         IConfiguration configuration,
-        ILogger<NutritionAdminController> logger)
+        ILogger<NutritionAdminController> logger,
+        IWebHostEnvironment environment)
     {
         _db = db;
         _configuration = configuration;
         _logger = logger;
+        _environment = environment;
     }
 
     private bool TryAuthorizeAdminRequest(out ActionResult? failure)
     {
         failure = null;
 
-        var configuredKey = _configuration["AdminEndpoints:NutritionRefresh:ApiKey"];
-        if (string.IsNullOrWhiteSpace(configuredKey))
+        var requireDevelopment = _configuration.GetValue("AdminEndpoints:RequireDevelopment", true);
+        if (requireDevelopment && !_environment.IsDevelopment())
         {
-            configuredKey = _configuration["NUTRITION_ADMIN_API_KEY"];
+            failure = NotFound();
+            return false;
         }
 
-        if (string.IsNullOrWhiteSpace(configuredKey))
+        var allowedIpAddresses = _configuration.GetSection("AdminEndpoints:AllowedIpAddresses").Get<string[]>() ?? Array.Empty<string>();
+        if (allowedIpAddresses.Length > 0)
         {
-            _logger.LogWarning("Nutrition admin endpoint called without admin key configured.");
-            failure = StatusCode(StatusCodes.Status503ServiceUnavailable, new
+            var remoteIp = HttpContext.Connection.RemoteIpAddress;
+            var isAllowed = remoteIp is not null && allowedIpAddresses.Any(entry =>
+                IPAddress.TryParse(entry, out var allowedIp) && allowedIp.Equals(remoteIp));
+
+            if (!isAllowed)
             {
-                message = "Nutrition admin endpoint is not configured. Set AdminEndpoints:NutritionRefresh:ApiKey or NUTRITION_ADMIN_API_KEY."
-            });
-            return false;
-        }
-
-        if (!Request.Headers.TryGetValue("X-Admin-Key", out var providedKey) ||
-            providedKey.Count == 0 ||
-            !string.Equals(providedKey[0], configuredKey, StringComparison.Ordinal))
-        {
-            failure = Unauthorized(new { message = "Invalid or missing X-Admin-Key." });
-            return false;
+                failure = Forbid();
+                return false;
+            }
         }
 
         return true;
@@ -76,14 +81,12 @@ public sealed class NutritionAdminController : ControllerBase
     /// Triggers an on-demand USDA FoodData Central nutrition refresh.
     /// </summary>
     /// <param name="request">Optional request options such as force refresh.</param>
-    /// <param name="adminKey">Admin key sent in the <c>X-Admin-Key</c> header.</param>
     /// <param name="ct">Cancellation token for async operations.</param>
     /// <returns>The number of nutrition profiles updated.</returns>
-    /// <remarks>Requires the <c>X-Admin-Key</c> request header.</remarks>
+    /// <remarks>Requires authenticated JWT with the Admin role.</remarks>
     [HttpPost("usda-refresh")]
     public async Task<ActionResult<UsdaNutritionRefreshResponseDto>> RefreshUsdaNutrition(
         [FromBody] UsdaNutritionRefreshRequestDto? request,
-        [FromHeader(Name = "X-Admin-Key")] string? adminKey,
         CancellationToken ct)
     {
         if (!TryAuthorizeAdminRequest(out var failure))
@@ -107,13 +110,11 @@ public sealed class NutritionAdminController : ControllerBase
     /// <summary>
     /// Returns a nutrition coverage audit for food and beverage menu items.
     /// </summary>
-    /// <param name="adminKey">Admin key sent in the <c>X-Admin-Key</c> header.</param>
     /// <param name="ct">Cancellation token for async operations.</param>
     /// <returns>Coverage summary and item-level findings for missing or suspicious nutrition data.</returns>
-    /// <remarks>Requires the <c>X-Admin-Key</c> request header.</remarks>
+    /// <remarks>Requires authenticated JWT with the Admin role.</remarks>
     [HttpGet("audit")]
     public async Task<ActionResult<NutritionAuditResponseDto>> GetAudit(
-        [FromHeader(Name = "X-Admin-Key")] string? adminKey,
         CancellationToken ct)
     {
         if (!TryAuthorizeAdminRequest(out var failure))

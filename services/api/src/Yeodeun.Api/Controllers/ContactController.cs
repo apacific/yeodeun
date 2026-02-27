@@ -1,11 +1,13 @@
 using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 using Yeodeun.Api.Contracts;
 
 namespace Yeodeun.Api.Controllers;
 
 [ApiController]
+[EnableRateLimiting("contact-write")]
 [Route("api/contact")]
 /// <summary>
 /// Handles contact form submissions and validates optional contact fields.
@@ -52,9 +54,9 @@ public sealed class ContactController : ControllerBase
             return BadRequest("Invalid phone number.");
         }
 
-        _logger.LogInformation("Contact request received. Email={Email} Phone={Phone} MessageLength={Length}",
-            email,
-            phone,
+        _logger.LogInformation("Contact request received. HasEmail={HasEmail} HasPhone={HasPhone} MessageLength={Length}",
+            !string.IsNullOrWhiteSpace(email),
+            !string.IsNullOrWhiteSpace(phone),
             message?.Length ?? 0);
 
         return Ok(new ContactResponseDto("Thanks for reaching out! We'll be in touch soon."));

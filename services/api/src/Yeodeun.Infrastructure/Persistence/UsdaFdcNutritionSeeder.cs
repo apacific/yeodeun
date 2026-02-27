@@ -122,6 +122,7 @@ internal static class UsdaFdcNutritionSeeder
             BaseAddress = new Uri("https://api.nal.usda.gov/fdc/v1/")
         };
         http.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        http.DefaultRequestHeaders.Add("X-Api-Key", apiKey.Trim());
 
         var menuItems = await db.MenuItems
             .AsTracking()
@@ -159,7 +160,7 @@ internal static class UsdaFdcNutritionSeeder
 
             if (spec.FdcIdOverride.HasValue)
             {
-                detail = await GetFoodDetailsAsync(http, apiKey, spec.FdcIdOverride.Value, ct);
+                detail = await GetFoodDetailsAsync(http, spec.FdcIdOverride.Value, ct);
                 if (detail is null)
                 {
                     logger?.LogWarning("USDA FDC details fetch failed for '{MenuItemName}' override fdcId {FdcId}.", item.Name, spec.FdcIdOverride.Value);
@@ -178,7 +179,7 @@ internal static class UsdaFdcNutritionSeeder
             }
             else
             {
-                var search = await SearchAsync(http, apiKey, spec.Query, ct);
+                var search = await SearchAsync(http, spec.Query, ct);
                 var rankedCandidates = RankCandidates(search?.Foods, item.Name);
                 if (rankedCandidates.Count == 0)
                 {
@@ -190,7 +191,7 @@ internal static class UsdaFdcNutritionSeeder
 
                 foreach (var candidate in rankedCandidates.Take(6))
                 {
-                    var candidateDetail = await GetFoodDetailsAsync(http, apiKey, candidate.FdcId, ct);
+                    var candidateDetail = await GetFoodDetailsAsync(http, candidate.FdcId, ct);
                     if (candidateDetail is null)
                     {
                         continue;
@@ -470,7 +471,7 @@ internal static class UsdaFdcNutritionSeeder
             .Replace("  ", " ");
     }
 
-    private static async Task<FdcSearchResponseDto?> SearchAsync(HttpClient http, string apiKey, string query, CancellationToken ct)
+    private static async Task<FdcSearchResponseDto?> SearchAsync(HttpClient http, string query, CancellationToken ct)
     {
         var request = new FdcSearchRequestDto(
             Query: query,
@@ -481,7 +482,7 @@ internal static class UsdaFdcNutritionSeeder
             SortBy: "dataType.keyword",
             SortOrder: "asc");
 
-        using var response = await http.PostAsJsonAsync($"foods/search?api_key={Uri.EscapeDataString(apiKey)}", request, ct);
+        using var response = await http.PostAsJsonAsync("foods/search", request, ct);
         if (!response.IsSuccessStatusCode)
         {
             // fallback: broader search without datatype filtering
@@ -494,7 +495,7 @@ internal static class UsdaFdcNutritionSeeder
                 SortBy: null,
                 SortOrder: null);
 
-            using var fallback = await http.PostAsJsonAsync($"foods/search?api_key={Uri.EscapeDataString(apiKey)}", fallbackRequest, ct);
+            using var fallback = await http.PostAsJsonAsync("foods/search", fallbackRequest, ct);
             if (!fallback.IsSuccessStatusCode) return null;
             return await fallback.Content.ReadFromJsonAsync<FdcSearchResponseDto>(cancellationToken: ct);
         }
@@ -502,9 +503,9 @@ internal static class UsdaFdcNutritionSeeder
         return await response.Content.ReadFromJsonAsync<FdcSearchResponseDto>(cancellationToken: ct);
     }
 
-    private static async Task<FdcFoodDetailDto?> GetFoodDetailsAsync(HttpClient http, string apiKey, long fdcId, CancellationToken ct)
+    private static async Task<FdcFoodDetailDto?> GetFoodDetailsAsync(HttpClient http, long fdcId, CancellationToken ct)
     {
-        using var response = await http.GetAsync($"food/{fdcId}?api_key={Uri.EscapeDataString(apiKey)}", ct);
+        using var response = await http.GetAsync($"food/{fdcId}", ct);
         if (!response.IsSuccessStatusCode) return null;
         return await response.Content.ReadFromJsonAsync<FdcFoodDetailDto>(cancellationToken: ct);
     }
