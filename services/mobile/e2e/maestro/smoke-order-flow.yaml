@@ -1,0 +1,13 @@
+appId: host.exp.exponent
+name: Yeodeun Smoke Order Flow
+---
+- launchApp
+- assertVisible: "ORDER HERE"
+- tapOn: "ORDER HERE"
+- assertVisible: "A-la-carte"
+- tapOn: "A-la-carte"
+- assertVisible: "MENU"
+- tapOn:
+    text: "Nutrition info"
+    index: 0
+- assertVisible: "NUTRITION FACTS"

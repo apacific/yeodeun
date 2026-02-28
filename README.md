@@ -1,7 +1,7 @@
 # Yeodeun (여든)
 ## About
 
-Proof-of-concept for a restaurant's order management application.
+Proof-of-concept for a restaurant foodservice order management application.
 Yeodeun logo            |  storefront image
 :-------------------------:|:-------------------------:
 <img src="https://github.com/apacific/yeodeun/blob/main/yeodeun-logo.png?raw=true" width="333" height="333">  |  <img src="https://github.com/apacific/yeodeun/blob/main/store-front.png?raw=true" width="333" height="333">
@@ -129,10 +129,51 @@ docker compose up --build
 
 ## Testing
 
-#### Frontend
+#### Frontend (unit + component integration)
 
-#### Backend
+```powershell
+cd services/mobile
+npm test -- --runInBand
+```
 
-#### End-to-End
+Coverage report:
+
+```powershell
+cd services/mobile
+npm run test:coverage
+```
+
+#### Backend (unit + integration + API e2e)
+
+```powershell
+cd services/api
+dotnet test Yeodeun.slnx -v minimal
+```
+
+Targeted runs:
+
+```powershell
+cd services/api
+dotnet test tests/Yeodeun.Application.Tests/Yeodeun.Application.Tests.csproj -v minimal
+dotnet test tests/Yeodeun.Api.IntegrationTests/Yeodeun.Api.IntegrationTests.csproj -v minimal
+dotnet test tests/Yeodeun.Api.EndToEndTests/Yeodeun.Api.EndToEndTests.csproj -v minimal
+```
+
+#### Mobile End-to-End (device smoke flow)
+
+The repository includes a Maestro flow at:
+
+- `services/mobile/e2e/maestro/smoke-order-flow.yaml`
+
+Run it with Maestro CLI installed and Expo Go open on a connected device/emulator:
+
+```powershell
+cd services/mobile
+npm run test:e2e:maestro
+```
 
 #### Run All Tests
+
+1. `cd services/api && dotnet test Yeodeun.slnx -v minimal`
+2. `cd services/mobile && npm test -- --runInBand`
+3. `cd services/mobile && npm run test:e2e:maestro` (optional device e2e smoke)

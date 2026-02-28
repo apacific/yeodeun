@@ -3,5 +3,9 @@
   <Project Path="src/Yeodeun.Application/Yeodeun.Application.csproj" />
   <Project Path="src/Yeodeun.Domain/Yeodeun.Domain.csproj" />
   <Project Path="src/Yeodeun.Infrastructure/Yeodeun.Infrastructure.csproj" />
+  <Project Path="tests/Yeodeun.Application.Tests/Yeodeun.Application.Tests.csproj" />
+  <Project Path="tests/Yeodeun.Api.IntegrationTests/Yeodeun.Api.IntegrationTests.csproj" />
+  <Project Path="tests/Yeodeun.Api.EndToEndTests/Yeodeun.Api.EndToEndTests.csproj" />
+  <Project Path="tests/Yeodeun.Domain.Tests/Yeodeun.Domain.Tests.csproj" />
 </Solution>
 
