@@ -2,7 +2,7 @@
 ## About
 
 Proof-of-concept for a restaurant foodservice order management application.
-Yeodeun logo            |  storefront image
+Yeodeun Logo            |  Storefront Image
 :-------------------------:|:-------------------------:
 <img src="https://github.com/apacific/yeodeun/blob/main/yeodeun-logo.png?raw=true" width="333" height="333">  |  <img src="https://github.com/apacific/yeodeun/blob/main/store-front.png?raw=true" width="333" height="333">
 
@@ -129,6 +129,6 @@ npm run test:e2e:maestro
 
 ## Security Notes
 
-- Keep `USDA_FDC_API_KEY` and `ADMIN_JWT_KEY` out of source control.
-- Rotate `ADMIN_JWT_KEY` regularly.
-- Restrict admin endpoint access by environment/network settings in API configuration.
+- `USDA_FDC_API_KEY` and `ADMIN_JWT_KEY` are kept out of source control.
+- `ADMIN_JWT_KEY` is meant to be rotated regularly.
+- Admin endpoint access is restricted via environment/network settings in API configuration.
