@@ -10,7 +10,7 @@ import { Button, Text } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
 import { useMenuItems } from '../api/hooks';
 import { NutritionModal, ScreenHeader } from '../components';
-import { getCategoryLabel, getMenuItemLabel } from '../i18n/menu';
+import { getCategoryLabel, getMenuItemDescription, getMenuItemLabel } from '../i18n/menu';
 import { RootStackScreenProps } from '../navigation/types';
 import { MenuItemDto } from '../types/api';
 import { MENU_CATEGORIES } from '../utils/constants';
@@ -47,11 +47,11 @@ export const AllMenuItemsScreen = ({
 
   const descriptionText = useMemo(() => {
     if (!descriptionItem) return '';
-    return (
-      descriptionItem.description ??
-      t('menu.descriptionFallback', {
-        name: getMenuItemLabel(descriptionItem.name, t),
-      })
+
+    return getMenuItemDescription(
+      descriptionItem.name,
+      t,
+      descriptionItem.description
     );
   }, [descriptionItem, t]);
 

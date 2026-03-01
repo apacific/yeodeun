@@ -32,3 +32,29 @@ export const getMenuItemLabel = (name: string, t: TFunction): string =>
   t(`menu.itemNames.${getMenuItemKey(name)}`, {
     defaultValue: name,
   });
+
+
+/**
+ * Get menu item description in the active language.
+ */
+export const getMenuItemDescription = (
+  name: string,
+  t: TFunction,
+  defaultDescription?: string | null
+): string => {
+  const key = `menu.itemDescriptions.${getMenuItemKey(name)}`;
+  const localized = t(key, { defaultValue: '' }).trim();
+
+  if (localized.length > 0) {
+    return localized;
+  }
+
+  const activeLanguage = ((t as any)?.i18n?.resolvedLanguage ?? '').toLowerCase();
+  if (activeLanguage.startsWith('en') && defaultDescription) {
+    return defaultDescription;
+  }
+
+  return t('menu.descriptionFallback', {
+    name: getMenuItemLabel(name, t),
+  });
+};

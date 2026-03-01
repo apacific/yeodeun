@@ -39,7 +39,7 @@ const menuImageOverrides: Record<string, ImageSourcePropType> = {
   'radish sprouts': require('../../assets/img/menu/radish-sprouts.jpg'),
   'roasted broccoli': require('../../assets/img/menu/roasted-broccoli.jpg'),
   'roasted kale': require('../../assets/img/menu/roasted-kale.jpg'),
-  'sambal oelek': require('../../assets/img/menu/sambal-oelek.jpg'),
+  'gochujang': require('../../assets/img/menu/gochujang.jpg'),
   'seitan': require('../../assets/img/menu/seitan.jpg'),
   'sesame miso dressing': require('../../assets/img/menu/sesame-miso-dressing.jpg'),
   'shishito peppers': require('../../assets/img/menu/shishito-peppers.jpg'),

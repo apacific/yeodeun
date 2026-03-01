@@ -11,7 +11,7 @@ namespace Yeodeun.Infrastructure.Persistence;
 public static class DbInitializer
 {
     // If true: any existing menu item NOT in the seed list is set inactive (not deleted).
-    private const bool SoftDisableMissingMenuItems = false;
+    private const bool SoftDisableMissingMenuItems = true;
 
     /// <summary>
     /// Runs database migrations and seed upserts.
@@ -377,8 +377,8 @@ public static class DbInitializer
             "rich coconut-cream and peanut sauce"),
         new("hot pepper sauce", MenuCategory.Sauce, 100,
             "cayenne, vinegar; old-school hot sauce"),
-        new("sambal oelek", MenuCategory.Sauce, 100,
-            "crunchy red chili-garlic condiment"),
+        new("gochujang", MenuCategory.Sauce, 100,
+            "spicy, sweet, and savory fermented red chili condiment"),
         new("sesame miso dressing", MenuCategory.Sauce, 100,
             "homemade, creamy, great on everything"),
         new("cilantro vinaigrette", MenuCategory.Sauce, 100,
