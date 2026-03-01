@@ -5,61 +5,65 @@ Proof-of-concept for a restaurant foodservice order management application.
 Yeodeun logo            |  storefront image
 :-------------------------:|:-------------------------:
 <img src="https://github.com/apacific/yeodeun/blob/main/yeodeun-logo.png?raw=true" width="333" height="333">  |  <img src="https://github.com/apacific/yeodeun/blob/main/store-front.png?raw=true" width="333" height="333">
-# Features
 
-## Domain and Business Rules
+- ASP.NET Core API + PostgreSQL
+- Expo React Native mobile app
+- English, Korean, and Japanese localization
 
-### Frontend
+## Repository Layout
 
-- workflow(s)
+- `services/api` - backend API, database, seed logic, tests
+- `services/mobile` - Expo app, i18n resources, mobile tests
 
--  UI and Layout
+## Prerequisites
 
-    - Restaurant Menu
+- Docker Desktop
+- Node.js 20+
+- .NET SDK 10 (for local API test runs)
+- Expo Go (or emulator/simulator)
 
-        - Nutrition Facts available for all items via USDA FoodData Central
-            - Updated whenever API is started, as well as via admin-only endpoint
+## Environment Variables
 
-    - English, Korean, Japanese language support across all screens/views
-
-- Create and edit order
-
-- Checkout and payment processing
-
-- Customer feedback form
-
-
-- Cross-platform compatibility
-
-- Responsive design
-
-# Technology Stack
-
-## Setup and Run
-
-#### System Requirements
-
-Docker Desktop
-
-An Android or iOS (Apple) phone / tablet with Expo Go app, or a suitable emulator
-
-
-### API: Admin JWT Setup (Nutrition Endpoints)
-
-Admin endpoints under `api/admin/nutrition/*` require:
-- a valid JWT Bearer token
-- `role: Admin` claim
-- allowed environment/IP checks from API config
-
-Set required environment variables before running Docker Compose:
+Set secrets in your shell or secret manager (do not commit real values):
 
 ```powershell
-$env:USDA_FDC_API_KEY = "your-usda-key"
-$env:ADMIN_JWT_KEY = "your-strong-jwt-signing-key"
+$env:USDA_FDC_API_KEY = "<your-usda-key>"
+$env:ADMIN_JWT_KEY = "<strong-random-key>"
+```
+
+## Run with Docker
+
+### Local development (recommended)
+
+```powershell
+docker compose -f docker-compose.yml -f docker-compose.local.yml up --build
+```
+
+This enables development defaults, includes DB host port mapping, and supports local seed workflows.
+
+### Non-local / stricter mode
+
+```powershell
 docker compose up --build
 ```
 
-Generate a development JWT in PowerShell (HS256):
+Base compose defaults to production-safe behavior.
+
+## Mobile App
+
+```powershell
+cd services/mobile
+npm install
+npx expo start -c --lan
+```
+
+## Nutrition Data
+
+- Nutrition profiles are sourced from USDA FoodData Central.
+- Admin endpoints are under `api/admin/nutrition/*`.
+- Admin endpoints require JWT Bearer auth with `role: Admin`.
+
+### Generate a local admin JWT (PowerShell)
 
 ```powershell
 $key = $env:ADMIN_JWT_KEY
@@ -80,11 +84,10 @@ $unsigned = "$header.$payload"
 
 $hmac = [System.Security.Cryptography.HMACSHA256]::new([Text.Encoding]::UTF8.GetBytes($key))
 $sig = To-Base64Url($hmac.ComputeHash([Text.Encoding]::UTF8.GetBytes($unsigned)))
-$token = "$unsigned.$sig"
-$token
+"$unsigned.$sig"
 ```
 
-Use the token:
+Use token:
 
 ```powershell
 $token = "<paste-token>"
@@ -93,87 +96,39 @@ $headers = @{ Authorization = "Bearer $token" }
 Invoke-RestMethod -Method Get `
   -Uri http://localhost:5010/api/admin/nutrition/audit `
   -Headers $headers
-
-Invoke-RestMethod -Method Post `
-  -Uri http://localhost:5010/api/admin/nutrition/usda-refresh `
-  -Headers $headers `
-  -ContentType "application/json" `
-  -Body '{"forceRefresh": true}'
 ```
 
-### Production Security Notes
+## Seed Behavior
 
-- Rotate `ADMIN_JWT_KEY` regularly and keep it in secret storage.
-- Keep `AdminEndpoints:RequireDevelopment` enabled unless you intentionally expose admin endpoints in a protected environment.
-- Use `AdminEndpoints:AllowedIpAddresses` to restrict admin endpoint source IPs.
-- In non-local runs, keep USDA seeding disabled by default (`NUTRITION_SEEDING_USDA_ENABLED=false`) and trigger refresh explicitly with admin auth.
-
-### Docker Compose Modes
-
-Default compose (`docker-compose.yml`) is now non-local-safe by default:
-- `ASPNETCORE_ENVIRONMENT` defaults to `Production`
-- USDA auto-seeding defaults to disabled
-- Postgres port is not published to host
-
-For local development (DB port published + Development env + USDA auto-seeding), run:
-
-```powershell
-docker compose -f docker-compose.yml -f docker-compose.local.yml up --build
-```
-
-For non-local runs, use only base compose:
-
-```powershell
-docker compose up --build
-```
+- Seed upserts menu items by `(category, name)`.
+- Items removed from seed are soft-disabled (not deleted), so old menu entries can be retired safely.
 
 ## Testing
 
-#### Frontend (unit + component integration)
-
-```powershell
-cd services/mobile
-npm test -- --runInBand
-```
-
-Coverage report:
-
-```powershell
-cd services/mobile
-npm run test:coverage
-```
-
-#### Backend (unit + integration + API e2e)
+### Backend
 
 ```powershell
 cd services/api
 dotnet test Yeodeun.slnx -v minimal
 ```
 
-Targeted runs:
+### Mobile
 
 ```powershell
-cd services/api
-dotnet test tests/Yeodeun.Application.Tests/Yeodeun.Application.Tests.csproj -v minimal
-dotnet test tests/Yeodeun.Api.IntegrationTests/Yeodeun.Api.IntegrationTests.csproj -v minimal
-dotnet test tests/Yeodeun.Api.EndToEndTests/Yeodeun.Api.EndToEndTests.csproj -v minimal
+cd services/mobile
+npm test -- --runInBand
+npx tsc --noEmit
 ```
 
-#### Mobile End-to-End (device smoke flow)
-
-The repository includes a Maestro flow at:
-
-- `services/mobile/e2e/maestro/smoke-order-flow.yaml`
-
-Run it with Maestro CLI installed and Expo Go open on a connected device/emulator:
+### Mobile e2e (Maestro)
 
 ```powershell
 cd services/mobile
 npm run test:e2e:maestro
 ```
 
-#### Run All Tests
+## Security Notes
 
-1. `cd services/api && dotnet test Yeodeun.slnx -v minimal`
-2. `cd services/mobile && npm test -- --runInBand`
-3. `cd services/mobile && npm run test:e2e:maestro` (optional device e2e smoke)
+- Keep `USDA_FDC_API_KEY` and `ADMIN_JWT_KEY` out of source control.
+- Rotate `ADMIN_JWT_KEY` regularly.
+- Restrict admin endpoint access by environment/network settings in API configuration.
