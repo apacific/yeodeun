@@ -15,7 +15,7 @@ export const en = {
     actions: {
       aLaCarte: 'A-la-carte',
       buildMeal: 'Build a Meal',
-      viewOrder: 'View Order / Checkout',
+      viewOrder: 'View Order',
     },
   },
   menu: {
@@ -62,6 +62,8 @@ export const en = {
       grilled_chicken: 'Grilled Chicken',
       grilled_lamb: 'Grilled Lamb',
       grilled_prawns: 'Grilled Prawns',
+      grilled_squid: 'Grilled Squid',
+      grilled_octopus: 'Grilled Octopus',
       grilled_tofu: 'Grilled Tofu',
       hot_pepper_sauce: 'Hot Pepper Sauce',
       hot_tea: 'Hot Tea',
@@ -113,6 +115,8 @@ export const en = {
       grilled_chicken: 'Chicken breast fillet, lightly seasoned with salt, grapeseed oil, and lemon juice.',
       grilled_lamb: 'Boneless lamb leg portion, marinated and grilled medium.',
       grilled_prawns: 'Jumbo tail-on prawns, Creole seasoned and grilled.',
+      grilled_squid: 'Tender squid, lightly seasoned and flame-grilled.',
+      grilled_octopus: 'Char-grilled octopus, tenderized and lightly seasoned.',
       grilled_tofu: 'Extra-firm tofu with a sesame-ginger glaze.',
       hot_pepper_sauce: 'Old-school cayenne and vinegar hot sauce.',
       hot_tea: '16 oz. organic green tea.',
@@ -154,6 +158,7 @@ export const en = {
       topping: 'Add Toppings (Optional)',
       beverage: 'Select a Beverage (Optional)',
       review: 'Review Your Order',
+      withNumber: 'Step {{step}}: {{title}}',
     },
     progress: '{{count}} items',
     review: {
@@ -188,6 +193,7 @@ export const en = {
       back: 'Back',
       next: 'Next',
       review: 'Review',
+      addToOrder: 'Add to Order',
     },
   },
   cart: {
@@ -199,9 +205,10 @@ export const en = {
     totalTitle: 'Total',
     orderTotalLabel: 'Order Total',
     startCheckout: 'Start Checkout',
-    addToOrder: 'Add to Order',
+    addToOrder: 'Add Items',
     remove: 'Remove',
     comboMeal: 'Combo meal',
+    itemAdded: '{{name}} added to your order.',
   },
   checkout: {
     title: 'Checkout',
@@ -297,3 +304,7 @@ export const en = {
     protein: 'Protein',
   },
 };
+
+
+
+

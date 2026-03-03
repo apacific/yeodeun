@@ -31,7 +31,7 @@ jest.mock('react-i18next', () => ({
         'cart.aLaCarteTitle': 'A-la-carte',
         'cart.noALaCarte': 'No a-la-carte items yet.',
         'cart.totalTitle': 'Total',
-        'cart.addToOrder': 'Add to Order',
+        'cart.addToOrder': 'Add Items',
         'cart.startCheckout': 'Start Checkout',
       };
 
@@ -41,7 +41,7 @@ jest.mock('react-i18next', () => ({
 }));
 
 describe('CartScreen', () => {
-  it('navigates to OrderMenu when Add to Order is pressed', () => {
+  it('navigates to OrderMenu when Add Items is pressed', () => {
     const navigate = jest.fn();
     const goBack = jest.fn();
 
@@ -52,7 +52,7 @@ describe('CartScreen', () => {
       />
     );
 
-    fireEvent.press(getByText('Add to Order'));
+    fireEvent.press(getByText('Add Items'));
 
     expect(navigate).toHaveBeenCalledWith('OrderMenu');
   });

@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import {
+  Alert,
   StyleSheet,
   View,
   ScrollView,
@@ -23,6 +24,8 @@ import { appTheme, spacing } from '../theme/theme';
 import { RootStackScreenProps } from '../navigation/types';
 
 type BuilderStep = 'entree' | 'vegetable' | 'fruit' | 'side' | 'sauce' | 'topping' | 'beverage' | 'review';
+
+const BUILDER_STEPS: BuilderStep[] = ['entree', 'vegetable', 'fruit', 'side', 'sauce', 'topping', 'beverage'];
 
 /**
  * Builder screen.
@@ -121,6 +124,7 @@ export const BuilderScreen = React.memo(({ navigation }: RootStackScreenProps<'B
       try {
         const quote = await pricingMutation.mutateAsync({ selection: currentSelection });
         addCurrentComboMeal(quote.totalCents);
+        Alert.alert(t('cart.itemAdded', { name: t('cart.comboMeal') }));
         setCurrentStep('entree');
         navigation.navigate('Cart');
       } catch {
@@ -129,18 +133,9 @@ export const BuilderScreen = React.memo(({ navigation }: RootStackScreenProps<'B
       return;
     }
 
-    const steps: BuilderStep[] = [
-      'entree',
-      'vegetable',
-      'fruit',
-      'side',
-      'sauce',
-      'topping',
-      'beverage',
-    ];
-    const currentIndex = steps.indexOf(currentStep);
-    if (currentIndex < steps.length - 1) {
-      setCurrentStep(steps[currentIndex + 1]);
+    const currentIndex = BUILDER_STEPS.indexOf(currentStep);
+    if (currentIndex < BUILDER_STEPS.length - 1) {
+      setCurrentStep(BUILDER_STEPS[currentIndex + 1]);
     }
   }, [
     addCurrentComboMeal,
@@ -149,23 +144,20 @@ export const BuilderScreen = React.memo(({ navigation }: RootStackScreenProps<'B
     isComboComplete,
     navigation,
     pricingMutation,
+    t,
   ]);
 
   const handlePreviousStep = useCallback(() => {
-    const steps: BuilderStep[] = [
-      'entree',
-      'vegetable',
-      'fruit',
-      'side',
-      'sauce',
-      'topping',
-      'beverage',
-    ];
-    const currentIndex = steps.indexOf(currentStep);
-    if (currentIndex > 0) {
-      setCurrentStep(steps[currentIndex - 1]);
+    if (currentStep === 'entree') {
+      navigation.navigate('OrderMenu');
+      return;
     }
-  }, [currentStep]);
+
+    const currentIndex = BUILDER_STEPS.indexOf(currentStep);
+    if (currentIndex > 0) {
+      setCurrentStep(BUILDER_STEPS[currentIndex - 1]);
+    }
+  }, [currentStep, navigation]);
 
   const handleViewNutrition = useCallback((item: MenuItemDto) => {
     setNutritionItem(item);
@@ -185,6 +177,8 @@ export const BuilderScreen = React.memo(({ navigation }: RootStackScreenProps<'B
     };
     return titles[currentStep];
   };
+
+  const getStepNumber = (): number => BUILDER_STEPS.indexOf(currentStep) + 1;
 
   const getSelectedItemCount = (): number => {
     let count = 0;
@@ -313,6 +307,7 @@ export const BuilderScreen = React.memo(({ navigation }: RootStackScreenProps<'B
             }
 
             addCurrentComboMeal(pricingMutation.data.totalCents);
+            Alert.alert(t('cart.itemAdded', { name: t('cart.comboMeal') }));
             setCurrentStep('entree');
             navigation.navigate('Cart');
           }}
@@ -351,7 +346,7 @@ export const BuilderScreen = React.memo(({ navigation }: RootStackScreenProps<'B
             {t('builder.title')}
           </Text>
           <Text variant="bodySmall" style={styles.subtitle}>
-            {getStepTitle()}
+            {t('builder.steps.withNumber', { step: getStepNumber(), title: getStepTitle() })}
           </Text>
         </View>
         <View style={styles.progressBadge}>
@@ -416,7 +411,6 @@ export const BuilderScreen = React.memo(({ navigation }: RootStackScreenProps<'B
             <Button
               mode="outlined"
               onPress={handlePreviousStep}
-              disabled={currentStep === 'entree'}
               style={styles.navButton}
             >
               {t('builder.nav.back')}
@@ -427,7 +421,7 @@ export const BuilderScreen = React.memo(({ navigation }: RootStackScreenProps<'B
               disabled={!canProceed()}
               style={styles.navButton}
             >
-              {currentStep === 'beverage' ? t('orderMenu.actions.viewOrder') : t('builder.nav.next')}
+              {currentStep === 'beverage' ? t('builder.nav.addToOrder') : t('builder.nav.next')}
             </Button>
           </View>
         </>
@@ -578,3 +572,6 @@ const styles = StyleSheet.create({
     color: appTheme.colors.onSurfaceDisabled,
     marginTop: spacing.xs,},
 });
+
+
+

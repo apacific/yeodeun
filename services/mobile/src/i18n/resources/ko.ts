@@ -71,6 +71,8 @@ export const ko = {
       grilled_chicken: '구운 닭고기',
       grilled_lamb: '구운 양고기',
       grilled_prawns: '구운 새우',
+      grilled_squid: '구운 오징어',
+      grilled_octopus: '구운 문어',
       grilled_tofu: '구운 두부',
       hot_pepper_sauce: '핫 페퍼 소스',
       hot_tea: '따뜻한 차',
@@ -122,6 +124,8 @@ export const ko = {
       grilled_chicken: '닭가슴살 필레를 소금, 포도씨유, 레몬즙으로 은은하게 간했습니다.',
       grilled_lamb: '뼈 없는 양다리를 마리네이드해 미디엄으로 구웠습니다.',
       grilled_prawns: '꼬리를 남긴 점보 새우를 크리올 시즈닝으로 구웠습니다.',
+      grilled_squid: '부드러운 오징어를 가볍게 간해 직화로 구웠습니다.',
+      grilled_octopus: '부드럽게 손질한 문어를 직화로 구워 가볍게 간했습니다.',
       grilled_tofu: '참깨-생강 글레이즈를 입힌 단단한 두부입니다.',
       hot_pepper_sauce: '카옌 페퍼와 식초를 사용한 클래식 핫소스입니다.',
       hot_tea: '16온스 유기농 녹차입니다.',
@@ -166,6 +170,7 @@ export const ko = {
       topping: '토핑을 선택하세요 (선택 사항)',
       beverage: '음료를 선택하세요 (선택 사항)',
       review: '주문 내역을 확인하세요.',
+      withNumber: '{{step}}단계: {{title}}',
     },
     progress: '{{count}}개 항목',
     review: {
@@ -204,6 +209,7 @@ export const ko = {
       back: '돌아가기',
       next: '다음',
       review: '검토',
+      addToOrder: '주문에 추가',
     },
   },
   cart: {
@@ -219,6 +225,7 @@ export const ko = {
     addToOrder: '주문에 추가',
     remove: '삭제',
     comboMeal: '콤보 세트',
+    itemAdded: '{{name}}이(가) 주문에 추가되었습니다.',
   },
   checkout: {
     ...en.checkout,
@@ -321,3 +328,7 @@ export const ko = {
     protein: '단백질',
   },
 };
+
+
+
+

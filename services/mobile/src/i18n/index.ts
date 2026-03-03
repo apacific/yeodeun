@@ -37,7 +37,12 @@ export const initI18n = async (): Promise<void> => {
   const stored = await AsyncStorage.getItem(LANGUAGE_STORAGE_KEY);
   if (stored && supportedLanguages.includes(stored as AppLanguage)) {
     await i18n.changeLanguage(stored);
+    return;
   }
+
+  // Ensure first launch and invalid stored values both resolve to English.
+  await i18n.changeLanguage('en');
+  await AsyncStorage.setItem(LANGUAGE_STORAGE_KEY, 'en');
 };
 
 export const setLanguage = async (language: AppLanguage): Promise<void> => {

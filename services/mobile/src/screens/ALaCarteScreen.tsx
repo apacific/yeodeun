@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import { ImageBackground, SectionList, StyleSheet, View } from 'react-native';
+import { Alert, ImageBackground, SectionList, StyleSheet, View } from 'react-native';
 import { Button, Text } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
 import { useMenuItems } from '../api/hooks';
@@ -41,6 +41,17 @@ export const ALaCarteScreen = ({
     setNutritionItem(item);
     setShowNutritionModal(true);
   }, []);
+  const handleAddItem = useCallback(
+    (item: MenuItemDto) => {
+      addALaCarteItem(item);
+      Alert.alert(
+        t('cart.itemAdded', {
+          name: getMenuItemLabel(item.name, t),
+        })
+      );
+    },
+    [addALaCarteItem, t]
+  );
 
   const sections = useMemo(() => {
     const grouped = new Map<string, MenuItemDto[]>();
@@ -67,14 +78,14 @@ export const ALaCarteScreen = ({
       <ALaCarteRow
         item={item}
         quantity={quantityById.get(item.id) ?? 0}
-        onAdd={addALaCarteItem}
+        onAdd={handleAddItem}
         onRemove={removeALaCarteItem}
         onShowNutrition={handleShowNutrition}
         nutritionLabel={t('menu.nutritionInfo')}
         displayName={getMenuItemLabel(item.name, t)}
       />
     ),
-    [addALaCarteItem, removeALaCarteItem, quantityById, handleShowNutrition, t]
+    [handleAddItem, removeALaCarteItem, quantityById, handleShowNutrition, t]
   );
 
   return (
@@ -233,3 +244,4 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',},
 });
+

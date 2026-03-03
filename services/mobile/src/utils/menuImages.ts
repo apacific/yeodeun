@@ -27,6 +27,8 @@ const menuImageOverrides: Record<string, ImageSourcePropType> = {
   'grilled chicken': require('../../assets/img/menu/grilled-chicken.jpg'),
   'grilled lamb': require('../../assets/img/menu/grilled-lamb.jpg'),
   'grilled prawns': require('../../assets/img/menu/grilled-prawns.jpg'),
+  'grilled squid': require('../../assets/img/menu/grilled-squid.jpg'),
+  'grilled octopus': require('../../assets/img/menu/grilled-octopus.jpg'),
   'grilled tofu': require('../../assets/img/menu/grilled-tofu.jpg'),
   'hot pepper sauce': require('../../assets/img/menu/hot-pepper-sauce.jpg'),
   'hot tea': require('../../assets/img/menu/hot-tea.jpg'),
@@ -73,3 +75,4 @@ export const menuGalleryImages: ImageSourcePropType[] = [
   ...Object.values(menuImageOverrides),
   ...galleryExtras,
 ];
+

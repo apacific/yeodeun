@@ -33,6 +33,8 @@ internal static class UsdaFdcNutritionSeeder
         ["grilled lamb"] = new("lamb leg cooked roasted", 150m),
         ["blackened salmon filet"] = new("salmon Atlantic cooked dry heat", 150m),
         ["grilled prawns"] = new("shrimp cooked", 140m),
+        ["grilled squid"] = new("squid cooked", 140m),
+        ["grilled octopus"] = new("octopus cooked", 140m),
         ["grilled tofu"] = new("tofu firm prepared", 150m),
         ["fried tofu"] = new("tofu fried", 150m),
         ["stuffed field roast"] = new("vegetarian roast meat substitute", 150m),
@@ -546,3 +548,7 @@ internal static class UsdaFdcNutritionSeeder
         [property: JsonPropertyName("name")] string? Name,
         [property: JsonPropertyName("unitName")] string? UnitName);
 }
+
+
+
+

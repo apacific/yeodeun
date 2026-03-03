@@ -71,6 +71,8 @@ export const ja = {
       grilled_chicken: 'グリルチキン',
       grilled_lamb: 'グリルラム',
       grilled_prawns: 'グリルドプローン',
+      grilled_squid: 'グリルドイカ',
+      grilled_octopus: 'グリルドタコ',
       grilled_tofu: 'グリル豆腐',
       hot_pepper_sauce: 'ホットペッパーソース',
       hot_tea: 'ホットティー',
@@ -122,6 +124,8 @@ export const ja = {
       grilled_chicken: '鶏むねフィレを塩、グレープシードオイル、レモンで軽く味付けしました。',
       grilled_lamb: '骨なしラムレッグをマリネし、ミディアムでグリルしました。',
       grilled_prawns: '尾付きジャンボプローンをクレオール風に味付けしてグリルしました。',
+      grilled_squid: 'やわらかいイカを軽く味付けし、直火でグリルしました。',
+      grilled_octopus: 'やわらかく下処理したタコを直火で焼き、軽く味付けしました。',
       grilled_tofu: 'ごま生姜グレーズをかけた、しっかり食感の豆腐です。',
       hot_pepper_sauce: 'カイエンペッパーと酢のクラシックなホットソースです。',
       hot_tea: '16オンスのオーガニック緑茶です。',
@@ -166,6 +170,7 @@ export const ja = {
       topping: 'トッピングを選択（オプション）',
       beverage: '飲み物を選ぶ（オプション）',
       review: 'ご注文内容をご確認ください。',
+      withNumber: 'ステップ{{step}}: {{title}}',
     },
     progress: '{{count}}項目',
     review: {
@@ -204,6 +209,7 @@ export const ja = {
       back: '戻る',
       next: '次',
       review: 'レビュー',
+      addToOrder: '注文に追加',
     },
   },
   cart: {
@@ -219,6 +225,7 @@ export const ja = {
     addToOrder: '注文に追加',
     remove: '削除',
     comboMeal: 'コンボセット',
+    itemAdded: '{{name}}を注文に追加しました。',
   },
   checkout: {
     ...en.checkout,
@@ -321,3 +328,7 @@ export const ja = {
     protein: 'たんぱく質',
   },
 };
+
+
+
+

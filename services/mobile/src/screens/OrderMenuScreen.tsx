@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Button, Text } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
@@ -13,9 +13,16 @@ export const OrderMenuScreen = ({
   navigation,
 }: RootStackScreenProps<'OrderMenu'>) => {
   const { t } = useTranslation();
+
+  const handleBackToHome = useCallback(() => {
+    (navigation as any).reset({
+      index: 0,
+      routes: [{ name: 'Home' }],
+    });
+  }, [navigation]);
   return (
     <View style={styles.container}>
-      <ScreenHeader title={t('orderMenu.title')} onBack={() => navigation.goBack()} />
+      <ScreenHeader title={t('orderMenu.title')} onBack={handleBackToHome} />
 
       <View style={styles.logoSection}>
         <LogoMark size={120} />
@@ -76,3 +83,5 @@ const styles = StyleSheet.create({
   buttonContent: {
     paddingVertical: spacing.sm,},
 });
+
+

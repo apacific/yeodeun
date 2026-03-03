@@ -7,6 +7,7 @@ import {
   TextInput as RNTextInput,
   TouchableOpacity,
   View,
+  useColorScheme,
 } from 'react-native';
 import { Button, Text, TextInput } from 'react-native-paper';
 import { AsYouType, getCountries, getCountryCallingCode, parsePhoneNumberFromString } from 'libphonenumber-js';
@@ -261,9 +262,10 @@ export const ContactScreen = ({
           </Modal>
           {error && <Text style={styles.error}>{error}</Text>}
           <Button
-            mode="contained"
             onPress={handleSubmit}
             disabled={!hasAnyField || submitMutation.isPending}
+            style={styles.submitBtn}
+            labelStyle={styles.submitBtnLabel}
           >
             {t('contact.form.submit')}
           </Button>
@@ -331,6 +333,14 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.sm,},
   modalList: {
     gap: spacing.sm,},
+  submitBtn: {
+    backgroundColor: appTheme.colors.surface,
+    marginTop: spacing.sm,
+    paddingVertical: spacing.xs,
+  },
+  submitBtnLabel: {
+    fontSize: 18,
+  },
   countryRow: {
     alignItems: 'center',
     flexDirection: 'row',
@@ -348,3 +358,4 @@ const styles = StyleSheet.create({
   error: {
     color: appTheme.colors.error,},
 });
+

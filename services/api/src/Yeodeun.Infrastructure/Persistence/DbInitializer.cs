@@ -315,6 +315,10 @@ public static class DbInitializer
             "boneless salmon filet, skin-on, Creole seasoned and blackened"),
         new("grilled prawns", MenuCategory.Entree, 1000,
             "jumbo prawns, tail-on, Creole seasoned and grilled"),
+        new("grilled squid", MenuCategory.Entree, 1000,
+            "tender squid, lightly seasoned and flame-grilled"),
+        new("grilled octopus", MenuCategory.Entree, 1000,
+            "char-grilled octopus, tenderized and lightly seasoned"),
         new("grilled tofu", MenuCategory.Entree, 1000,
             "extra firm tofu, sesame-ginger glazed"),
         new("fried tofu", MenuCategory.Entree, 1000,
@@ -415,4 +419,8 @@ public static class DbInitializer
             "6 oz., organic"),
     };
 }
+
+
+
+
 

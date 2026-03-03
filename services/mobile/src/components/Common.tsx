@@ -5,6 +5,7 @@ import {
   ViewStyle,
   ActivityIndicator,
   ScrollView,
+  Pressable,
 } from 'react-native';
 import { Text } from 'react-native-paper';
 import { appTheme, spacing, shadows } from '../theme/theme';
@@ -22,18 +23,25 @@ interface CardProps {
  */
 export const Card = React.memo(
   ({ children, style, onPress, disabled, testID }: CardProps) => {
+    const cardStyle = [styles.card, disabled && styles.disabled, style];
+
+    if (!onPress) {
+      return (
+        <View style={cardStyle} testID={testID}>
+          {children}
+        </View>
+      );
+    }
+
     return (
-      <View
-        style={[
-          styles.card,
-          disabled && styles.disabled,
-          style,
-        ]}
-        onTouchEnd={!disabled ? onPress : undefined}
+      <Pressable
+        disabled={disabled}
+        onPress={onPress}
+        style={cardStyle}
         testID={testID}
       >
         {children}
-      </View>
+      </Pressable>
     );
   }
 );
@@ -220,3 +228,5 @@ const styles = StyleSheet.create({
     maxWidth: 280,
     textAlign: 'center',},
 });
+
+
