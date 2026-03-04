@@ -62,13 +62,13 @@ export const ALaCarteScreen = ({
     });
 
     const ordered = MENU_CATEGORIES.map((category) => ({
-      title: category,
       data: grouped.get(category) ?? [],
+      title: category,
     })).filter((section) => section.data.length > 0);
 
     const remaining = Array.from(grouped.entries())
       .filter(([category]) => !MENU_CATEGORIES.includes(category as any))
-      .map(([category, data]) => ({ title: category, data }));
+      .map(([category, data]) => ({ data, title: category }));
 
     return [...ordered, ...remaining];
   }, [items]);
@@ -195,6 +195,37 @@ const styles = StyleSheet.create({
     gap: spacing.sm,
     paddingBottom: spacing.xl,
     paddingHorizontal: spacing.lg,},
+  nutritionLink: {
+    color: appTheme.colors.onBackground,
+    marginTop: spacing.xs,},
+  overlay: {
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.45)',
+    flexDirection: 'row',
+    gap: spacing.md,
+    justifyContent: 'space-between',
+    padding: spacing.md,},
+  qty: {
+    color: appTheme.colors.onBackground,
+    textAlign: 'center',
+    width: 24,},
+  row: {
+    justifyContent: 'center',
+    minHeight: 140,},
+  rowActions: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    gap: spacing.sm,},
+  rowInfo: {
+    flex: 1,
+    gap: spacing.xs,},
+  rowMeta: {
+    color: appTheme.colors.onBackground,
+    fontSize: 18,
+    fontWeight: '700',
+    lineHeight: 22,},
+  rowName: {
+    color: appTheme.colors.onBackground,},
   sectionHeader: {
     alignItems: 'center',
     paddingBottom: spacing.sm,
@@ -208,37 +239,6 @@ const styles = StyleSheet.create({
     opacity: 0.9,
     textAlign: 'center',
   },
-  row: {
-    justifyContent: 'center',
-    minHeight: 140,},
-  overlay: {
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.45)',
-    flexDirection: 'row',
-    gap: spacing.md,
-    justifyContent: 'space-between',
-    padding: spacing.md,},
-  rowInfo: {
-    flex: 1,
-    gap: spacing.xs,},
-  rowName: {
-    color: appTheme.colors.onBackground,},
-  rowMeta: {
-    color: appTheme.colors.onBackground,
-    fontSize: 18,
-    fontWeight: '700',
-    lineHeight: 22,},
-  nutritionLink: {
-    color: appTheme.colors.onBackground,
-    marginTop: spacing.xs,},
-  rowActions: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    gap: spacing.sm,},
-  qty: {
-    color: appTheme.colors.onBackground,
-    textAlign: 'center',
-    width: 24,},
   state: {
     alignItems: 'center',
     flex: 1,

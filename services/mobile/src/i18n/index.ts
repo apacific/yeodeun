@@ -18,19 +18,19 @@ export const languageOptions: { code: AppLanguage; label: string }[] = [
 
 const resources = {
   en: { translation: en },
-  ko: { translation: ko },
   ja: { translation: ja },
+  ko: { translation: ko },
 };
 
 export const initI18n = async (): Promise<void> => {
   if (!i18n.isInitialized) {
     await i18n.use(initReactI18next).init({
-      resources,
-      lng: 'en',
       fallbackLng: 'en',
       interpolation: {
         escapeValue: false,
       },
+      lng: 'en',
+      resources,
     });
   }
 

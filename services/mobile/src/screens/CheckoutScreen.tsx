@@ -14,13 +14,13 @@ import { formatPrice } from '../utils/formatting';
 type PaymentMethod = 'card' | 'cash' | 'delivery';
 
 const emptySelection = (): DishSelectionDto => ({
-  entreeId: undefined,
-  vegetableId: undefined,
-  fruitId: undefined,
-  sideId: undefined,
-  sauceIds: [],
-  toppingIds: [],
   beverageId: undefined,
+  entreeId: undefined,
+  fruitId: undefined,
+  sauceIds: [],
+  sideId: undefined,
+  toppingIds: [],
+  vegetableId: undefined,
 });
 
 /**
@@ -133,36 +133,36 @@ export const CheckoutScreen = ({
 
     try {
       const response = await checkoutMutation.mutateAsync({
-        paymentMethod,
-        notes: notes.trim() || undefined,
-        selection: comboMeals[0]?.selection ?? emptySelection(),
-        selections: comboMeals.map((comboMeal) => comboMeal.selection),
         aLaCarteItems: aLaCarteItems.map((entry) => ({
           menuItemId: entry.item.id,
           quantity: entry.quantity,
         })),
-        totals: {
-          comboTotalCents: comboTotal,
-          aLaCarteTotalCents: aLaCarteTotal,
-          orderTotalCents: orderTotal,
-        },
         card:
           paymentMethod === 'card'
             ? {
+                cvv: cardCvv.trim(),
+                expiry: cardExpiry.trim(),
                 name: cardName.trim(),
                 number: cardNumber.replace(/\s+/g, ''),
-                expiry: cardExpiry.trim(),
-                cvv: cardCvv.trim(),
               }
             : undefined,
+        notes: notes.trim() || undefined,
+        paymentMethod,
+        selection: comboMeals[0]?.selection ?? emptySelection(),
+        selections: comboMeals.map((comboMeal) => comboMeal.selection),
+        totals: {
+          aLaCarteTotalCents: aLaCarteTotal,
+          comboTotalCents: comboTotal,
+          orderTotalCents: orderTotal,
+        },
       });
       Alert.alert(t('checkout.successTitle'), response.message, [
         {
-          text: t('checkout.successOk'),
           onPress: () => {
             resetOrder();
             navigation.navigate('Home');
           },
+          text: t('checkout.successOk'),
         },
       ]);
     } catch (err: any) {
@@ -289,6 +289,16 @@ export const CheckoutScreen = ({
 };
 
 const styles = StyleSheet.create({
+  cardFields: {
+    gap: spacing.sm,
+  },
+  comboSummary: {
+    color: appTheme.colors.onSurfaceDisabled,
+    fontSize: 13,
+    lineHeight: 18,
+    marginTop: 2,
+    textAlign: 'left',
+  },
   container: {
     backgroundColor: appTheme.colors.background,
     flex: 1,
@@ -297,6 +307,44 @@ const styles = StyleSheet.create({
     gap: spacing.lg,
     paddingBottom: spacing.xl,
     paddingHorizontal: spacing.lg,
+  },
+  error: {
+    color: appTheme.colors.error,
+  },
+  inlineField: {
+    flex: 1,
+  },
+  inlineRow: {
+    flexDirection: 'row',
+    gap: spacing.sm,
+  },
+  input: {
+    backgroundColor: appTheme.colors.surface,
+  },
+  radioLabel: {
+    color: appTheme.colors.onSurface,
+  },
+  radioRow: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    gap: spacing.sm,
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  rowName: {
+    color: appTheme.colors.onSurface,
+  },
+  rowPrice: {
+    color: appTheme.colors.primary,
+    fontSize: 24,
+    fontWeight: '700',
+  },
+  rowTextGroup: {
+    alignItems: 'flex-start',
+    flex: 1,
+    marginRight: spacing.sm,
   },
   section: {
     backgroundColor: appTheme.colors.surface,
@@ -307,29 +355,12 @@ const styles = StyleSheet.create({
     color: appTheme.colors.onSurface,
     fontWeight: '700',
   },
-  row: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+  submitButton: {
+    marginTop: spacing.sm,
+    width: '100%',
   },
-  rowTextGroup: {
-    alignItems: 'flex-start',
-    flex: 1,
-    marginRight: spacing.sm,
-  },
-  rowName: {
-    color: appTheme.colors.onSurface,
-  },
-  comboSummary: {
-    color: appTheme.colors.onSurfaceDisabled,
-    fontSize: 13,
-    lineHeight: 18,
-    marginTop: 2,
-    textAlign: 'left',
-  },
-  rowPrice: {
-    color: appTheme.colors.primary,
-    fontSize: 24,
-    fontWeight: '700',
+  submitButtonContent: {
+    minHeight: 56,
   },
   totalLabel: {
     color: appTheme.colors.onSurface,
@@ -338,36 +369,5 @@ const styles = StyleSheet.create({
     color: appTheme.colors.primary,
     fontSize: 24,
     fontWeight: '700',
-  },
-  radioRow: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    gap: spacing.sm,
-  },
-  radioLabel: {
-    color: appTheme.colors.onSurface,
-  },
-  cardFields: {
-    gap: spacing.sm,
-  },
-  inlineRow: {
-    flexDirection: 'row',
-    gap: spacing.sm,
-  },
-  inlineField: {
-    flex: 1,
-  },
-  input: {
-    backgroundColor: appTheme.colors.surface,
-  },
-  submitButton: {
-    marginTop: spacing.sm,
-    width: '100%',
-  },
-  submitButtonContent: {
-    minHeight: 56,
-  },
-  error: {
-    color: appTheme.colors.error,
   },
 });

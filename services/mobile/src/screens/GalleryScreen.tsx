@@ -38,11 +38,11 @@ const styles = StyleSheet.create({
     gap: spacing.md,
     paddingBottom: spacing.xl,
     paddingHorizontal: spacing.lg,},
-  row: {
-    gap: spacing.md,
-    justifyContent: 'space-between',},
   image: {
     aspectRatio: 1,
     backgroundColor: appTheme.colors.surface,
     width: '48%',},
+  row: {
+    gap: spacing.md,
+    justifyContent: 'space-between',},
 });

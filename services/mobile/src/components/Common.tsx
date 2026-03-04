@@ -183,13 +183,6 @@ export const EmptyState = React.memo(
 EmptyState.displayName = 'EmptyState';
 
 const styles = StyleSheet.create({
-  card: {
-    backgroundColor: appTheme.colors.surface,
-    marginBottom: spacing.md,
-    padding: spacing.md,
-    ...shadows.sm,},
-  disabled: {
-    opacity: 0.5,},
   badge: {
     alignSelf: 'flex-start',
     backgroundColor: appTheme.colors.primary,
@@ -198,12 +191,27 @@ const styles = StyleSheet.create({
   badgeText: {
     color: appTheme.colors.onPrimary || '#000',
     fontSize: 12,},
-  section: {
-    marginBottom: spacing.lg,},
-  sectionTitle: {
-    color: appTheme.colors.onBackground,
-    fontWeight: '700',
+  card: {
+    backgroundColor: appTheme.colors.surface,
+    marginBottom: spacing.md,
+    padding: spacing.md,
+    ...shadows.sm,},
+  disabled: {
+    opacity: 0.5,},
+  emptyState: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: spacing.xl,},
+  emptyStateDescription: {
+    color: appTheme.colors.onSurfaceDisabled,
+    maxWidth: 280,
+    textAlign: 'center',},
+  emptyStateIcon: {
     marginBottom: spacing.md,},
+  emptyStateTitle: {
+    color: appTheme.colors.onBackground,
+    marginBottom: spacing.sm,
+    textAlign: 'center',},
   loadingOverlay: {
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
@@ -213,20 +221,12 @@ const styles = StyleSheet.create({
   loadingText: {
     color: appTheme.colors.onBackground,
     marginTop: spacing.md,},
-  emptyState: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: spacing.xl,},
-  emptyStateIcon: {
-    marginBottom: spacing.md,},
-  emptyStateTitle: {
+  section: {
+    marginBottom: spacing.lg,},
+  sectionTitle: {
     color: appTheme.colors.onBackground,
-    marginBottom: spacing.sm,
-    textAlign: 'center',},
-  emptyStateDescription: {
-    color: appTheme.colors.onSurfaceDisabled,
-    maxWidth: 280,
-    textAlign: 'center',},
+    fontWeight: '700',
+    marginBottom: spacing.md,},
 });
 
 

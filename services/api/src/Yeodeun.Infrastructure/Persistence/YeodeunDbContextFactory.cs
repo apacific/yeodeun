@@ -9,7 +9,7 @@ namespace Yeodeun.Infrastructure.Persistence;
 /// </summary>
 public sealed class YeodeunDbContextFactory : IDesignTimeDbContextFactory<YeodeunDbContext>
 {
-        /// <summary>
+    /// <summary>
     /// Builds a design-time database context, including local-host fallback for Docker hostnames.
     /// </summary>
     /// <param name="args">Command-line arguments passed by EF tooling.</param>

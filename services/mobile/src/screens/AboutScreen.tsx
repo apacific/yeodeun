@@ -88,11 +88,10 @@ const styles = StyleSheet.create({
     gap: spacing.lg,
     paddingBottom: spacing.xl,
     paddingHorizontal: spacing.lg,},
-  paragraph: {
-    alignSelf: 'center',
-    color: appTheme.colors.onBackground,
-    lineHeight: 20,
-    maxWidth: 560,
+  image: {
+    height: 180,
+    width: '100%',},
+  leftText: {
     textAlign: 'left',
     width: '100%',},
   link: {
@@ -108,25 +107,32 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.md,
     paddingTop: spacing.md,
     textAlign: 'center',},
+  map: {
+    height: 220,
+    width: '100%',},
+  paragraph: {
+    alignSelf: 'center',
+    color: appTheme.colors.onBackground,
+    fontSize: 16,
+    lineHeight: 24,
+    maxWidth: 560,
+    textAlign: 'left',
+    width: '100%',
+  },
   section: {
     alignSelf: 'center',
     gap: spacing.md,
     maxWidth: 560,
     width: '100%',},
+  sectionText: {
+    color: appTheme.colors.onSurfaceDisabled,
+    fontSize: 16,
+    lineHeight: 22,
+    textAlign: 'center',
+  },
   sectionTitle: {
     color: appTheme.colors.onBackground,
     fontWeight: '700',
     textAlign: 'center',},
-  sectionText: {
-    color: appTheme.colors.onSurfaceDisabled,
-    textAlign: 'center',},
-  leftText: {
-    textAlign: 'left',
-    width: '100%',},
-  map: {
-    height: 220,
-    width: '100%',},
-  image: {
-    height: 180,
-    width: '100%',},
 });
+

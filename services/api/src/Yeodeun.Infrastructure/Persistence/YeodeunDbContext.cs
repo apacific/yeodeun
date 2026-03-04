@@ -62,7 +62,7 @@ public sealed class YeodeunDbContext : DbContext
             b.Property(x => x.SourceName).HasMaxLength(200).IsRequired();
             b.Property(x => x.SourceUrl).HasMaxLength(500);
             b.Property(x => x.ExternalRef).HasMaxLength(100);
-            
+
             b.HasIndex(x => x.MenuItemId).IsUnique();
         });
     }

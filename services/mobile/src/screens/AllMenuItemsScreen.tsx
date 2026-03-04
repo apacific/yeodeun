@@ -64,13 +64,13 @@ export const AllMenuItemsScreen = ({
     });
 
     const ordered = MENU_CATEGORIES.map((category) => ({
-      title: category,
       data: grouped.get(category) ?? [],
+      title: category,
     })).filter((section) => section.data.length > 0);
 
     const remaining = Array.from(grouped.entries())
       .filter(([category]) => !MENU_CATEGORIES.includes(category as any))
-      .map(([category, data]) => ({ title: category, data }));
+      .map(([category, data]) => ({ data, title: category }));
 
     return [...ordered, ...remaining];
   }, [items]);
@@ -178,10 +178,44 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: appTheme.colors.background,
     flex: 1,},
+  link: {
+    color: appTheme.colors.onBackground,},
   list: {
     gap: spacing.sm,
     paddingBottom: spacing.xl,
     paddingHorizontal: spacing.lg,},
+  modalBackdrop: {
+    backgroundColor: 'rgba(0,0,0,0.6)',
+    flex: 1,
+    justifyContent: 'center',
+    padding: spacing.lg,},
+  modalCard: {
+    backgroundColor: appTheme.colors.surface,
+    gap: spacing.md,
+    padding: spacing.lg,},
+  modalText: {
+    color: appTheme.colors.onSurface,
+    lineHeight: 20,},
+  modalTitle: {
+    color: appTheme.colors.onSurface,},
+  overlay: {
+    backgroundColor: 'rgba(0, 0, 0, 0.45)',
+    padding: spacing.md,},
+  row: {
+    justifyContent: 'center',
+    minHeight: 140,},
+  rowInfo: {
+    gap: spacing.md,},
+  rowLinks: {
+    flexDirection: 'row',
+    gap: spacing.md,},
+  rowMeta: {
+    alignSelf: 'flex-end',
+    color: appTheme.colors.onBackground,
+    fontSize: 22,
+    lineHeight: 22,},
+  rowName: {
+    color: appTheme.colors.onBackground,},
   sectionHeader: {
     alignItems: 'center',
     paddingBottom: spacing.sm,
@@ -195,42 +229,8 @@ const styles = StyleSheet.create({
     opacity: 0.9,
     textAlign: 'center',
   },
-  row: {
-    justifyContent: 'center',
-    minHeight: 140,},
-  overlay: {
-    backgroundColor: 'rgba(0, 0, 0, 0.45)',
-    padding: spacing.md,},
-  rowInfo: {
-    gap: spacing.md,},
-  rowName: {
-    color: appTheme.colors.onBackground,},
-  rowMeta: {
-    alignSelf: 'flex-end',
-    color: appTheme.colors.onBackground,
-    fontSize: 22,
-    lineHeight: 22,},
-  rowLinks: {
-    flexDirection: 'row',
-    gap: spacing.md,},
-  link: {
-    color: appTheme.colors.onBackground,},
   state: {
     alignItems: 'center',
     flex: 1,
     justifyContent: 'center',},
-  modalBackdrop: {
-    backgroundColor: 'rgba(0,0,0,0.6)',
-    flex: 1,
-    justifyContent: 'center',
-    padding: spacing.lg,},
-  modalCard: {
-    backgroundColor: appTheme.colors.surface,
-    gap: spacing.md,
-    padding: spacing.lg,},
-  modalTitle: {
-    color: appTheme.colors.onSurface,},
-  modalText: {
-    color: appTheme.colors.onSurface,
-    lineHeight: 20,},
 });

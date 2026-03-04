@@ -62,6 +62,8 @@ export const OrderMenuScreen = ({
 };
 
 const styles = StyleSheet.create({
+  buttonContent: {
+    paddingVertical: spacing.sm,},
   container: {
     backgroundColor: appTheme.colors.background,
     flex: 1,
@@ -71,17 +73,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: spacing.xxl,
     paddingVertical: spacing.xxl,},
-  subtitle: {
-    color: appTheme.colors.onBackground,
-    fontSize: 20,},
   menu: {
     gap: spacing.md,},
   primaryButton: {
   },
   secondaryButton: {
     borderColor: appTheme.colors.outlineVariant,},
-  buttonContent: {
-    paddingVertical: spacing.sm,},
+  subtitle: {
+    color: appTheme.colors.onBackground,
+    fontSize: 20,},
 });
 
 

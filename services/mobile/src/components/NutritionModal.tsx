@@ -58,11 +58,11 @@ export const NutritionModal = React.memo(
 
       const rows: NutritionRow[] = [
         {
+          isBold: true,
           label: t('nutrition.calories'),
           value: isEnglish
             ? `${Math.round(data.calories || 0)}`
             : formatNutritionValue(data.calories || 0, 'kcal'),
-          isBold: true,
         },
         {
           label: t('nutrition.totalFat'),
@@ -101,9 +101,9 @@ export const NutritionModal = React.memo(
           value: `${data.addedSugarsG?.toFixed(1) || 0}g`,
         },
         {
+          isBold: true,
           label: t('nutrition.protein'),
           value: `${data.proteinG?.toFixed(1) || 0}g`,
-          isBold: true,
         },
       ];
 
@@ -252,9 +252,31 @@ const NutritionRow = React.memo(
 NutritionRow.displayName = 'NutritionRow';
 
 const styles = StyleSheet.create({
+  closeButton: {
+    alignItems: 'center',
+    height: 40,
+    justifyContent: 'center',
+    width: 40,},
+  closeButtonText: {
+    color: appTheme.colors.onSurface,
+    fontSize: 24,},
   container: {
     backgroundColor: appTheme.colors.background,
     flex: 1,},
+  content: {
+    flex: 1,},
+  contentInner: {
+    paddingHorizontal: spacing.lg,
+    paddingVertical: spacing.lg,},
+  disclaimer: {
+    color: appTheme.colors.onSurfaceDisabled,
+    fontStyle: 'italic',
+    marginTop: spacing.md,},
+  divider: {
+    backgroundColor: appTheme.colors.outlineVariant,},
+  emptyText: {
+    color: appTheme.colors.onSurfaceDisabled,
+    marginTop: spacing.sm,},
   header: {
     alignItems: 'center',
     backgroundColor: appTheme.colors.surface,
@@ -263,9 +285,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.lg,
     paddingTop: spacing.xxl,
     paddingVertical: spacing.lg,},
-  headerTitle: {
-    color: appTheme.colors.onSurface,
-  },
   headerSubtitle: {
     color: appTheme.colors.onSurface,
     fontSize: 17,
@@ -277,28 +296,19 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingRight: spacing.md,
   },
-  closeButton: {
-    alignItems: 'center',
-    height: 40,
-    justifyContent: 'center',
-    width: 40,},
-  closeButtonText: {
+  headerTitle: {
     color: appTheme.colors.onSurface,
-    fontSize: 24,},
-  divider: {
-    backgroundColor: appTheme.colors.outlineVariant,},
-  content: {
-    flex: 1,},
-  contentInner: {
-    paddingHorizontal: spacing.lg,
-    paddingVertical: spacing.lg,},
+  },
+  label: {
+    color: appTheme.colors.onSurface,
+    flex: 1,
+    fontSize: 14,},
+  labelBold: {
+    fontSize: 15,},
   nutritionContainer: {
     backgroundColor: appTheme.colors.surface,
     padding: spacing.lg,
     ...shadows.sm,},
-  subtitle: {
-    color: appTheme.colors.onSurface,
-    marginBottom: spacing.md,},
   row: {
     alignItems: 'center',
     borderBottomColor: appTheme.colors.surfaceVariant,
@@ -306,25 +316,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingVertical: spacing.sm,},
-  label: {
+  sourceUrl: {
+    color: appTheme.colors.primary,
+    marginTop: spacing.xs,},
+  subtitle: {
     color: appTheme.colors.onSurface,
-    flex: 1,
-    fontSize: 14,},
-  labelBold: {
-    fontSize: 15,},
+    marginBottom: spacing.md,},
   value: {
     color: appTheme.colors.primary,
     marginLeft: spacing.md,},
   valueBold: {
     fontSize: 16,},
-  disclaimer: {
-    color: appTheme.colors.onSurfaceDisabled,
-    fontStyle: 'italic',
-    marginTop: spacing.md,},
-  sourceUrl: {
-    color: appTheme.colors.primary,
-    marginTop: spacing.xs,},
-  emptyText: {
-    color: appTheme.colors.onSurfaceDisabled,
-    marginTop: spacing.sm,},
 });

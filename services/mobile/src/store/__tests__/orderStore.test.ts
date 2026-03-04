@@ -2,8 +2,8 @@ import { useOrderStore } from '../orderStore';
 
 jest.mock('@react-native-async-storage/async-storage', () => ({
   getItem: jest.fn(),
-  setItem: jest.fn(),
   removeItem: jest.fn(),
+  setItem: jest.fn(),
 }));
 
 describe('orderStore', () => {
@@ -13,12 +13,12 @@ describe('orderStore', () => {
 
   it('adds and removes a-la-carte quantities', () => {
     const item = {
-      id: 'item-1',
-      name: 'grilled chicken',
-      description: null,
       category: 'Entree',
-      priceCents: 1000,
+      description: null,
+      id: 'item-1',
       isActive: true,
+      name: 'grilled chicken',
+      priceCents: 1000,
     };
 
     useOrderStore.getState().addALaCarteItem(item as any);

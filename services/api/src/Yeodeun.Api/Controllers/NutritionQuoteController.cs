@@ -14,13 +14,13 @@ public sealed class NutritionQuoteController : ControllerBase
 {
     private readonly YeodeunDbContext _db;
 
-        /// <summary>
+    /// <summary>
     /// Initializes a new instance of the <see cref="NutritionQuoteController"/> class.
     /// </summary>
     /// <param name="db">Database context used to load item nutrition profiles.</param>
     public NutritionQuoteController(YeodeunDbContext db) => _db = db;
 
-        /// <summary>
+    /// <summary>
     /// Computes nutrition totals for the provided dish selection.
     /// </summary>
     /// <param name="req">Selection request containing chosen item ids.</param>

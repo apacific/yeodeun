@@ -11,10 +11,10 @@ jest.mock('../../components', () => ({
 }));
 
 const mockState = {
-  comboMeals: [],
   aLaCarteItems: [],
-  removeComboMeal: jest.fn(),
+  comboMeals: [],
   removeALaCarteItem: jest.fn(),
+  removeComboMeal: jest.fn(),
 };
 
 jest.mock('../../store/orderStore', () => ({
@@ -25,14 +25,14 @@ jest.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (key: string) => {
       const map: Record<string, string> = {
-        'cart.title': 'Your Order',
-        'cart.buildMealTitle': 'Build a Meal',
-        'cart.noMeal': 'No meal started yet.',
-        'cart.aLaCarteTitle': 'A-la-carte',
-        'cart.noALaCarte': 'No a-la-carte items yet.',
-        'cart.totalTitle': 'Total',
         'cart.addToOrder': 'Add Items',
+        'cart.aLaCarteTitle': 'A-la-carte',
+        'cart.buildMealTitle': 'Build a Meal',
+        'cart.noALaCarte': 'No a-la-carte items yet.',
+        'cart.noMeal': 'No meal started yet.',
         'cart.startCheckout': 'Start Checkout',
+        'cart.title': 'Your Order',
+        'cart.totalTitle': 'Total',
       };
 
       return map[key] ?? key;
@@ -47,7 +47,7 @@ describe('CartScreen', () => {
 
     const { getByText } = render(
       <CartScreen
-        navigation={{ navigate, goBack }}
+        navigation={{ goBack, navigate }}
         route={{ key: 'cart', name: 'Cart', params: undefined }}
       />
     );

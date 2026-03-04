@@ -400,7 +400,7 @@ internal static class UsdaFdcNutritionSeeder
 
     private static bool IsPlausibleCandidate(MenuItem item, FdcNutrientIndex nutrients)
     {
-        var caloriesPer100 = FindNutrientValue(nutrients, ["1008", "208"], ["energy", "energy (atwater general factors)"] ) ?? 0m;
+        var caloriesPer100 = FindNutrientValue(nutrients, ["1008", "208"], ["energy", "energy (atwater general factors)"]) ?? 0m;
         var normalizedName = Normalize(item.Name);
 
         if (normalizedName == "water" || normalizedName == "sparkling water")

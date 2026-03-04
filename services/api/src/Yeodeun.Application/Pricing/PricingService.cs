@@ -43,7 +43,7 @@ public static class PricingRules
 /// </summary>
 public sealed class PricingService
 {
-        /// <summary>
+    /// <summary>
     /// Computes list price, discounts, and final payable total.
     /// </summary>
     /// <param name="req">Chosen item ids grouped by menu category.</param>

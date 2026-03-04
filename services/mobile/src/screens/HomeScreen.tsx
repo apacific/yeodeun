@@ -59,6 +59,8 @@ export const HomeScreen = ({ navigation }: RootStackScreenProps<'Home'>) => {
 };
 
 const styles = StyleSheet.create({
+  buttonContent: {
+    paddingVertical: spacing.sm,},
   container: {
     backgroundColor: appTheme.colors.background,
     flex: 1,
@@ -71,12 +73,6 @@ const styles = StyleSheet.create({
     gap: spacing.lg,
     marginVertical: spacing.xxl,
   },
-  title: {
-    color: appTheme.colors.onBackground,
-    fontSize: 36,
-    fontWeight: '700',
-    letterSpacing: 2.5,
-    lineHeight: 36,},
   menu: {
     gap: spacing.md,
     marginTop: spacing.xxl,
@@ -85,6 +81,10 @@ const styles = StyleSheet.create({
   },
   secondaryButton: {
     borderColor: appTheme.colors.outlineVariant,},
-  buttonContent: {
-    paddingVertical: spacing.sm,},
+  title: {
+    color: appTheme.colors.onBackground,
+    fontSize: 36,
+    fontWeight: '700',
+    letterSpacing: 2.5,
+    lineHeight: 36,},
 });

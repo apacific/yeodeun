@@ -155,41 +155,20 @@ export const CartScreen = ({ navigation }: RootStackScreenProps<'Cart'>) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: appTheme.colors.background,
-    flex: 1,
+  actionButtonContent: {
+    minHeight: 48,
   },
-  content: {
-    gap: spacing.lg,
-    paddingBottom: spacing.xl,
-    paddingHorizontal: spacing.lg,
-  },
-  section: {
-    backgroundColor: appTheme.colors.surface,
-    gap: spacing.sm,
-    padding: spacing.md,
-  },
-  sectionTitle: {
-    color: appTheme.colors.onSurface,
+  actionButtonLabel: {
+    fontSize: 16,
     fontWeight: '700',
-    paddingBottom: spacing.md,
   },
-  row: {
-    alignItems: 'flex-start',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+  addToOrderButton: {
+    backgroundColor: appTheme.colors.background,
+    borderColor: appTheme.colors.onSurface,
+    borderWidth: 1,
   },
-  rowTextGroup: {
-    alignItems: 'flex-start',
-    flex: 1,
-  },
-  rowRight: {
-    alignItems: 'flex-end',
-    flexShrink: 0,
-    marginLeft: spacing.sm,
-  },
-  rowName: {
-    color: appTheme.colors.onSurface,
+  checkoutButton: {
+    marginTop: spacing.sm,
   },
   comboSummary: {
     color: appTheme.colors.onSurfaceDisabled,
@@ -199,10 +178,17 @@ const styles = StyleSheet.create({
     marginTop: 5,
     textAlign: 'left',
   },
-  rowPrice: {
-    color: appTheme.colors.primary,
-    fontSize: 18,
-    fontWeight: '700',
+  container: {
+    backgroundColor: appTheme.colors.background,
+    flex: 1,
+  },
+  content: {
+    gap: spacing.lg,
+    paddingBottom: spacing.xl,
+    paddingHorizontal: spacing.lg,
+  },
+  emptyText: {
+    color: appTheme.colors.onSurfaceDisabled,
   },
   removeButtonContent: {
     minHeight: 28,
@@ -214,30 +200,44 @@ const styles = StyleSheet.create({
     marginHorizontal: 0,
     marginVertical: 0,
   },
+  row: {
+    alignItems: 'flex-start',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  rowName: {
+    color: appTheme.colors.onSurface,
+  },
+  rowPrice: {
+    color: appTheme.colors.primary,
+    fontSize: 18,
+    fontWeight: '700',
+  },
+  rowRight: {
+    alignItems: 'flex-end',
+    flexShrink: 0,
+    marginLeft: spacing.sm,
+  },
+  rowTextGroup: {
+    alignItems: 'flex-start',
+    flex: 1,
+  },
+  section: {
+    backgroundColor: appTheme.colors.surface,
+    gap: spacing.sm,
+    padding: spacing.md,
+  },
+  sectionTitle: {
+    color: appTheme.colors.onSurface,
+    fontWeight: '700',
+    paddingBottom: spacing.md,
+  },
   totalLabel: {
     color: appTheme.colors.onSurface,
   },
   totalValue: {
     color: appTheme.colors.primary,
     fontSize: 24,
-    fontWeight: '700',
-  },
-  emptyText: {
-    color: appTheme.colors.onSurfaceDisabled,
-  },
-  checkoutButton: {
-    marginTop: spacing.sm,
-  },
-  addToOrderButton: {
-    backgroundColor: appTheme.colors.background,
-    borderColor: appTheme.colors.onSurface,
-    borderWidth: 1,
-  },
-  actionButtonContent: {
-    minHeight: 48,
-  },
-  actionButtonLabel: {
-    fontSize: 16,
     fontWeight: '700',
   },
 });

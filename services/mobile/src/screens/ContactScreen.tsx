@@ -82,10 +82,10 @@ export const ContactScreen = ({
           String.fromCodePoint(127397 + char.charCodeAt(0))
         );
       return {
-        code,
-        name,
         callingCode: getCountryCallingCode(code),
+        code,
         flag,
+        name,
       };
     });
   }, [i18n.language]);
@@ -138,8 +138,8 @@ export const ContactScreen = ({
     setError(null);
     try {
       await submitMutation.mutateAsync({
-        message: trimmedMessage || undefined,
         email: trimmedEmail || undefined,
+        message: trimmedMessage || undefined,
         phone: trimmedPhone || undefined,
       });
       Alert.alert(t('contact.form.successTitle'), t('contact.form.successMessage'));
@@ -264,8 +264,8 @@ export const ContactScreen = ({
           <Button
             onPress={handleSubmit}
             disabled={!hasAnyField || submitMutation.isPending}
-            style={styles.submitBtn}
             labelStyle={styles.submitBtnLabel}
+            style={styles.submitBtn}
           >
             {t('contact.form.submit')}
           </Button>
@@ -283,22 +283,6 @@ const styles = StyleSheet.create({
     gap: spacing.xs,
     paddingBottom: spacing.xl,
     paddingHorizontal: spacing.lg,},
-  infoText: {
-    alignSelf: 'center',
-    color: appTheme.colors.onSurfaceDisabled,
-    marginTop: spacing.xl,
-    textAlign: 'center',},
-  infoValue: {
-    alignSelf: 'center',
-    color: appTheme.colors.onSurface,
-    textAlign: 'center',},
-  form: {
-    gap: spacing.sm,
-    marginTop: spacing.xxl,},
-  phoneRow: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    gap: spacing.sm,},
   countryButton: {
     backgroundColor: appTheme.colors.surface,
     borderColor: appTheme.colors.outlineVariant,
@@ -307,8 +291,39 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.sm,},
   countryCodeText: {
     color: appTheme.colors.onSurface,},
-  phoneInput: {
+  countryDial: {
+    color: appTheme.colors.onSurfaceDisabled,},
+  countryFlag: {
+    fontSize: 18,},
+  countryName: {
+    color: appTheme.colors.onSurface,
     flex: 1,},
+  countryRow: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    gap: spacing.sm,
+    paddingVertical: spacing.xs,},
+  error: {
+    color: appTheme.colors.error,},
+  form: {
+    gap: spacing.sm,
+    marginTop: spacing.xxl,},
+  infoText: {
+    alignSelf: 'center',
+    color: appTheme.colors.onSurfaceDisabled,
+    fontSize: 16,
+    marginTop: spacing.xl,
+    textAlign: 'center',
+  },
+  infoValue: {
+    alignSelf: 'center',
+    color: appTheme.colors.onSurface,
+    fontSize: 16,
+    lineHeight: 22,
+    textAlign: 'center',
+  },
+  input: {
+    backgroundColor: appTheme.colors.surface,},
   modalBackdrop: {
     backgroundColor: 'rgba(0,0,0,0.6)',
     flex: 1,
@@ -323,16 +338,22 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: spacing.sm,},
+  modalList: {
+    gap: spacing.sm,},
   modalTitle: {
     color: appTheme.colors.onSurface,},
+  phoneInput: {
+    flex: 1,},
+  phoneRow: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    gap: spacing.sm,},
   searchInput: {
     backgroundColor: appTheme.colors.background,
     color: appTheme.colors.onSurface,
     marginBottom: spacing.md,
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.sm,},
-  modalList: {
-    gap: spacing.sm,},
   submitBtn: {
     backgroundColor: appTheme.colors.surface,
     marginTop: spacing.sm,
@@ -341,21 +362,5 @@ const styles = StyleSheet.create({
   submitBtnLabel: {
     fontSize: 18,
   },
-  countryRow: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    gap: spacing.sm,
-    paddingVertical: spacing.xs,},
-  countryFlag: {
-    fontSize: 18,},
-  countryName: {
-    color: appTheme.colors.onSurface,
-    flex: 1,},
-  countryDial: {
-    color: appTheme.colors.onSurfaceDisabled,},
-  input: {
-    backgroundColor: appTheme.colors.surface,},
-  error: {
-    color: appTheme.colors.error,},
 });
 

@@ -166,14 +166,14 @@ export const BuilderScreen = React.memo(({ navigation }: RootStackScreenProps<'B
 
   const getStepTitle = (): string => {
     const titles: Record<BuilderStep, string> = {
-      entree: t('builder.steps.entree'),
-      vegetable: t('builder.steps.vegetable'),
-      fruit: t('builder.steps.fruit'),
-      side: t('builder.steps.side'),
-      sauce: t('builder.steps.sauce'),
-      topping: t('builder.steps.topping'),
       beverage: t('builder.steps.beverage'),
+      entree: t('builder.steps.entree'),
+      fruit: t('builder.steps.fruit'),
       review: t('builder.steps.review'),
+      sauce: t('builder.steps.sauce'),
+      side: t('builder.steps.side'),
+      topping: t('builder.steps.topping'),
+      vegetable: t('builder.steps.vegetable'),
     };
     return titles[currentStep];
   };
@@ -482,30 +482,14 @@ import { MenuItemList } from '../components/MenuItemCard';
 const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 
 const styles = StyleSheet.create({
+  checkoutButton: {
+    marginHorizontal: spacing.lg,
+    marginTop: spacing.lg,},
+  checkoutButtonContent: {
+    paddingVertical: spacing.md,},
   container: {
     backgroundColor: appTheme.colors.background,
     flex: 1,},
-  header: {
-    alignItems: 'center',
-    backgroundColor: appTheme.colors.surface,
-    borderBottomColor: appTheme.colors.outlineVariant,
-    borderBottomWidth: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingHorizontal: spacing.lg,
-    paddingVertical: spacing.lg,},
-  title: {
-    color: appTheme.colors.onSurface,},
-  subtitle: {
-    color: appTheme.colors.onSurfaceDisabled,
-    marginTop: spacing.xs,},
-  progressBadge: {
-    backgroundColor: appTheme.colors.primary,
-    paddingHorizontal: spacing.md,
-    paddingVertical: spacing.xs,},
-  progressText: {
-    color: appTheme.colors.onPrimary || '#000',
-    fontSize: 12,},
   content: {
     flex: 1,},
   contentInner: {
@@ -517,47 +501,20 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: spacing.md,
     padding: spacing.lg,},
-  navButton: {
-    flex: 1,},
-  reviewContainer: {
-    flex: 1,
-    paddingVertical: spacing.lg,},
-  reviewContent: {
-    gap: spacing.md,},
-  orderItemRow: {
-    borderBottomColor: appTheme.colors.surfaceVariant,
+  header: {
+    alignItems: 'center',
+    backgroundColor: appTheme.colors.surface,
+    borderBottomColor: appTheme.colors.outlineVariant,
     borderBottomWidth: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingVertical: spacing.sm,},
-  orderItemLabel: {
-    color: appTheme.colors.onSurface,},
-  orderItemValue: {
-    color: appTheme.colors.onSurfaceDisabled,},
-  priceBreakdown: {
-    backgroundColor: appTheme.colors.background,
-    gap: spacing.sm,
-    padding: spacing.md,},
-  priceRow: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingVertical: spacing.sm,},
-  priceLabel: {
-    color: appTheme.colors.onSurface,},
-  priceLabelBold: {
-    fontSize: 16,},
-  priceAmount: {
-    color: appTheme.colors.primary,},
-  priceAmountHighlight: {
-    color: appTheme.colors.success,},
-  priceAmountBold: {
-    fontSize: 16,},
-  checkoutButton: {
-    marginHorizontal: spacing.lg,
-    marginTop: spacing.lg,},
-  checkoutButtonContent: {
-    paddingVertical: spacing.md,},
+    paddingHorizontal: spacing.lg,
+    paddingVertical: spacing.lg,},
+  navButton: {
+    flex: 1,},
+  note: {
+    color: appTheme.colors.onSurfaceDisabled,
+    marginTop: spacing.xs,},
   notesSection: {
     backgroundColor: appTheme.colors.surface,
     borderLeftColor: appTheme.colors.info,
@@ -568,9 +525,52 @@ const styles = StyleSheet.create({
   notesTitle: {
     color: appTheme.colors.onSurface,
     marginBottom: spacing.xs,},
-  note: {
+  orderItemLabel: {
+    color: appTheme.colors.onSurface,},
+  orderItemRow: {
+    borderBottomColor: appTheme.colors.surfaceVariant,
+    borderBottomWidth: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: spacing.sm,},
+  orderItemValue: {
+    color: appTheme.colors.onSurfaceDisabled,},
+  priceAmount: {
+    color: appTheme.colors.primary,},
+  priceAmountBold: {
+    fontSize: 16,},
+  priceAmountHighlight: {
+    color: appTheme.colors.success,},
+  priceBreakdown: {
+    backgroundColor: appTheme.colors.background,
+    gap: spacing.sm,
+    padding: spacing.md,},
+  priceLabel: {
+    color: appTheme.colors.onSurface,},
+  priceLabelBold: {
+    fontSize: 16,},
+  priceRow: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: spacing.sm,},
+  progressBadge: {
+    backgroundColor: appTheme.colors.primary,
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.xs,},
+  progressText: {
+    color: appTheme.colors.onPrimary || '#000',
+    fontSize: 12,},
+  reviewContainer: {
+    flex: 1,
+    paddingVertical: spacing.lg,},
+  reviewContent: {
+    gap: spacing.md,},
+  subtitle: {
     color: appTheme.colors.onSurfaceDisabled,
     marginTop: spacing.xs,},
+  title: {
+    color: appTheme.colors.onSurface,},
 });
 
 

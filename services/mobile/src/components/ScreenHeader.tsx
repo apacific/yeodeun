@@ -50,19 +50,19 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.md,
     paddingTop: spacing.md,
   },
-  title: {
-    color: appTheme.colors.onSurface,
-    flex: 1,
-    fontWeight: '900',
-    letterSpacing: 2,
-    textAlign: 'center',
+  placeholder: {
+    width: 48,
   },
   side: {
     alignItems: 'center',
     justifyContent: 'center',
     minWidth: 72,
   },
-  placeholder: {
-    width: 48,
+  title: {
+    color: appTheme.colors.onSurface,
+    flex: 1,
+    fontWeight: '900',
+    letterSpacing: 2,
+    textAlign: 'center',
   },
 });

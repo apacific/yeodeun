@@ -30,10 +30,10 @@ export const SAUCE_PRICE_CENTS = 100; // $1.00
  */
 export const COMBO_REQUIREMENTS = {
   entree: true,
-  vegetable: true,
   fruit: true,
-  side: true,
   sauces: 2,
+  side: true,
+  vegetable: true,
 };
 
 // Menu categories
@@ -73,8 +73,8 @@ export const OFFLINE_MESSAGE =
  */
 export const MESSAGES = {
   comboComplete: 'Combo complete! Ready to checkout.',
+  networkError: 'Network error. Please try again.',
+  orderSubmitted: 'Order submitted successfully!',
   sauceLimitReached: 'Maximum 2 sauces per dish.',
   selectionValid: 'Selection updated successfully.',
-  orderSubmitted: 'Order submitted successfully!',
-  networkError: 'Network error. Please try again.',
 };

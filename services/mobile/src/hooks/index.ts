@@ -13,7 +13,7 @@ export const useOnlineStatus = () => {
     return state.isConnected;
   }, []);
 
-  return { isOnline, checkConnectivity };
+  return { checkConnectivity, isOnline };
 };
 
 /**
@@ -43,5 +43,5 @@ export const useModal = (initialState = false) => {
   const close = useCallback(() => setVisible(false), []);
   const toggle = useCallback(() => setVisible((v) => !v), []);
 
-  return { visible, open, close, toggle };
+  return { close, open, toggle, visible };
 };

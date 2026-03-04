@@ -55,13 +55,13 @@ export const getCategoryColor = (
   const categoryLower = category.toLowerCase();
 
   const colorMap: Record<string, { background: string; text: string }> = {
-    entree: { background: '#FF6F00', text: '#FFFFFF' },
-    vegetable: { background: '#4CAF50', text: '#FFFFFF' },
-    fruit: { background: '#E91E63', text: '#FFFFFF' },
-    side: { background: '#9C27B0', text: '#FFFFFF' },
-    sauce: { background: '#FF5722', text: '#FFFFFF' },
-    topping: { background: '#00BCD4', text: '#FFFFFF' },
     beverage: { background: '#2196F3', text: '#FFFFFF' },
+    entree: { background: '#FF6F00', text: '#FFFFFF' },
+    fruit: { background: '#E91E63', text: '#FFFFFF' },
+    sauce: { background: '#FF5722', text: '#FFFFFF' },
+    side: { background: '#9C27B0', text: '#FFFFFF' },
+    topping: { background: '#00BCD4', text: '#FFFFFF' },
+    vegetable: { background: '#4CAF50', text: '#FFFFFF' },
   };
 
   return colorMap[categoryLower] || { background: '#666666', text: '#FFFFFF' };

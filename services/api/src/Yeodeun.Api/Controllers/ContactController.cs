@@ -19,13 +19,13 @@ public sealed class ContactController : ControllerBase
 
     private readonly ILogger<ContactController> _logger;
 
-        /// <summary>
+    /// <summary>
     /// Initializes a new instance of the <see cref="ContactController"/> class.
     /// </summary>
     /// <param name="logger">Logger used for intake audit events.</param>
     public ContactController(ILogger<ContactController> logger) => _logger = logger;
 
-        /// <summary>
+    /// <summary>
     /// Validates and accepts a contact request.
     /// </summary>
     /// <param name="request">Payload containing optional message, email, and phone fields.</param>

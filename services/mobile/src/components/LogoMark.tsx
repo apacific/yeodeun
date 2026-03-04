@@ -16,7 +16,7 @@ interface LogoMarkProps {
 export const LogoMark = ({ size = 120 }: LogoMarkProps) => {
   return (
     <View style={styles.container}>
-      <Image source={logo} style={{ width: size, height: size }} />
+      <Image source={logo} style={{ height: size, width: size }} />
     </View>
   );
 };

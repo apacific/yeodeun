@@ -6,14 +6,14 @@ import { appTheme, spacing } from '../theme/theme';
 
 const languageFlagLabel: Record<AppLanguage, string> = {
   en: '🇺🇸',
-  ko: '🇰🇷',
   ja: '🇯🇵',
+  ko: '🇰🇷',
 };
 
 const languageTextLabel: Record<AppLanguage, string> = {
   en: 'EN',
-  ko: '한국어',
   ja: '日本語',
+  ko: '한국어',
 };
 
 /**

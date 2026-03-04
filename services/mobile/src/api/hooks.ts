@@ -33,8 +33,8 @@ export const menuKeys = {
  */
 export const quoteKeys = {
   all: ['quote'] as const,
-  pricing: () => [...quoteKeys.all, 'pricing'] as const,
   nutrition: () => [...quoteKeys.all, 'nutrition'] as const,
+  pricing: () => [...quoteKeys.all, 'pricing'] as const,
 };
 
 // Menu queries
@@ -43,13 +43,16 @@ export const quoteKeys = {
  */
 export const useMenuCategories = () => {
   return useQuery({
-    queryKey: menuKeys.categories(),
-    queryFn: async () => {
+    // 5 minutes
+gcTime: 30 * 60 * 1000,
+    
+queryFn: async () => {
       const categories = await apiClient.get<string[]>('/api/menu/categories');
       return categories;
     },
-    staleTime: 5 * 60 * 1000, // 5 minutes
-    gcTime: 30 * 60 * 1000, // 30 minutes
+    
+queryKey: menuKeys.categories(), 
+    staleTime: 5 * 60 * 1000, // 30 minutes
   });
 };
 
@@ -58,15 +61,15 @@ export const useMenuCategories = () => {
  */
 export const useMenuCounts = () => {
   return useQuery({
-    queryKey: menuKeys.counts(),
+    gcTime: 30 * 60 * 1000,
     queryFn: async () => {
       const counts = await apiClient.get<MenuCategoryCountDto[]>(
         '/api/menu/counts'
       );
       return counts;
     },
+    queryKey: menuKeys.counts(),
     staleTime: 5 * 60 * 1000,
-    gcTime: 30 * 60 * 1000,
   });
 };
 
@@ -79,12 +82,7 @@ export const useMenuItems = (
   includeNutrition: boolean = false
 ) => {
   return useQuery({
-    queryKey:
-      searchQuery && category
-        ? menuKeys.itemsSearched(searchQuery, category)
-        : category
-          ? menuKeys.itemsByCategory(category)
-          : menuKeys.items(),
+    gcTime: 30 * 60 * 1000,
     queryFn: async () => {
       const params = new URLSearchParams();
       if (category) params.append('category', category);
@@ -96,8 +94,13 @@ export const useMenuItems = (
       );
       return items;
     },
+    queryKey:
+      searchQuery && category
+        ? menuKeys.itemsSearched(searchQuery, category)
+        : category
+          ? menuKeys.itemsByCategory(category)
+          : menuKeys.items(),
     staleTime: 5 * 60 * 1000,
-    gcTime: 30 * 60 * 1000,
   });
 };
 

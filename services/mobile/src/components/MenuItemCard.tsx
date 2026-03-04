@@ -159,39 +159,39 @@ const styles = StyleSheet.create({
     backgroundColor: appTheme.colors.surface,
     borderLeftColor: appTheme.colors.primary,
     borderLeftWidth: 4,},
-  selectedCard: {
-    backgroundColor: appTheme.colors.surfaceVariant,
-    borderLeftColor: appTheme.colors.success,},
-  image: {
-    minHeight: 140,},
-  overlay: {
-    backgroundColor: 'rgba(0, 0, 0, 0.45)',
-    flex: 1,
-    gap: spacing.sm,
-    padding: spacing.md,},
-  header: {
-    alignItems: 'flex-start',
-    flexDirection: 'row',
-    justifyContent: 'space-between',},
-  name: {
-    color: appTheme.colors.onBackground,},
   footer: {
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',},
-  price: {
-    color: appTheme.colors.onBackground,
-    fontSize: 18,
-    fontWeight: '700',
-    lineHeight: 22,},
+  header: {
+    alignItems: 'flex-start',
+    flexDirection: 'row',
+    justifyContent: 'space-between',},
+  image: {
+    minHeight: 140,},
+  listContainer: {
+    gap: spacing.sm,},
+  listItem: {
+    marginBottom: 0,},
+  name: {
+    color: appTheme.colors.onBackground,},
   nutritionButton: {
     backgroundColor: 'rgba(0, 0, 0, 0.4)',
     paddingHorizontal: spacing.sm,
     paddingVertical: spacing.xs,},
   nutritionButtonText: {
     color: appTheme.colors.onBackground,},
-  listContainer: {
-    gap: spacing.sm,},
-  listItem: {
-    marginBottom: 0,},
+  overlay: {
+    backgroundColor: 'rgba(0, 0, 0, 0.45)',
+    flex: 1,
+    gap: spacing.sm,
+    padding: spacing.md,},
+  price: {
+    color: appTheme.colors.onBackground,
+    fontSize: 18,
+    fontWeight: '700',
+    lineHeight: 22,},
+  selectedCard: {
+    backgroundColor: appTheme.colors.surfaceVariant,
+    borderLeftColor: appTheme.colors.success,},
 });

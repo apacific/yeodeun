@@ -17,11 +17,11 @@ export class ApiClient {
   constructor() {
     this.client = axios.create({
       baseURL: API_BASE_URL,
-      timeout: 10000,
       headers: {
-        'Content-Type': 'application/json',
         Accept: 'application/json',
+        'Content-Type': 'application/json',
       },
+      timeout: 10000,
     });
 
     // Add response interceptor for error handling
@@ -46,26 +46,26 @@ export class ApiClient {
   private handleError(error: AxiosError): ApiError {
     if (!this.isOnline || error.message === 'Network Error') {
       return {
-        message: 'No internet connection. Please check your connection and try again.',
         isOffline: true,
+        message: 'No internet connection. Please check your connection and try again.',
         originalError: error,
       };
     }
 
     if (error.response) {
       return {
+        isOffline: false,
         message:
           (error.response.data as any)?.message ||
           `Server error: ${error.response.status}`,
-        status: error.response.status,
-        isOffline: false,
         originalError: error,
+        status: error.response.status,
       };
     }
 
     return {
-      message: error.message || 'An unexpected error occurred',
       isOffline: false,
+      message: error.message || 'An unexpected error occurred',
       originalError: error,
     };
   }

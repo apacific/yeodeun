@@ -17,13 +17,13 @@ public sealed class QuoteController : ControllerBase
 
     private readonly YeodeunDbContext _db;
 
-        /// <summary>
+    /// <summary>
     /// Initializes a new instance of the <see cref="QuoteController"/> class.
     /// </summary>
     /// <param name="db">Database context used to load selected menu items.</param>
     public QuoteController(YeodeunDbContext db) => _db = db;
 
-        /// <summary>
+    /// <summary>
     /// Calculates list and discounted pricing for the requested selection.
     /// </summary>
     /// <param name="req">Selection request payload.</param>
