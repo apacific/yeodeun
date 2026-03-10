@@ -3,7 +3,7 @@ import { Alert, ImageBackground, SectionList, StyleSheet, View } from 'react-nat
 import { Button, Text } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
 import { useMenuItems } from '../api/hooks';
-import { NutritionModal, ScreenHeader } from '../components';
+import { EmptyState, NutritionModal, ScreenHeader } from '../components';
 import { getCategoryLabel, getMenuItemLabel } from '../i18n/menu';
 import { RootStackScreenProps } from '../navigation/types';
 import { useOrderStore } from '../store/orderStore';
@@ -20,11 +20,22 @@ export const ALaCarteScreen = ({
   navigation,
 }: RootStackScreenProps<'ALaCarte'>) => {
   const { t } = useTranslation();
-  const { data: items = [], isLoading } = useMenuItems(
+  const {
+    data: items = [],
+    isLoading,
+    isError,
+    error,
+    refetch,
+    isFetching,
+  } = useMenuItems(
     undefined,
     undefined,
     true
   );
+  const loading = isLoading || isFetching;
+  const menuErrorMessage =
+    (error as { message?: string } | undefined)?.message ??
+    'Failed to load menu items';
   const addALaCarteItem = useOrderStore((s) => s.addALaCarteItem);
   const removeALaCarteItem = useOrderStore((s) => s.removeALaCarteItem);
   const aLaCarteItems = useOrderStore((s) => s.aLaCarteItems);
@@ -91,9 +102,18 @@ export const ALaCarteScreen = ({
   return (
     <View style={styles.container}>
       <ScreenHeader title={t('aLaCarte.title')} onBack={() => navigation.goBack()} />
-      {isLoading ? (
+      {loading ? (
         <View style={styles.state}>
           <Text>{t('menu.loading')}</Text>
+        </View>
+      ) : isError ? (
+        <View style={styles.state}>
+          <EmptyState title="Unable to load menu" description={menuErrorMessage} />
+          <View style={styles.retryWrap}>
+            <Button mode="outlined" onPress={() => refetch()}>
+              Retry
+            </Button>
+          </View>
         </View>
       ) : (
         <SectionList
@@ -242,6 +262,10 @@ const styles = StyleSheet.create({
   state: {
     alignItems: 'center',
     flex: 1,
-    justifyContent: 'center',},
+    justifyContent: 'center',
+  },
+  retryWrap: {
+    marginTop: spacing.md,
+  },
 });
 

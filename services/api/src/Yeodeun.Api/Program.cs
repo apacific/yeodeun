@@ -147,20 +147,29 @@ app.UseAuthorization();
 app.MapControllers();
 
 // Dev-only migrate/seed + retry for container startup ordering
-if (app.Environment.IsDevelopment())
 {
     using var scope = app.Services.CreateScope();
     var db = scope.ServiceProvider.GetRequiredService<YeodeunDbContext>();
-    var seedLogger = scope.ServiceProvider
+    var startupLogger = scope.ServiceProvider
         .GetRequiredService<ILoggerFactory>()
         .CreateLogger("DbInitializer");
 
     const int maxAttempts = 10;
+    var shouldSeed = app.Environment.IsDevelopment();
+
     for (var attempt = 1; attempt <= maxAttempts; attempt++)
     {
         try
         {
-            await DbInitializer.MigrateAndSeedAsync(db, builder.Configuration, seedLogger);
+            if (shouldSeed)
+            {
+                await DbInitializer.MigrateAndSeedAsync(db, builder.Configuration, startupLogger);
+            }
+            else
+            {
+                await db.Database.MigrateAsync();
+            }
+
             break;
         }
         catch (PostgresException) when (attempt < maxAttempts)
