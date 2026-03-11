@@ -8,7 +8,7 @@ export const en = {
     mapPlaceholder: 'Map placeholder',
     mapTitle: 'Map',
     paragraph:
-      'Yeodeun is many things: a Korean-inspired fusion of world cuisines; a dinner party for all generations; a cozy home for casual and fine dining alike; and a welcoming space that is as bright and fresh as the ingredients used in our kitchen. Welcome!',
+      'Yeodeun is many things: a Korean-inspired fusion of world cuisines; a dinner party for all generations; a cozy home for casual and fine dining alike; and a charming space that is as bright and fresh as the ingredients used in our kitchen. Welcome!',
     storefrontTitle: 'Storefront',
     title: 'About Yeodeun',
     viewMenu: 'View menu',
