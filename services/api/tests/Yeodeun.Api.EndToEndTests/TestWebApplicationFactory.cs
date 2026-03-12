@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Yeodeun.Domain.Menu;
@@ -31,7 +32,8 @@ public sealed class TestWebApplicationFactory : WebApplicationFactory<Program>
             });
 
             services.AddDbContext<YeodeunDbContext>((sp, opt) =>
-                opt.UseSqlite(sp.GetRequiredService<DbConnection>()));
+                opt.UseSqlite(sp.GetRequiredService<DbConnection>())
+                    .ConfigureWarnings(warnings => warnings.Ignore(RelationalEventId.PendingModelChangesWarning)));
 
             using var scope = services.BuildServiceProvider().CreateScope();
             var db = scope.ServiceProvider.GetRequiredService<YeodeunDbContext>();

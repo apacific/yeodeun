@@ -1,11 +1,11 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
-using Yeodeun.Domain.Menu;
-using Yeodeun.Infrastructure.Persistence;
 using Xunit;
 using System.Net;
 using System.Net.Http.Json;
 using Yeodeun.Api.Contracts;
+using Yeodeun.Domain.Menu;
+using Yeodeun.Infrastructure.Persistence;
 
 namespace Yeodeun.Api.EndToEndTests;
 
@@ -69,6 +69,23 @@ public sealed class OrderFlowEndToEndTests : IClassFixture<TestWebApplicationFac
         Assert.NotEqual(Guid.Empty, checkout!.OrderId);
     }
 
+    [Fact]
+    public async Task Quote_WithMissingSelectionItem_ReturnsNotFound()
+    {
+        var client = _factory.CreateClient();
+        await EnsureSeededAsync();
+
+        var request = new SelectionRequestDto(new DishSelectionDto
+        {
+            EntreeId = Guid.NewGuid(),
+        });
+
+        var response = await client.PostAsJsonAsync("/api/quote", request);
+
+        Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+        var body = await response.Content.ReadAsStringAsync();
+        Assert.Contains("One or more menu items were not found.", body);
+    }
 
     private async Task EnsureSeededAsync()
     {
@@ -94,5 +111,4 @@ public sealed class OrderFlowEndToEndTests : IClassFixture<TestWebApplicationFac
 
         await db.SaveChangesAsync();
     }
-
 }

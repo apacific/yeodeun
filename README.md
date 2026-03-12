@@ -106,17 +106,18 @@ Invoke-RestMethod -Method Get `
 ## Testing
 
 ### Backend
-
 ```powershell
-cd services/api
-dotnet test Yeodeun.slnx -v minimal
+cd /path/to/yeodeun
+dotnet test services/api/Yeodeun.slnx -v minimal
+dotnet test services/api/tests/Yeodeun.Api.IntegrationTests/Yeodeun.Api.IntegrationTests.csproj -v minimal --no-restore
+dotnet test services/api/tests/Yeodeun.Api.EndToEndTests/Yeodeun.Api.EndToEndTests.csproj -v minimal --no-restore
 ```
 
-### Mobile
+### Mobile (unit/integration)
 
 ```powershell
 cd services/mobile
-npm test -- --runInBand
+npm test -- --runInBand --passWithNoTests --forceExit
 npx tsc --noEmit
 ```
 

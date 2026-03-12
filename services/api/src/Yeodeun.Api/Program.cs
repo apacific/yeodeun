@@ -2,6 +2,7 @@ using System.Security.Cryptography;
 using System.Threading.RateLimiting;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.IdentityModel.Tokens;
 using Npgsql;
 using Yeodeun.Application.Pricing;
@@ -119,9 +120,14 @@ builder.Services.AddCors(o =>
 });
 
 builder.Services.AddDbContext<YeodeunDbContext>(opt =>
+{
     opt.UseNpgsql(
         builder.Configuration.GetConnectionString("Default"),
-        npgsql => npgsql.EnableRetryOnFailure(5, TimeSpan.FromSeconds(2), null)));
+        npgsql => npgsql.EnableRetryOnFailure(5, TimeSpan.FromSeconds(2), null));
+
+    opt.ConfigureWarnings(w =>
+        w.Ignore(RelationalEventId.PendingModelChangesWarning));
+});
 
 builder.Services.AddScoped<PricingService>();
 
