@@ -1,0 +1,16 @@
+appId: host.exp.exponent
+name: Yeodeun Cart and Menu Flow
+---
+- launchApp
+- assertVisible: "ORDER HERE"
+- tapOn: "ORDER HERE"
+- assertVisible: "A-la-carte"
+- tapOn: "A-la-carte"
+- assertVisible: "MENU"
+- assertVisible: "Description"
+- tapOn:
+    text: "Description"
+    index: 0
+- assertVisible: "Back"
+- tapOn: "Back"
+- assertVisible: "MENU"

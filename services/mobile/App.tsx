@@ -11,7 +11,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { IconButton, PaperProvider, Text as PaperText, TextInput as PaperTextInput } from 'react-native-paper';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { NavigationContainer, createNavigationContainerRef } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { appTheme } from './src/theme/theme';
 import { initI18n } from './src/i18n';
@@ -32,7 +32,7 @@ import { RootStackParamList } from './src/navigation/types';
 import { LanguageToggle } from './src/components';
 import { useOrderStore } from './src/store/orderStore';
 
-const Stack = createStackNavigator<RootStackParamList>();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 const navigationRef = createNavigationContainerRef<RootStackParamList>();
 
 const createQueryClient = () =>
@@ -126,7 +126,7 @@ export default function App() {
                   initialRouteName="Home"
                   screenOptions={{
                     headerShown: false,
-                    cardStyle: contentStyle,
+                    contentStyle,
                   }}
                 >
                   <Stack.Screen name="Home" component={HomeScreen} />

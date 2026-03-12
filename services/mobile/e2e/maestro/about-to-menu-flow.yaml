@@ -1,0 +1,10 @@
+appId: host.exp.exponent
+name: Yeodeun About to Menu Flow
+---
+- launchApp
+- tapOn: "About"
+- assertVisible: "About Yeodeun"
+- assertVisible: "View menu"
+- tapOn: "View menu"
+- assertVisible: "MENU"
+- assertVisible: "Description"

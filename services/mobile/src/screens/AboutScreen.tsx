@@ -96,9 +96,10 @@ export const AboutScreen = ({ navigation }: RootStackScreenProps<'About'>) => {
           <Text variant="titleSmall" style={styles.sectionTitle}>
             {t('about.mapTitle')}
           </Text>
-          <TouchableOpacity onPress={handleOpenMap} activeOpacity={0.9}>
+          <TouchableOpacity onPress={handleOpenMap} activeOpacity={0.9} testID="about-map-link">
             <View style={styles.mapWrap}>
               <Image
+                testID="about-map-image"
                 source={{ uri: mapImageUrl }}
                 style={styles.map}
                 resizeMode="cover"

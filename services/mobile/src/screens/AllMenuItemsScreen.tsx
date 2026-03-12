@@ -7,6 +7,7 @@ import {
   View,
 } from 'react-native';
 import { Button, Text } from 'react-native-paper';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
 import { useMenuItems } from '../api/hooks';
 import { EmptyState, NutritionModal, ScreenHeader } from '../components';
@@ -25,6 +26,8 @@ export const AllMenuItemsScreen = ({
   navigation,
 }: RootStackScreenProps<'AllMenuItems'>) => {
   const { t } = useTranslation();
+  const insets = useSafeAreaInsets();
+  const footerBottomPadding = Math.min(insets.bottom, 2);
   const {
     data: items = [],
     isLoading,
@@ -155,13 +158,26 @@ export const AllMenuItemsScreen = ({
               </Text>
             </View>
           )}
-          contentContainerStyle={styles.list}
+          contentContainerStyle={[
+            styles.list,
+            { paddingBottom: 64 + footerBottomPadding + spacing.sm },
+          ]}
           initialNumToRender={12}
           windowSize={7}
           removeClippedSubviews
           stickySectionHeadersEnabled={false}
         />
       )}
+      <View style={[styles.footerBar, { paddingBottom: footerBottomPadding }]}>
+        <Button
+          mode="contained"
+          style={styles.footerButton}
+          onPress={() => navigation.navigate('OrderMenu')}
+          contentStyle={styles.footerButtonContent}
+        >
+          {t('home.createEditOrder')}
+        </Button>
+      </View>
 
       <NutritionModal
         visible={showNutritionModal}
@@ -205,8 +221,31 @@ const styles = StyleSheet.create({
     color: appTheme.colors.onBackground,},
   list: {
     gap: spacing.sm,
-    paddingBottom: spacing.xl,
-    paddingHorizontal: spacing.lg,},
+    paddingBottom: 64,
+    paddingHorizontal: spacing.lg,
+  },
+  footerBar: {
+    backgroundColor: appTheme.colors.background,
+    borderTopWidth: 0,
+    borderTopColor: 'transparent',
+    bottom: 0,
+    left: 0,
+    margin: 0,
+    paddingBottom: 0,
+    paddingHorizontal: spacing.lg,
+    paddingTop: 0,
+    position: 'absolute',
+    right: 0,
+  },
+  footerButton: {
+    margin: 0,
+  },
+  footerButtonContent: {
+    paddingTop: 0,
+    paddingBottom: 0,
+    height: 50,
+    minHeight: 40,
+  },
   modalBackdrop: {
     backgroundColor: 'rgba(0,0,0,0.6)',
     flex: 1,
