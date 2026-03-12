@@ -32,6 +32,7 @@ pnpm-debug.log*
 node_modules/
 .expo/
 .expo-shared/
+.npmrc
 
 # Metro / bundler caches
 *.tsbuildinfo
