@@ -260,7 +260,8 @@ const styles = StyleSheet.create({
   paragraph: {
     alignSelf: 'center',
     color: appTheme.colors.onBackground,
-    fontSize: 17,
+    fontFamily: 'Paperlogy-6SemiBold',
+    fontSize: 15,
     lineHeight: 24,
     maxWidth: 560,
     textAlign: 'center',

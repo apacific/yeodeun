@@ -51,7 +51,10 @@ const createQueryClient = () =>
 
 const queryClient = createQueryClient();
 
-const centeredTextStyle = { textAlign: 'center' } as const;
+const centeredTextStyle = {
+  textAlign: 'center',
+  fontFamily: 'Paperlogy-4Regular',
+} as const;
 
 (RNText as any).defaultProps = {
   ...((RNText as any).defaultProps ?? {}),
