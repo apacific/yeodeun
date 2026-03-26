@@ -7,23 +7,18 @@ Yeodeun Logo            |  Storefront Image
 :-------------------------:|:-------------------------:
 <img src="https://github.com/apacific/yeodeun/blob/main/yeodeun-logo.png?raw=true" width="333" height="333">  |  <img src="https://github.com/apacific/yeodeun/blob/main/store-front.png?raw=true" width="333" height="333">
 
-Home Page       |         
-:-------------------------:|:-------------------------:|:-------------------------:
+Home Page
 
 <img src="https://github.com/apacific/yeodeun/blob/main/demo/home-en.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/home-kr.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/home-jp.jpg?raw=true" width="222">
 
 About Page              
-:-------------------------:|:-------------------------:|:-------------------------:
 
 <img src="https://github.com/apacific/yeodeun/blob/main/demo/about-en.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/about-kr.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/about-jp.jpg?raw=true" width="222">
 
-Location                |  Korean                   |  Japanese
-:-------------------------:|:-------------------------:|:-------------------------:
 
 <img src="https://github.com/apacific/yeodeun/blob/main/demo/about-2-en.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/about-2-kr.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/about-2-jp.jpg?raw=true" width="222">
 
-Image Gallery           |  Korean                   |  Japanese
-:-------------------------:|:-------------------------:|:-------------------------:
+Image Gallery 
 
 <img src="https://github.com/apacific/yeodeun/blob/main/demo/gall-en.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/gall-kr.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/gall-jp.jpg?raw=true" width="222">
 
