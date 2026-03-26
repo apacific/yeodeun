@@ -7,12 +7,12 @@ Yeodeun Logo            |  Storefront Image
 :-------------------------:|:-------------------------:
 <img src="https://github.com/apacific/yeodeun/blob/main/yeodeun-logo.png?raw=true" width="333" height="333">  |  <img src="https://github.com/apacific/yeodeun/blob/main/store-front.png?raw=true" width="333" height="333">
 
-Home Page                | Korean                   |  Japanese
+Home Page                
 :-------------------------:|:-------------------------:|:-------------------------:
 
 <img src="https://github.com/apacific/yeodeun/blob/main/demo/home-en.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/home-kr.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/home-jp.jpg?raw=true" width="222">
 
-About Page              |  Korean                   |  Japanese
+About Page              
 :-------------------------:|:-------------------------:|:-------------------------:
 
 <img src="https://github.com/apacific/yeodeun/blob/main/demo/about-en.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/about-kr.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/about-jp.jpg?raw=true" width="222">
