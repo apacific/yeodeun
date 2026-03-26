@@ -10,17 +10,17 @@ Yeodeun Logo            |  Storefront Image
 Home Page            |  Korean  |  Japanese
 :-------------------------:|:-------------------------:|:-------------------------:
 
-<img src="https://github.com/apacific/yeodeun/blob/main/demo/home-en.jpg?raw=true" width="333">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/home-kr.jpg?raw=true" width="333">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/home-jp.jpg?raw=true" width="333">
+<img src="https://github.com/apacific/yeodeun/blob/main/demo/home-en.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/home-kr.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/home-jp.jpg?raw=true" width="222">
 
 About Page            |  Korean  |  Japanese
 :-------------------------:|:-------------------------:|:-------------------------:
 
-<img src="https://github.com/apacific/yeodeun/blob/main/demo/about-en.jpg?raw=true" width="333">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/about-kr.jpg?raw=true" width="333">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/about-jp.jpg?raw=true" width="333">
+<img src="https://github.com/apacific/yeodeun/blob/main/demo/about-en.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/about-kr.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/about-jp.jpg?raw=true" width="222">
 
 About (Location)            |  Korean  |  Japanese
 :-------------------------:|:-------------------------:|:-------------------------:
 
-<img src="https://github.com/apacific/yeodeun/blob/main/demo/about-2-en.jpg?raw=true" width="333">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/about-2-kr.jpg?raw=true" width="333">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/about-2-jp.jpg?raw=true" width="333">
+<img src="https://github.com/apacific/yeodeun/blob/main/demo/about-2-en.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/about-2-kr.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/about-2-jp.jpg?raw=true" width="222">
 
 Image Gallery            |  Korean  |  Japanese
 :-------------------------:|:-------------------------:|:-------------------------:
