@@ -2,9 +2,30 @@
 ## About
 
 Proof-of-concept for a restaurant foodservice order management application.
+
 Yeodeun Logo            |  Storefront Image
 :-------------------------:|:-------------------------:
 <img src="https://github.com/apacific/yeodeun/blob/main/yeodeun-logo.png?raw=true" width="333" height="333">  |  <img src="https://github.com/apacific/yeodeun/blob/main/store-front.png?raw=true" width="333" height="333">
+
+Home Page            |  Korean  |  Japanese
+:-------------------------:|:-------------------------:|:-------------------------:
+
+<img src="https://github.com/apacific/yeodeun/blob/main/demo/home-en.jpg?raw=true" width="333">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/home-kr.jpg?raw=true" width="333">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/home-jp.jpg?raw=true" width="333">
+
+About Page            |  Korean  |  Japanese
+:-------------------------:|:-------------------------:|:-------------------------:
+
+<img src="https://github.com/apacific/yeodeun/blob/main/demo/about-en.jpg?raw=true" width="333">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/about-kr.jpg?raw=true" width="333">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/about-jp.jpg?raw=true" width="333">
+
+About (Location)            |  Korean  |  Japanese
+:-------------------------:|:-------------------------:|:-------------------------:
+
+<img src="https://github.com/apacific/yeodeun/blob/main/demo/about-2-en.jpg?raw=true" width="333">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/about-2-kr.jpg?raw=true" width="333">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/about-2-jp.jpg?raw=true" width="333">
+
+Image Gallery            |  Korean  |  Japanese
+:-------------------------:|:-------------------------:|:-------------------------:
+
+<img src="https://github.com/apacific/yeodeun/blob/main/demo/gall-en.jpg?raw=true" width="333">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/gall-kr.jpg?raw=true" width="333">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/gall-jp.jpg?raw=true" width="333">
 
 - ASP.NET Core API + PostgreSQL
 - Expo React Native mobile app
