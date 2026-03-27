@@ -26,7 +26,7 @@ Proof-of-concept for a restaurant foodservice order management application.
 - Expo Go (or emulator/simulator)
 
 ## Screenshots
----
+
 #### Home Screen
 
 <img src="https://github.com/apacific/yeodeun/blob/main/demo/home-en.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/home-kr.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/home-jp.jpg?raw=true" width="222">
