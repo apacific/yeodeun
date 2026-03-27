@@ -3,32 +3,32 @@
 
 Proof-of-concept for a restaurant foodservice order management application.
 
-## Features
+### Features
 
 - English, Korean, and Japanese localization
 - User can View restaurant's menu, place and complete an order
 - Restaurant location via dynamic map
 - Nutrition Facts via USDA FDC API
 
-## Repository Layout
+### Repository Layout
 
 - `services/api` - backend API, database, seed logic, tests
 - `services/mobile` - Expo app, i18n resources, mobile tests
 
-## Prerequisites
+### Prerequisites
 
 - Docker Desktop
 - Node.js 20+
 - .NET SDK 10 (for local API test runs)
 - Expo Go (or emulator/simulator)
 
-### Screenshots
+## Screenshots
 
-#### Home Page
+#### Home Screen
 
 <img src="https://github.com/apacific/yeodeun/blob/main/demo/home-en.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/home-kr.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/home-jp.jpg?raw=true" width="222">
 
-#### About Page              
+#### About Screen              
 
 <img src="https://github.com/apacific/yeodeun/blob/main/demo/about-en.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/about-kr.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/about-jp.jpg?raw=true" width="222">
 
@@ -39,8 +39,12 @@ Proof-of-concept for a restaurant foodservice order management application.
 
 <img src="https://github.com/apacific/yeodeun/blob/main/demo/gall-en.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/gall-kr.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/gall-jp.jpg?raw=true" width="222">
 
+#### Contact Screen
 
-## Environment Variables
+<img src="https://github.com/apacific/yeodeun/blob/main/demo/cont-en.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/cont-kr.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/cont-jp.jpg?raw=true" width="222">
+
+
+### Environment Variables
 
 Set secrets in your shell or secret manager (do not commit real values):
 
@@ -49,9 +53,9 @@ $env:USDA_FDC_API_KEY = "<your-usda-key>"
 $env:ADMIN_JWT_KEY = "<strong-random-key>"
 ```
 
-## Run with Docker
+### Run with Docker
 
-### Local development (recommended)
+#### Local development (recommended)
 
 ```powershell
 docker compose -f docker-compose.yml -f docker-compose.local.yml up --build
@@ -59,7 +63,7 @@ docker compose -f docker-compose.yml -f docker-compose.local.yml up --build
 
 This enables development defaults, includes DB host port mapping, and supports local seed workflows.
 
-### Non-local / stricter mode
+#### Non-local / stricter mode
 
 ```powershell
 docker compose up --build
@@ -67,7 +71,7 @@ docker compose up --build
 
 Base compose defaults to production-safe behavior.
 
-## Mobile App
+### Mobile App
 
 ```powershell
 cd services/mobile
@@ -75,13 +79,13 @@ npm install
 npx expo start -c --lan
 ```
 
-## Nutrition Data
+### Nutrition Data
 
 - Nutrition profiles are sourced from USDA FoodData Central.
 - Admin endpoints are under `api/admin/nutrition/*`.
 - Admin endpoints require JWT Bearer auth with `role: Admin`.
 
-### Generate a local admin JWT (PowerShell)
+#### Generate a local admin JWT (PowerShell)
 
 ```powershell
 $key = $env:ADMIN_JWT_KEY
@@ -116,7 +120,7 @@ Invoke-RestMethod -Method Get `
   -Headers $headers
 ```
 
-## Seed Behavior
+#### Seed Behavior
 
 - Seed upserts menu items by `(category, name)`.
 - Items removed from seed are soft-disabled (not deleted), so old menu entries can be retired safely.
