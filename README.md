@@ -26,31 +26,31 @@ Proof-of-concept for a restaurant foodservice order management application.
 - Expo Go (or emulator/simulator)
 
 ## Screenshots
-
+---
 #### Home Screen
 
 <img src="https://github.com/apacific/yeodeun/blob/main/demo/home-en.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/home-kr.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/home-jp.jpg?raw=true" width="222">
-
+---
 #### About Screen              
 
 <img src="https://github.com/apacific/yeodeun/blob/main/demo/about-en.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/about-kr.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/about-jp.jpg?raw=true" width="222">
 
 
 <img src="https://github.com/apacific/yeodeun/blob/main/demo/about-2-en.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/about-2-kr.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/about-2-jp.jpg?raw=true" width="222">
-
+---
 #### Gallery Screen 
 
 <img src="https://github.com/apacific/yeodeun/blob/main/demo/gall-en.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/gall-kr.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/gall-jp.jpg?raw=true" width="222">
-
+---
 #### Contact Screen
 
 <img src="https://github.com/apacific/yeodeun/blob/main/demo/cont-en.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/cont-kr.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/cont-jp.jpg?raw=true" width="222">
-
+---
 #### Order Screen
 
 <img src="https://github.com/apacific/yeodeun/blob/main/demo/cont-en.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/cont-kr.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/cont-jp.jpg?raw=true" width="222">
 
-
+---
 ### Environment Variables
 
 Set secrets in your shell or secret manager (do not commit real values):
