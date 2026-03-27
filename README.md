@@ -10,6 +10,9 @@ Proof-of-concept for a restaurant foodservice order management application.
 - Restaurant location via dynamic map
 - Nutrition Facts via USDA FDC API
 
+
+<img src="https://github.com/apacific/yeodeun/blob/main/demo/about-yeodeun.gif?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/place-order.gif?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/a-la-carte.gif?raw=true" width="222">
+
 ### Repository Layout
 
 - `services/api` - backend API, database, seed logic, tests
@@ -35,11 +38,15 @@ Proof-of-concept for a restaurant foodservice order management application.
 
 <img src="https://github.com/apacific/yeodeun/blob/main/demo/about-2-en.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/about-2-kr.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/about-2-jp.jpg?raw=true" width="222">
 
-#### Image Gallery 
+#### Gallery Screen 
 
 <img src="https://github.com/apacific/yeodeun/blob/main/demo/gall-en.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/gall-kr.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/gall-jp.jpg?raw=true" width="222">
 
 #### Contact Screen
+
+<img src="https://github.com/apacific/yeodeun/blob/main/demo/cont-en.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/cont-kr.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/cont-jp.jpg?raw=true" width="222">
+
+#### Order Screen
 
 <img src="https://github.com/apacific/yeodeun/blob/main/demo/cont-en.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/cont-kr.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/cont-jp.jpg?raw=true" width="222">
 
