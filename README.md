@@ -3,24 +3,12 @@
 
 Proof-of-concept for a restaurant foodservice order management application.
 
-### Home Page
+## Features
 
-<img src="https://github.com/apacific/yeodeun/blob/main/demo/home-en.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/home-kr.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/home-jp.jpg?raw=true" width="222">
-
-### About Page              
-
-<img src="https://github.com/apacific/yeodeun/blob/main/demo/about-en.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/about-kr.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/about-jp.jpg?raw=true" width="222">
-
-
-<img src="https://github.com/apacific/yeodeun/blob/main/demo/about-2-en.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/about-2-kr.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/about-2-jp.jpg?raw=true" width="222">
-
-### Image Gallery 
-
-<img src="https://github.com/apacific/yeodeun/blob/main/demo/gall-en.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/gall-kr.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/gall-jp.jpg?raw=true" width="222">
-
-- ASP.NET Core API + PostgreSQL
-- Expo React Native mobile app
 - English, Korean, and Japanese localization
+- User can View restaurant's menu, place and complete an order
+- Restaurant location via dynamic map
+- Nutrition Facts via USDA FDC API
 
 ## Repository Layout
 
@@ -33,6 +21,24 @@ Proof-of-concept for a restaurant foodservice order management application.
 - Node.js 20+
 - .NET SDK 10 (for local API test runs)
 - Expo Go (or emulator/simulator)
+
+### Screenshots
+
+#### Home Page
+
+<img src="https://github.com/apacific/yeodeun/blob/main/demo/home-en.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/home-kr.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/home-jp.jpg?raw=true" width="222">
+
+#### About Page              
+
+<img src="https://github.com/apacific/yeodeun/blob/main/demo/about-en.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/about-kr.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/about-jp.jpg?raw=true" width="222">
+
+
+<img src="https://github.com/apacific/yeodeun/blob/main/demo/about-2-en.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/about-2-kr.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/about-2-jp.jpg?raw=true" width="222">
+
+#### Image Gallery 
+
+<img src="https://github.com/apacific/yeodeun/blob/main/demo/gall-en.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/gall-kr.jpg?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/gall-jp.jpg?raw=true" width="222">
+
 
 ## Environment Variables
 
