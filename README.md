@@ -10,8 +10,8 @@ Proof-of-concept for a restaurant foodservice order management application.
 - Restaurant location via dynamic map
 - Nutrition Facts via USDA FDC API
 
-|   |   |
-|---|---|
+|   |   |   |
+|---|---|---|
 <img src="https://github.com/apacific/yeodeun/blob/main/demo/about-yeodeun.gif?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/place-order.gif?raw=true" width="222">  |  <img src="https://github.com/apacific/yeodeun/blob/main/demo/a-la-carte.gif?raw=true" width="222">
 
 ### Repository Layout
