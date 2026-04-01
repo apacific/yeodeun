@@ -6,12 +6,13 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
-import { Text, Divider } from 'react-native-paper';
+import { Divider } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
 import { NutritionTotalsDto, MenuItemDto } from '../types/api';
 import { formatNutritionValue, capitalize } from '../utils/formatting';
 import { appTheme, spacing, shadows } from '../theme/theme';
 import { getMenuItemLabel } from '../i18n/menu';
+import { AppText as Text } from './AppText';
 
 interface NutritionRow {
   label: string;

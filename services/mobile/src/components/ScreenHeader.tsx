@@ -1,7 +1,8 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { IconButton, Text } from 'react-native-paper';
+import { IconButton } from 'react-native-paper';
 import { appTheme, spacing } from '../theme/theme';
+import { AppText as Text } from './AppText';
 
 interface ScreenHeaderProps {
   title: string;

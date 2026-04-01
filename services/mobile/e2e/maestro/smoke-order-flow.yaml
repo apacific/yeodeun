@@ -8,6 +8,6 @@ name: Yeodeun Smoke Order Flow
 - tapOn: "A-la-carte"
 - assertVisible: "MENU"
 - tapOn:
-    text: "Nutrition info"
+    text: "Nutrition Info"
     index: 0
 - assertVisible: "NUTRITION FACTS"

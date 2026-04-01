@@ -6,11 +6,12 @@ import {
   TouchableOpacity,
   ViewStyle,
 } from 'react-native';
-import { Text, Checkbox } from 'react-native-paper';
+import { Checkbox } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
 import { getMenuItemLabel } from '../i18n/menu';
 import { MenuItemDto } from '../types/api';
 import { Card } from './Common';
+import { AppText as Text } from './AppText';
 import { formatPrice } from '../utils/formatting';
 import { getMenuItemImage } from '../utils/menuImages';
 import { appTheme, spacing } from '../theme/theme';
@@ -60,44 +61,46 @@ export const MenuItemCard = React.memo(
           style={styles.image}
         >
           <View style={styles.overlay}>
-            <View style={styles.header}>
-              {selectable ? (
+            {selectable ? (
+              <View style={styles.checkboxWrap}>
                 <Checkbox
                   status={selected ? 'checked' : 'unchecked'}
                   onPress={() => onSelect?.(item)}
                   color={appTheme.colors.primary}
                 />
-              ) : (
-                <View />
-              )}
-            </View>
+              </View>
+            ) : (
+              <View style={styles.checkboxPlaceholder} />
+            )}
 
-            <Text
-              variant="titleMedium"
-              style={styles.name}
-              numberOfLines={2}
-            >
-              {getMenuItemLabel(item.name, t)}
-            </Text>
-
-            <View style={styles.footer}>
+            <View style={styles.rowInfo}>
               <Text
-                variant="titleSmall"
-                style={styles.price}
+                variant="titleMedium"
+                style={styles.name}
+                numberOfLines={2}
               >
-                {formatPrice(item.priceCents)}
+                {getMenuItemLabel(item.name, t)}
               </Text>
-              <TouchableOpacity
-                onPress={() => onViewNutrition?.(item)}
-                style={styles.nutritionButton}
-              >
+
+              <View style={styles.metaLine}>
                 <Text
-                  style={styles.nutritionButtonText}
-                  variant="labelSmall"
+                  variant="titleSmall"
+                  style={styles.price}
                 >
-                  {t('menu.nutritionInfoShort')}
+                  {formatPrice(item.priceCents)}
                 </Text>
-              </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => onViewNutrition?.(item)}
+                  style={styles.nutritionButton}
+                >
+                  <Text
+                    style={styles.nutritionButtonText}
+                    variant="labelSmall"
+                  >
+                    {t('menu.nutritionInfoShort')}
+                  </Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
         </ImageBackground>
@@ -157,41 +160,63 @@ MenuItemList.displayName = 'MenuItemList';
 const styles = StyleSheet.create({
   card: {
     backgroundColor: appTheme.colors.surface,
-    borderLeftColor: appTheme.colors.primary,
-    borderLeftWidth: 4,},
-  footer: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-between',},
-  header: {
+    padding: 0,
+  },
+  checkboxPlaceholder: {
+    width: 32,
+  },
+  checkboxWrap: {
     alignItems: 'flex-start',
-    flexDirection: 'row',
-    justifyContent: 'space-between',},
+    justifyContent: 'center',
+  },
   image: {
-    minHeight: 140,},
+    justifyContent: 'center',
+    minHeight: 140,
+    width: '100%',
+  },
   listContainer: {
     gap: spacing.sm,},
   listItem: {
     marginBottom: 0,},
   name: {
-    color: appTheme.colors.onBackground,},
+    color: appTheme.colors.onBackground,
+    fontSize: 22,
+    lineHeight: 26,
+  },
+  metaLine: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    width: '100%',
+  },
   nutritionButton: {
-    backgroundColor: 'rgba(0, 0, 0, 0.4)',
-    paddingHorizontal: spacing.sm,
-    paddingVertical: spacing.xs,},
+    marginLeft: 'auto',
+    marginTop: spacing.xs,
+  },
   nutritionButtonText: {
-    color: appTheme.colors.onBackground,},
+    color: appTheme.colors.onBackground,
+    fontSize: 14,
+    lineHeight: 18,
+  },
   overlay: {
+    alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.45)',
-    flex: 1,
-    gap: spacing.sm,
-    padding: spacing.md,},
+    flexDirection: 'row',
+    gap: spacing.md,
+    justifyContent: 'space-between',
+    padding: spacing.md,
+  },
   price: {
     color: appTheme.colors.onBackground,
-    fontSize: 18,
+    fontSize: 24,
     fontWeight: '700',
-    lineHeight: 22,},
+    lineHeight: 28,
+    textAlign: 'left',
+  },
+  rowInfo: {
+    flex: 1,
+    gap: spacing.xs,
+  },
   selectedCard: {
     backgroundColor: appTheme.colors.surfaceVariant,
-    borderLeftColor: appTheme.colors.success,},
+  },
 });

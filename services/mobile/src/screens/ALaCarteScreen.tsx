@@ -1,9 +1,9 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import { Alert, ImageBackground, SectionList, StyleSheet, View } from 'react-native';
-import { Button, Text } from 'react-native-paper';
+import { Button } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
 import { useMenuItems } from '../api/hooks';
-import { EmptyState, NutritionModal, ScreenHeader } from '../components';
+import { AppText as Text, EmptyState, NutritionModal, ScreenHeader } from '../components';
 import { getCategoryLabel, getMenuItemLabel } from '../i18n/menu';
 import { RootStackScreenProps } from '../navigation/types';
 import { useOrderStore } from '../store/orderStore';
@@ -177,16 +177,18 @@ const ALaCarteRow = React.memo(
           <Text variant="titleSmall" style={styles.rowName}>
             {displayName}
           </Text>
-          <Text variant="bodySmall" style={styles.rowMeta}>
-            {formatPrice(item.priceCents)}
-          </Text>
-          <Text
-            variant="labelSmall"
-            style={styles.nutritionLink}
-            onPress={() => onShowNutrition(item)}
-          >
-            {nutritionLabel}
-          </Text>
+          <View style={styles.rowMetaLine}>
+            <Text variant="bodySmall" style={styles.rowMeta}>
+              {formatPrice(item.priceCents)}
+            </Text>
+            <Text
+              variant="labelSmall"
+              style={styles.nutritionLink}
+              onPress={() => onShowNutrition(item)}
+            >
+              {nutritionLabel}
+            </Text>
+          </View>
         </View>
         <View style={styles.rowActions}>
           <Button
@@ -217,7 +219,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.lg,},
   nutritionLink: {
     color: appTheme.colors.onBackground,
-    marginTop: spacing.xs,},
+    fontSize: 14,
+    lineHeight: 18,
+    marginLeft: 'auto',
+    marginTop: spacing.xs,
+  },
   overlay: {
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.45)',
@@ -239,13 +245,23 @@ const styles = StyleSheet.create({
   rowInfo: {
     flex: 1,
     gap: spacing.xs,},
+  rowMetaLine: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    width: '100%',
+  },
   rowMeta: {
     color: appTheme.colors.onBackground,
-    fontSize: 18,
+    fontSize: 24,
     fontWeight: '700',
-    lineHeight: 22,},
+    lineHeight: 28,
+    textAlign: 'left',
+  },
   rowName: {
-    color: appTheme.colors.onBackground,},
+    color: appTheme.colors.onBackground,
+    fontSize: 22,
+    lineHeight: 26,
+  },
   sectionHeader: {
     alignItems: 'center',
     paddingBottom: spacing.sm,

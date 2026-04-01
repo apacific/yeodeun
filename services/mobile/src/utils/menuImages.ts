@@ -9,7 +9,7 @@ const menuImageOverrides: Record<string, ImageSourcePropType> = {
   'bean thread noodles': require('../../assets/img/menu/bean-thread-noodles.jpg'),
   'black bean noodles': require('../../assets/img/menu/black-bean-noodles.jpg'),
   'blackberries': require('../../assets/img/menu/blackberries.jpg'),
-  'blackened salmon filet': require('../../assets/img/menu/blackened-salmon.jpg'),
+  'salmon filet': require('../../assets/img/menu/blackened-salmon.jpg'),
   'braised greens': require('../../assets/img/menu/braised-greens.jpg'),
   'brown gravy': require('../../assets/img/menu/brown-gravy.jpg'),
   'chili garlic peas': require('../../assets/img/menu/chili-garlic-peas.jpg'),

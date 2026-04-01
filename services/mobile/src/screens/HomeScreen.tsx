@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Button, Text } from 'react-native-paper';
+import { Button } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
-import { LogoMark } from '../components';
+import { AppText as Text, LogoMark } from '../components';
 import { RootStackScreenProps } from '../navigation/types';
 import { appTheme, spacing } from '../theme/theme';
 
@@ -26,6 +26,7 @@ export const HomeScreen = ({ navigation }: RootStackScreenProps<'Home'>) => {
           onPress={() => navigation.navigate('OrderMenu')}
           style={styles.primaryButton}
           contentStyle={styles.buttonContent}
+          labelStyle={styles.buttonLabel}
         >
           {t('home.createEditOrder')}
         </Button>
@@ -34,6 +35,7 @@ export const HomeScreen = ({ navigation }: RootStackScreenProps<'Home'>) => {
           onPress={() => navigation.navigate('About')}
           style={styles.secondaryButton}
           contentStyle={styles.buttonContent}
+          labelStyle={styles.buttonLabel}
         >
           {t('home.about')}
         </Button>
@@ -42,6 +44,7 @@ export const HomeScreen = ({ navigation }: RootStackScreenProps<'Home'>) => {
           onPress={() => navigation.navigate('Gallery')}
           style={styles.secondaryButton}
           contentStyle={styles.buttonContent}
+          labelStyle={styles.buttonLabel}
         >
           {t('home.gallery')}
         </Button>
@@ -50,6 +53,7 @@ export const HomeScreen = ({ navigation }: RootStackScreenProps<'Home'>) => {
           onPress={() => navigation.navigate('Contact')}
           style={styles.secondaryButton}
           contentStyle={styles.buttonContent}
+          labelStyle={styles.buttonLabel}
         >
           {t('home.contact')}
         </Button>
@@ -59,6 +63,10 @@ export const HomeScreen = ({ navigation }: RootStackScreenProps<'Home'>) => {
 };
 
 const styles = StyleSheet.create({
+  buttonLabel: {
+    fontSize: 20,
+    lineHeight: 24,
+  },
   buttonContent: {
     paddingVertical: spacing.sm,},
   container: {
@@ -86,5 +94,5 @@ const styles = StyleSheet.create({
     fontSize: 36,
     fontWeight: '700',
     letterSpacing: 2.5,
-    lineHeight: 36,},
+    lineHeight: 43,},
 });

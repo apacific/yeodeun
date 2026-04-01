@@ -4,7 +4,7 @@ import '@formatjs/intl-pluralrules/polyfill';
 import '@formatjs/intl-pluralrules/locale-data/en';
 import '@formatjs/intl-pluralrules/locale-data/ko';
 import '@formatjs/intl-pluralrules/locale-data/ja';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { ActivityIndicator, StyleSheet, Text as RNText, TextInput as RNTextInput, View, useWindowDimensions } from 'react-native';
 import { useFonts } from 'expo-font';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -13,9 +13,8 @@ import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { NavigationContainer, createNavigationContainerRef } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { appTheme } from './src/theme/theme';
-import { initI18n } from './src/i18n';
-import { useTranslation } from 'react-i18next';
+import { appTheme, createAppTheme } from './src/theme/theme';
+import { i18n as i18nInstance, initI18n } from './src/i18n';
 import {
   ALaCarteScreen,
   AboutScreen,
@@ -51,44 +50,56 @@ const createQueryClient = () =>
 
 const queryClient = createQueryClient();
 
-const centeredTextStyle = {
-  textAlign: 'center',
-  fontFamily: 'Paperlogy-4Regular',
-} as const;
+const baseRNTextDefaultProps = (RNText as any).defaultProps ?? {};
+const basePaperTextDefaultProps = (PaperText as any).defaultProps ?? {};
+const baseRNTextInputDefaultProps = (RNTextInput as any).defaultProps ?? {};
+const basePaperTextInputDefaultProps = (PaperTextInput as any).defaultProps ?? {};
 
-(RNText as any).defaultProps = {
-  ...((RNText as any).defaultProps ?? {}),
-  style: [((RNText as any).defaultProps?.style ?? null), centeredTextStyle],
-};
+const applyGlobalTextDefaults = (fontFamily: string): void => {
+  const centeredTextStyle = {
+    textAlign: 'center',
+    fontFamily,
+  } as const;
 
-(PaperText as any).defaultProps = {
-  ...((PaperText as any).defaultProps ?? {}),
-  style: [((PaperText as any).defaultProps?.style ?? null), centeredTextStyle],
-};
+  (RNText as any).defaultProps = {
+    ...baseRNTextDefaultProps,
+    style: [baseRNTextDefaultProps.style ?? null, centeredTextStyle],
+  };
 
-(RNTextInput as any).defaultProps = {
-  ...((RNTextInput as any).defaultProps ?? {}),
-  style: [((RNTextInput as any).defaultProps?.style ?? null), centeredTextStyle],
-  placeholderTextColor: (RNTextInput as any).defaultProps?.placeholderTextColor,
-};
+  (PaperText as any).defaultProps = {
+    ...basePaperTextDefaultProps,
+    style: [basePaperTextDefaultProps.style ?? null, centeredTextStyle],
+  };
 
-(PaperTextInput as any).defaultProps = {
-  ...((PaperTextInput as any).defaultProps ?? {}),
-  style: [((PaperTextInput as any).defaultProps?.style ?? null), centeredTextStyle],
+  (RNTextInput as any).defaultProps = {
+    ...baseRNTextInputDefaultProps,
+    style: [baseRNTextInputDefaultProps.style ?? null, centeredTextStyle],
+    placeholderTextColor: baseRNTextInputDefaultProps.placeholderTextColor,
+  };
+
+  (PaperTextInput as any).defaultProps = {
+    ...basePaperTextInputDefaultProps,
+    style: [basePaperTextInputDefaultProps.style ?? null, centeredTextStyle],
+  };
 };
 
 export default function App() {
   const [i18nReady, setI18nReady] = useState(false);
+  const [activeLanguage, setActiveLanguage] = useState('en');
   const [currentRouteName, setCurrentRouteName] = useState<keyof RootStackParamList | undefined>();
   const { height } = useWindowDimensions();
+  const isEnglishSelected = activeLanguage.startsWith('en');
+  const defaultFontFamily = isEnglishSelected ? 'Aller_Bd' : 'Paperlogy-4Regular';
+  const theme = useMemo(() => createAppTheme(isEnglishSelected), [isEnglishSelected]);
   const topViewportMargin = Math.round(height * 0.12);
   const bottomViewportMargin = Math.round(height * 0.07);
   const contentStyle = {
-    backgroundColor: appTheme.layout.screenBackground,
+    backgroundColor: theme.layout.screenBackground,
     paddingTop: topViewportMargin,
     paddingBottom: bottomViewportMargin,
   } as const;
   const [fontsLoaded] = useFonts({
+    Aller_Bd: require('./assets/fonts/Aller_Bd.ttf'),
     'Paperlogy-1Thin': require('./assets/fonts/Paperlogy-1Thin.ttf'),
     'Paperlogy-2ExtraLight': require('./assets/fonts/Paperlogy-2ExtraLight.ttf'),
     'Paperlogy-3Light': require('./assets/fonts/Paperlogy-3Light.ttf'),
@@ -101,15 +112,31 @@ export default function App() {
   });
 
   useEffect(() => {
+    const handleLanguageChanged = (language: string): void => {
+      setActiveLanguage((language || 'en').toLowerCase());
+    };
+
+    i18nInstance.on('languageChanged', handleLanguageChanged);
     initI18n()
+      .then(() => {
+        handleLanguageChanged(i18nInstance.resolvedLanguage || i18nInstance.language || 'en');
+      })
       .finally(() => setI18nReady(true));
+
+    return () => {
+      i18nInstance.off('languageChanged', handleLanguageChanged);
+    };
   }, []);
+
+  useEffect(() => {
+    applyGlobalTextDefaults(defaultFontFamily);
+  }, [defaultFontFamily]);
 
 
   if (!fontsLoaded || !i18nReady) {
     return (
-      <View style={{ flex: 1, backgroundColor: appTheme.colors.background, justifyContent: 'center', alignItems: 'center' }}>
-        <ActivityIndicator size="large" color={appTheme.colors.primary} />
+      <View style={{ flex: 1, backgroundColor: theme.colors.background, justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator size="large" color={theme.colors.primary} />
       </View>
     );
   }
@@ -118,7 +145,7 @@ export default function App() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
         <QueryClientProvider client={queryClient}>
-          <PaperProvider theme={appTheme}>
+          <PaperProvider theme={theme}>
             <View style={styles.appRoot}>
               <NavigationContainer
                 ref={navigationRef}
@@ -161,7 +188,6 @@ const TopOverlayControls = ({
 }: {
   currentRouteName?: keyof RootStackParamList;
 }) => {
-  const { t } = useTranslation();
   const hasOrder = useOrderStore((state) => {
     const sel = state.currentSelection ?? {};
     const aLaCarteItems = state.aLaCarteItems ?? [];

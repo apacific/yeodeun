@@ -1,6 +1,6 @@
 import { MD3DarkTheme as DefaultDarkTheme, configureFonts } from 'react-native-paper';
 
-const fonts = configureFonts({
+const paperlogyFonts = configureFonts({
   config: {
     bodyLarge: { fontFamily: 'Paperlogy-4Regular', fontWeight: '400' },
     bodyMedium: { fontFamily: 'Paperlogy-4Regular', fontWeight: '400' },
@@ -20,131 +20,62 @@ const fonts = configureFonts({
   },
 });
 
+const allerFonts = configureFonts({
+  config: {
+    bodyLarge: { fontFamily: 'Aller_Bd', fontWeight: 'normal' },
+    bodyMedium: { fontFamily: 'Aller_Bd', fontWeight: 'normal' },
+    bodySmall: { fontFamily: 'Aller_Bd', fontWeight: 'normal' },
+    displayLarge: { fontFamily: 'Aller_Bd', fontWeight: 'normal' },
+    displayMedium: { fontFamily: 'Aller_Bd', fontWeight: 'normal' },
+    displaySmall: { fontFamily: 'Aller_Bd', fontWeight: 'normal' },
+    headlineLarge: { fontFamily: 'Aller_Bd', fontWeight: 'normal' },
+    headlineMedium: { fontFamily: 'Aller_Bd', fontWeight: 'normal' },
+    headlineSmall: { fontFamily: 'Aller_Bd', fontWeight: 'normal' },
+    labelLarge: { fontFamily: 'Aller_Bd', fontWeight: 'normal' },
+    labelMedium: { fontFamily: 'Aller_Bd', fontWeight: 'normal' },
+    labelSmall: { fontFamily: 'Aller_Bd', fontWeight: 'normal' },
+    titleLarge: { fontFamily: 'Aller_Bd', fontWeight: 'normal' },
+    titleMedium: { fontFamily: 'Aller_Bd', fontWeight: 'normal' },
+    titleSmall: { fontFamily: 'Aller_Bd', fontWeight: 'normal' },
+  },
+});
+
 const screenBackground = '#1A1A1A';
 
-/**
- * App theme.
- */
-export const appTheme = {
+const colors = {
+  ...DefaultDarkTheme.colors,
+  background: screenBackground,
+  error: '#F44336',
+  info: '#2196F3',
+  onBackground: '#FFFFFF',
+  onSurface: '#FFFFFF',
+  onSurfaceDisabled: '#757575',
+  outline: '#666666',
+  outlineVariant: '#555555',
+  primary: '#2196F3',
+  secondary: '#FF6F00',
+  success: '#4CAF50',
+  surface: '#242424',
+  surfaceDisabled: '#1F1F1F',
+  surfaceVariant: '#3A3A3A',
+  tertiary: '#00BCD4',
+  warning: '#FFC107',
+};
+
+export const createAppTheme = (useEnglishFont = false) => ({
   ...DefaultDarkTheme,
-  colors: {
-    ...DefaultDarkTheme.colors,
-    
-    // Cyan
-// Backgrounds
-background: screenBackground, 
-    
-
-
-error: '#F44336', 
-    
-
-
-
-info: '#2196F3', 
-
-    
-    
-
-
-
-
-// Text colors with high contrast
-onBackground: '#FFFFFF', 
-    
-
-
-
-
-
-
-onSurface: '#FFFFFF', 
-    
-
-
-
-
-
-
-onSurfaceDisabled: '#757575',
-
-    
-    
-
-
-
-
-
-
-// Semantic colors
-outline: '#666666',
-    
-
-
-
-
-
-
-
-outlineVariant: '#555555',
-    
-
-
-
-
-
-
-// Primary color - bright, clean, modern
-primary: '#2196F3',
-    
-
-
-
-
-
-// Bright blue
-secondary: '#FF6F00',
-
-    
-    
-
-
-
-// State colors
-success: '#4CAF50',
-    
-
-
-// Dark background for contrast
-surface: '#242424',
-
-    
-    
-
-
-// Disabled/muted
-surfaceDisabled: '#1F1F1F',
-    
-
-
-
-// Slightly lighter surface
-surfaceVariant: '#3A3A3A',
-
-    
-    
-
-// Bright orange
-tertiary: '#00BCD4',
-    
-warning: '#FFC107',
-  },
-  fonts,
+  colors,
+  fonts: useEnglishFont ? allerFonts : paperlogyFonts,
   layout: {
     screenBackground,
   },
   roundness: 0,
-};
+});
+
+/**
+ * App theme.
+ */
+export const appTheme = createAppTheme(false);
 
 /**
  * Spacing.

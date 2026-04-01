@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { ActivityIndicator, Image, Linking, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
-import { Text } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
-import { LogoMark, ScreenHeader } from '../components';
+import { AppText as Text, LogoMark, ScreenHeader } from '../components';
 import { RootStackScreenProps } from '../navigation/types';
 import { appTheme, spacing } from '../theme/theme';
 
@@ -260,7 +259,6 @@ const styles = StyleSheet.create({
   paragraph: {
     alignSelf: 'center',
     color: appTheme.colors.onBackground,
-    fontFamily: 'Paperlogy-6SemiBold',
     fontSize: 15,
     lineHeight: 24,
     maxWidth: 560,

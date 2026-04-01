@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
-import { Button, Text } from 'react-native-paper';
+import { Button } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
 import { useMenuItems } from '../api/hooks';
-import { ScreenHeader } from '../components';
+import { AppText as Text, ScreenHeader } from '../components';
 import { RootStackScreenProps } from '../navigation/types';
 import { useOrderStore } from '../store/orderStore';
 import { DishSelectionDto } from '../types/api';
@@ -15,7 +15,10 @@ import { formatPrice } from '../utils/formatting';
  * Cart screen.
  */
 export const CartScreen = ({ navigation }: RootStackScreenProps<'Cart'>) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isEnglish = (i18n.resolvedLanguage || i18n.language || 'en')
+    .toLowerCase()
+    .startsWith('en');
   const comboMeals = useOrderStore((s) => s.comboMeals) ?? [];
   const aLaCarteItems = useOrderStore((s) => s.aLaCarteItems) ?? [];
   const removeComboMeal = useOrderStore((s) => s.removeComboMeal);
@@ -133,7 +136,7 @@ export const CartScreen = ({ navigation }: RootStackScreenProps<'Cart'>) => {
         <Button
           mode="outlined"
           contentStyle={styles.actionButtonContent}
-          labelStyle={styles.actionButtonLabel}
+          labelStyle={[styles.actionButtonLabel, isEnglish && styles.actionButtonLabelEnglish]}
           style={[styles.checkoutButton, styles.addToOrderButton]}
           onPress={() => navigation.navigate('OrderMenu')}
         >
@@ -143,7 +146,7 @@ export const CartScreen = ({ navigation }: RootStackScreenProps<'Cart'>) => {
         <Button
           mode="contained"
           contentStyle={styles.actionButtonContent}
-          labelStyle={styles.actionButtonLabel}
+          labelStyle={[styles.actionButtonLabel, isEnglish && styles.actionButtonLabelEnglish]}
           style={styles.checkoutButton}
           onPress={() => navigation.navigate('Checkout', { from: 'cart' })}
         >
@@ -161,6 +164,10 @@ const styles = StyleSheet.create({
   actionButtonLabel: {
     fontSize: 16,
     fontWeight: '700',
+  },
+  actionButtonLabelEnglish: {
+    fontFamily: 'Aller_Bd',
+    fontWeight: 'normal',
   },
   addToOrderButton: {
     backgroundColor: appTheme.colors.background,

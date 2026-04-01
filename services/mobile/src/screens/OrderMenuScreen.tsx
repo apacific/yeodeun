@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Button, Text } from 'react-native-paper';
+import { Button } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
-import { LogoMark, ScreenHeader } from '../components';
+import { AppText as Text, LogoMark, ScreenHeader } from '../components';
 import { RootStackScreenProps } from '../navigation/types';
 import { appTheme, spacing } from '../theme/theme';
 
@@ -37,6 +37,7 @@ export const OrderMenuScreen = ({
           onPress={() => navigation.navigate('ALaCarte')}
           style={styles.primaryButton}
           contentStyle={styles.buttonContent}
+          labelStyle={styles.buttonLabel}
         >
           {t('orderMenu.actions.aLaCarte')}
         </Button>
@@ -45,6 +46,7 @@ export const OrderMenuScreen = ({
           onPress={() => navigation.navigate('Builder')}
           style={styles.secondaryButton}
           contentStyle={styles.buttonContent}
+          labelStyle={styles.buttonLabel}
         >
           {t('orderMenu.actions.buildMeal')}
         </Button>
@@ -53,6 +55,7 @@ export const OrderMenuScreen = ({
           onPress={() => navigation.navigate('Cart')}
           style={styles.secondaryButton}
           contentStyle={styles.buttonContent}
+          labelStyle={styles.buttonLabel}
         >
           {t('orderMenu.actions.viewOrder')}
         </Button>
@@ -62,6 +65,10 @@ export const OrderMenuScreen = ({
 };
 
 const styles = StyleSheet.create({
+  buttonLabel: {
+    fontSize: 20,
+    lineHeight: 24,
+  },
   buttonContent: {
     paddingVertical: spacing.sm,},
   container: {

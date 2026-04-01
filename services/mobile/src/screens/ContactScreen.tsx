@@ -9,12 +9,12 @@ import {
   View,
   useColorScheme,
 } from 'react-native';
-import { Button, Text, TextInput } from 'react-native-paper';
+import { Button, TextInput } from 'react-native-paper';
 import { AsYouType, getCountries, getCountryCallingCode, parsePhoneNumberFromString } from 'libphonenumber-js';
 import type { CountryCode } from 'libphonenumber-js';
 import { useTranslation } from 'react-i18next';
 import { useContactSubmit } from '../api/hooks';
-import { ScreenHeader } from '../components';
+import { AppText as Text, ScreenHeader } from '../components';
 import { RootStackScreenProps } from '../navigation/types';
 import { appTheme, spacing } from '../theme/theme';
 

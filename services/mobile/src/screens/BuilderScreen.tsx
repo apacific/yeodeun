@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   FlatList,
 } from 'react-native';
-import { Text, Button, Chip } from 'react-native-paper';
+import { Button, Chip } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
 import {
   useMenuItems,
@@ -16,6 +16,7 @@ import {
 } from '../api/hooks';
 import { useOrderStore } from '../store/orderStore';
 import { MenuItemDto } from '../types/api';
+import { AppText as Text } from '../components';
 import { NutritionModal } from '../components/NutritionModal';
 import { Card, Section, EmptyState, LoadingOverlay } from '../components/Common';
 import { formatPrice } from '../utils/formatting';

@@ -7,8 +7,8 @@ import {
   ScrollView,
   Pressable,
 } from 'react-native';
-import { Text } from 'react-native-paper';
 import { appTheme, spacing, shadows } from '../theme/theme';
+import { AppText as Text } from './AppText';
 
 interface CardProps {
   children: ReactNode;

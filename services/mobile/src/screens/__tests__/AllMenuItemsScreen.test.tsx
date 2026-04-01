@@ -27,7 +27,7 @@ jest.mock('react-i18next', () => ({
     t: (key: string) => {
       const map: Record<string, string> = {
         'menu.description': 'Description',
-        'menu.nutritionInfo': 'Nutrition info',
+        'menu.nutritionInfo': 'Nutrition Info',
         'menu.loading': 'Loading menu',
         'menu.title': 'Menu',
         'menu.descriptionBack': 'Back',

@@ -1,9 +1,9 @@
 import React, { useMemo, useState } from 'react';
 import { Alert, ScrollView, StyleSheet, View } from 'react-native';
-import { Button, RadioButton, Text, TextInput } from 'react-native-paper';
+import { Button, RadioButton, TextInput } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
 import { useCheckoutSubmit, useMenuItems } from '../api/hooks';
-import { ScreenHeader } from '../components';
+import { AppText as Text, ScreenHeader } from '../components';
 import { RootStackScreenProps } from '../navigation/types';
 import { useOrderStore } from '../store/orderStore';
 import { DishSelectionDto } from '../types/api';

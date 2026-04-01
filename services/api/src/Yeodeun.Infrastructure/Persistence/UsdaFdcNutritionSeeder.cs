@@ -31,7 +31,7 @@ internal static class UsdaFdcNutritionSeeder
         ["grilled beef"] = new("beef flank steak cooked grilled", 150m),
         ["pork belly"] = new("pork belly cooked braised", 150m),
         ["grilled lamb"] = new("lamb leg cooked roasted", 150m),
-        ["blackened salmon filet"] = new("salmon Atlantic cooked dry heat", 150m),
+        ["salmon filet"] = new("salmon Atlantic cooked dry heat", 150m),
         ["grilled prawns"] = new("shrimp cooked", 140m),
         ["grilled squid"] = new("squid cooked", 140m),
         ["grilled octopus"] = new("octopus cooked", 140m),
@@ -84,7 +84,7 @@ internal static class UsdaFdcNutritionSeeder
         ["black bean noodles"] = 168909,
         ["vegan sausage"] = 2659276,
         // Optional future overrides (if audit flags them again):
-        // ["blackened salmon filet"] = <fdcId for cooked salmon>,
+        // ["salmon filet"] = <fdcId for cooked salmon>,
     };
 
     private static readonly string[] PreferredDataTypes =

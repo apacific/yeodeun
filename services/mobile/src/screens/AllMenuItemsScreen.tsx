@@ -6,11 +6,11 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
-import { Button, Text } from 'react-native-paper';
+import { Button } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
 import { useMenuItems } from '../api/hooks';
-import { EmptyState, NutritionModal, ScreenHeader } from '../components';
+import { AppText as Text, EmptyState, NutritionModal, ScreenHeader } from '../components';
 import { getCategoryLabel, getMenuItemDescription, getMenuItemLabel } from '../i18n/menu';
 import { RootStackScreenProps } from '../navigation/types';
 import { MenuItemDto } from '../types/api';
@@ -114,7 +114,7 @@ export const AllMenuItemsScreen = ({
               </Text>
               <Text
                 variant="labelSmall"
-                style={styles.link}
+                style={[styles.link, styles.descriptionLink]}
                 onPress={() => handleShowDescription(item)}
               >
                 {t('menu.description')}
@@ -174,6 +174,7 @@ export const AllMenuItemsScreen = ({
           style={styles.footerButton}
           onPress={() => navigation.navigate('OrderMenu')}
           contentStyle={styles.footerButtonContent}
+          labelStyle={styles.footerButtonLabel}
         >
           {t('home.createEditOrder')}
         </Button>
@@ -217,8 +218,14 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: appTheme.colors.background,
     flex: 1,},
+  descriptionLink: {
+    marginLeft: spacing.lg,
+  },
   link: {
-    color: appTheme.colors.onBackground,},
+    color: appTheme.colors.onBackground,
+    fontSize: 14,
+    lineHeight: 18,
+  },
   list: {
     gap: spacing.sm,
     paddingBottom: 64,
@@ -243,8 +250,12 @@ const styles = StyleSheet.create({
   footerButtonContent: {
     paddingTop: 0,
     paddingBottom: 0,
-    height: 50,
+    height: 56,
     minHeight: 40,
+  },
+  footerButtonLabel: {
+    fontSize: 20,
+    lineHeight: 24,
   },
   modalBackdrop: {
     backgroundColor: 'rgba(0,0,0,0.6)',
@@ -277,7 +288,10 @@ const styles = StyleSheet.create({
     fontSize: 22,
     lineHeight: 22,},
   rowName: {
-    color: appTheme.colors.onBackground,},
+    color: appTheme.colors.onBackground,
+    fontSize: 22,
+    lineHeight: 26,
+  },
   sectionHeader: {
     alignItems: 'center',
     paddingBottom: spacing.sm,
